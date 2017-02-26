@@ -1,0 +1,29 @@
+<?php
+
+namespace App\Repositories;
+
+use App\Models\estudiante;
+use InfyOm\Generator\Common\BaseRepository;
+
+class estudianteRepository extends BaseRepository
+{
+    /**
+     * @var array
+     */
+    protected $fieldSearchable = [
+        'id',
+        'nombre',
+        'apellido',
+        'fechaNacimiento',
+        'sexo',
+        'activo'
+    ];
+
+    /**
+     * Configure the Model
+     **/
+    public function model()
+    {
+        return estudiante::class;
+    }
+}

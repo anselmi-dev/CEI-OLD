@@ -1,0 +1,48 @@
+[
+    {
+        "name": "id",
+        "dbType": "integer",
+        "htmlType": "text",
+        "validations": "required",
+        "searchable": true,
+        "fillable": true,
+        "primary": true,
+        "inForm": true,
+        "inIndex": true
+    },{
+        "name": "nombre",
+        "dbType": "string,50",
+        "htmlType": "text",
+        "validations": "required",
+        "searchable": true,
+        "fillable": true
+    },{
+        "name": "apellido",
+        "dbType": "string,50",
+        "htmlType": "text",
+        "validations": "required",
+        "searchable": true,
+        "fillable": true
+    },{
+        "name": "fechaNacimiento",
+        "dbType": "date",
+        "htmlType": "date",
+        "validations": "required",
+        "searchable": true,
+        "fillable": true
+    },{
+        "name": "sexo",
+        "dbType": "string,2",
+        "htmlType": "select,M,F",
+        "validations": "required",
+        "searchable": true,
+        "fillable": true
+    },{
+        "name": "activo",
+        "dbType": "boolean",
+        "htmlType": "checkbox",
+        "validations": "required",
+        "searchable": true,
+        "fillable": true
+    }
+]

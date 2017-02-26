@@ -24,7 +24,6 @@ Route::get('/home', 'HomeController@index');
 
 
 
-Route::resource('yearschools', 'yearschoolController');
 
 
 
@@ -32,6 +31,43 @@ Route::resource('yearschools', 'yearschoolController');
 
 
 
-Route::resource('students', 'studentController');
 
-Route::resource('sections', 'sectionsController');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Route::resource('docentes', 'docenteController');
+
+Route::resource('trimestres', 'trimestreController');
+
+Route::resource('estudiantes', 'estudianteController');
+
+Route::resource('grados', 'gradoController');
+
+
+
+Route::resource('seccions', 'seccionController');
+
+Route::resource('boletas', 'boletaController');

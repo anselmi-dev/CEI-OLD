@@ -1,0 +1,31 @@
+[
+    {
+        "name": "trimestre_id",
+        "dbType": "integer",
+        "htmlType": "number",
+        "validations": "required",
+        "searchable": true,
+        "fillable": false
+    },{
+        "name": "estudiante_id",
+        "dbType": "integer",
+        "htmlType": "number",
+        "validations": "required",
+        "searchable": true,
+        "fillable": false
+    },{
+        "name": "seccion_id",
+        "dbType": "integer",
+        "htmlType": "number",
+        "validations": "required",
+        "searchable": true,
+        "fillable": false
+    },{
+        "name": "boleta",
+        "dbType": "boolean",
+        "htmlType": "checkbox",
+        "validations": "required",
+        "searchable": true,
+        "fillable": false
+    }
+]

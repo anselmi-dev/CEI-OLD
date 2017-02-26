@@ -1,0 +1,34 @@
+[
+    {
+        "name": "id",
+        "dbType": "integer",
+        "htmlType": "text",
+        "validations": "required",
+        "searchable": true,
+        "fillable": true,
+        "primary": true,
+        "inForm": true,
+        "inIndex": true
+    },{
+        "name": "trimestre",
+        "dbType": "string,50",
+        "htmlType": "text",
+        "validations": "required",
+        "searchable": true,
+        "fillable": true
+    },{
+        "name": "Ano",
+        "dbType": "date",
+        "htmlType": "date",
+        "validations": "required",
+        "searchable": true,
+        "fillable": true
+    },{
+        "name": "activo",
+        "dbType": "boolean",
+        "htmlType": "checkbox",
+        "validations": "required",
+        "searchable": true,
+        "fillable": true
+    }
+]
