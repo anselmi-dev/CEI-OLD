@@ -54,7 +54,7 @@ class seccion extends Model
 
     public function estudiante()
     {
-        return $this->belongsTo(estudiante::class);
+        return $this->hasMany(estudiante::class);
     } 
 
     public function docentes()
@@ -62,7 +62,7 @@ class seccion extends Model
         return $this->belongsToMany(docente::class);
     }
 
-    public function estudiante()
+    public function grado()
     {
         return $this->belongsTo(grado::class);
     }

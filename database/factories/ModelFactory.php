@@ -22,3 +22,54 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
         'remember_token' => str_random(10),
     ];
 });
+
+$factory->define(App\Models\boleta::class, function (Faker\Generator $faker) {
+
+
+    return [
+        'boleta' => $faker->boolean()
+    ];
+});
+$factory->define(App\Models\docente::class, function (Faker\Generator $faker) {
+
+
+    return [
+        'nombre' => $faker->name,
+        'apellido'=> $faker->lastname,
+        'cedula' => $faker->randomNumber(),
+        'activo' => $faker->boolean()
+    ];
+});
+$factory->define(App\Models\estudiante::class, function (Faker\Generator $faker) {
+
+
+    return [
+        'nombre' => $faker->name,
+        'apellido' => $faker->lastname,
+        'fechaNacimiento' => $faker->date($format = 'Y-m-d', $max = 'now'),
+        'sexo' => $faker->randomElement(['F', 'M']),
+        'activo' => $faker->boolean()
+    ];
+});
+$factory->define(App\Models\grado::class, function (Faker\Generator $faker) {
+    return [
+        'nombre' => $faker->name,
+        'secciones' => $faker->numberBetween($min = 1, $max = 5),
+        'activo' => $faker->boolean()
+    ];
+});
+$factory->define(App\Models\seccion::class, function (Faker\Generator $faker) {
+    return [
+        'nombre' => $faker->name,
+        'activo' => $faker->boolean()
+    ];
+});
+$factory->define(App\Models\trimestre::class, function (Faker\Generator $faker) {
+
+
+    return [
+        'trimestre' => $faker->randomElement(['ENE', 'MAY', 'JUL']),
+        'Ano' =>  '1984-11-25',
+        'activo' => $faker->boolean()
+    ];
+});

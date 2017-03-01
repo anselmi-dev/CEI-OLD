@@ -14,10 +14,10 @@ class CreateSeccionDocenteTable extends Migration
     public function up()
     {
         Schema::create('seccion_docente', function (Blueprint $table) {
-            $table->integer('seccion_id')->unsigned()->index();
+            $table->integer('seccion_id')->unsigned()->index()->nullable();
             $table->foreign('seccion_id')->references('id')->on('seccions')->onDelete('cascade');
 
-            $table->integer('docente_id')->unsigned()->index();
+            $table->integer('docente_id')->unsigned()->index()->nullable();
             $table->foreign('docente_id')->references('id')->on('docentes')->onDelete('cascade');
 
             $table->timestamps();

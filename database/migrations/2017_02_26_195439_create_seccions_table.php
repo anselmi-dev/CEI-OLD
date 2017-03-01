@@ -16,7 +16,7 @@ class CreateseccionsTable extends Migration
         Schema::create('seccions', function (Blueprint $table) {
             $table->increments('id');
             $table->string('nombre', 50);
-            $table->integer('grado_id')->unsigned();
+            $table->integer('grado_id')->unsigned()->nullable();
             $table->foreign('grado_id')->references('id')->on('grados');
             $table->boolean('activo');
             $table->timestamps();
@@ -30,7 +30,7 @@ class CreateseccionsTable extends Migration
      * @return void
      */
     public function down()
-    {
+    {   
         Schema::drop('seccions');
     }
 }

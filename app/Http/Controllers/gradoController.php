@@ -30,7 +30,7 @@ class gradoController extends AppBaseController
     public function index(Request $request)
     {
         $this->gradoRepository->pushCriteria(new RequestCriteria($request));
-        $grados = $this->gradoRepository->all();
+        $grados = $this->gradoRepository->with(['trimestre'])->all();
 
         return view('grados.index')
             ->with('grados', $grados);

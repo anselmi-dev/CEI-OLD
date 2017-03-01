@@ -65,6 +65,6 @@ class estudiante extends Model
 
     public function seccion()
     {
-        return $this->hasMany(seccion::class);
+        return $this->belongsTo(seccion::class);
     }
 }

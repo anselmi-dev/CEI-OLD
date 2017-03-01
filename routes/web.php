@@ -22,42 +22,6 @@ Route::get('/home', 'HomeController@index');
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 Route::resource('docentes', 'docenteController');
 
 Route::resource('trimestres', 'trimestreController');

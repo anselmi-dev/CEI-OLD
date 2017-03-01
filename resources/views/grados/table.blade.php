@@ -3,6 +3,7 @@
         <th>Id</th>
         <th>Nombre</th>
         <th>Secciones</th>
+        <th>Trimestre</th>
         <th>Activo</th>
         <th colspan="3">@lang('main.action')</th>
     </thead>
@@ -12,6 +13,9 @@
             <td>{!! $grado->id !!}</td>
             <td>{!! $grado->nombre !!}</td>
             <td>{!! $grado->secciones !!}</td>
+            <td>
+            {!! $grado->trimestre !!}
+            </td>
             <td>{!! $grado->activo !!}</td>
             <td>
                 {!! Form::open(['route' => ['grados.destroy', $grado->id], 'method' => 'delete']) !!}
