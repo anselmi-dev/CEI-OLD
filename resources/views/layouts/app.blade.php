@@ -24,7 +24,7 @@
         <header class="main-header">
 
             <!-- Logo -->
-            <a href="#" class="logo">
+            <a href="{{ url('/home') }}" class="logo">
                 <b>InfyOm</b>
             </a>
 
@@ -147,7 +147,9 @@
 
     <!-- AdminLTE App -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/2.3.3/js/app.min.js"></script>
-
+    <script>
+        $("#box-widget").activateBox();
+    </script>
     @yield('scripts')
 </body>
 </html>
