@@ -24,7 +24,7 @@ class trimestre extends Model
     public $fillable = [
         'id',
         'trimestre',
-        'Ano',
+        'ano',
         'activo'
     ];
 
@@ -36,7 +36,7 @@ class trimestre extends Model
     protected $casts = [
         'id' => 'integer',
         'trimestre' => 'string',
-        'Ano' => 'date',
+        'ano' => 'integer',
         'activo' => 'boolean'
     ];
 
@@ -47,7 +47,7 @@ class trimestre extends Model
      */
     public static $rules = [
         'trimestre' => 'required',
-        'Ano' => 'required',
+        'ano' => 'required',
         'activo' => 'required'
     ];
 

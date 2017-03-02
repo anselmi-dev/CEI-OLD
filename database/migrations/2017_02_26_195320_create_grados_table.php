@@ -16,7 +16,7 @@ class CreategradosTable extends Migration
         Schema::create('grados', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('trimestre_id')->unsigned()->nullable();
-            $table->foreign('trimestre_id')->references('id')->on('trimestres');
+            $table->foreign('trimestre_id')->references('id')->on('trimestres')->onDelete('cascade');
             $table->string('nombre', 50);
             $table->integer('secciones');
             $table->boolean('activo');

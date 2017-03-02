@@ -2,14 +2,15 @@
 <!-- Trimestre Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('trimestre', 'Trimestre:') !!}
-    {!! Form::text('trimestre', null, ['class' => 'form-control']) !!}
+    {!! Form::select('trimestre',['DIC' => 'Diciembre','MAY' => 'Mayo','JUL' => 'Julio'], null, ['class' => 'form-control']) !!}
 </div>
 
 <!-- Ano Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('Ano', 'Ano:') !!}
-    {!! Form::date('Ano', null, ['class' => 'form-control']) !!}
+    {!! Form::label('ano', 'Año:') !!}
+    {{ Form::selectRange('ano', date('Y'), date('Y') - 10, null, ['class' => 'form-control']) }}
 </div>
+
 
 <!-- Activo Field -->
 <div class="form-group col-sm-6">

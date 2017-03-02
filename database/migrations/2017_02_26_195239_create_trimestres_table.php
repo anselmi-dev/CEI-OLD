@@ -16,7 +16,7 @@ class CreatetrimestresTable extends Migration
         Schema::create('trimestres', function (Blueprint $table) {
             $table->increments('id');
             $table->string('trimestre', 50);
-            $table->date('Ano');
+            $table->integer('ano');
             $table->boolean('activo');
             $table->timestamps();
             $table->softDeletes();

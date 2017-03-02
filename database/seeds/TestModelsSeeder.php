@@ -12,10 +12,11 @@ class TestModelsSeeder extends Seeder
     public function run()
     {
     	$tri=factory(App\Models\trimestre::class)->create();
-        $grado=factory(App\Models\grado::class)->create();
+        $grados=factory(App\Models\grado::class,3)->create();
+        foreach ($grados as $grado) {
         $grado->trimestre()->associate($tri);
         $grado->save();
-
+            
         $seccions=factory(App\Models\seccion::class,$grado->secciones)->create();
         foreach ($seccions as $seccion) {
         	$seccion->grado()->associate($grado);
@@ -26,5 +27,7 @@ class TestModelsSeeder extends Seeder
     		})
         );
         }
+        }
+
     }
 }

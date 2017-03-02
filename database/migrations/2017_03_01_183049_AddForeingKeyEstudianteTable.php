@@ -15,7 +15,7 @@ class AddForeingKeyEstudianteTable extends Migration
     {
         Schema::table('estudiantes', function (Blueprint $table) {
             $table->integer('seccion_id')->unsigned()->nullable();
-            $table->foreign('seccion_id')->references('id')->on('seccions');
+            $table->foreign('seccion_id')->references('id')->on('seccions')->onDelete('cascade');;
         });
     }
 

@@ -51,7 +51,7 @@ class grado extends Model
         'activo' => 'required'
     ];
 
-    public function secciones()
+    public function seccion()
     {
         return $this->hasMany(seccion::class);
     }

@@ -30,7 +30,7 @@ class trimestreController extends AppBaseController
     public function index(Request $request)
     {
         $this->trimestreRepository->pushCriteria(new RequestCriteria($request));
-        $trimestres = $this->trimestreRepository->all();
+        $trimestres = $this->trimestreRepository->with('grados')->all();
 
         return view('trimestres.index')
             ->with('trimestres', $trimestres);
@@ -146,7 +146,8 @@ class trimestreController extends AppBaseController
             return redirect(route('trimestres.index'));
         }
 
-        $this->trimestreRepository->delete($id);
+        $trimestre->grados()->delete();
+        $trimestre->delete();
 
         Flash::success('Trimestre eliminado exitosamente.');
 
