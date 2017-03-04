@@ -47,8 +47,7 @@ class trimestre extends Model
      */
     public static $rules = [
         'trimestre' => 'required',
-        'ano' => 'required',
-        'activo' => 'required'
+        'ano' => 'required'
     ];
 
     public function grados()

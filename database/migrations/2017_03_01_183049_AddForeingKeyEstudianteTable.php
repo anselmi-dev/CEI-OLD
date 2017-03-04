@@ -27,7 +27,7 @@ class AddForeingKeyEstudianteTable extends Migration
     public function down()
     {   
          Schema::table('estudiantes', function (Blueprint $table) {
-            $table->dropForeign('seccion_id');
+            $table->dropForeign('estudiantes_seccion_id_foreign');
         });
     }
     

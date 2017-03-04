@@ -18,7 +18,7 @@ class CreateseccionsTable extends Migration
             $table->string('nombre', 50);
             $table->integer('grado_id')->unsigned()->nullable();
             $table->foreign('grado_id')->references('id')->on('grados')->onDelete('cascade');
-            $table->boolean('activo');
+            $table->boolean('activo')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
@@ -31,6 +31,6 @@ class CreateseccionsTable extends Migration
      */
     public function down()
     {   
-        Schema::drop('seccions');
+        Schema::dropIfExists('seccions');
     }
 }

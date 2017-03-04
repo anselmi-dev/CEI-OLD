@@ -17,7 +17,7 @@ class CreatetrimestresTable extends Migration
             $table->increments('id');
             $table->string('trimestre', 50);
             $table->integer('ano');
-            $table->boolean('activo');
+            $table->boolean('activo')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
@@ -30,6 +30,6 @@ class CreatetrimestresTable extends Migration
      */
     public function down()
     {
-        Schema::drop('trimestres');
+        Schema::dropIfExists('trimestres');
     }
 }

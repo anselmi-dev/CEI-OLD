@@ -1,10 +1,10 @@
-<table class="table table-responsive" id="grados-table">
+<table class="dtable display table" cellspacing="0" width="100%" id="grados-table">
     <thead>
         <th>Id</th>
         <th>Nombre</th>
         <th>Secciones</th>
         <th>Activo</th>
-        <th colspan="3">@lang('main.action')</th>
+        <th>@lang('main.action')</th>
     </thead>
     <tbody>
     @foreach($grados as $grado)

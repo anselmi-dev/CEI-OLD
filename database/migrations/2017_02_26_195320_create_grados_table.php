@@ -19,7 +19,7 @@ class CreategradosTable extends Migration
             $table->foreign('trimestre_id')->references('id')->on('trimestres')->onDelete('cascade');
             $table->string('nombre', 50);
             $table->integer('secciones');
-            $table->boolean('activo');
+            $table->boolean('activo')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
@@ -32,6 +32,6 @@ class CreategradosTable extends Migration
      */
     public function down()
     {
-        Schema::drop('grados');
+        Schema::dropIfExists('grados');
     }
 }

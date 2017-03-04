@@ -10,28 +10,21 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::get('/', function () {
-    return view('welcome');
-});
-
-
 Auth::routes();
 
-Route::get('/home', 'HomeController@index');
+Route::group(['middleware' => 'auth'], function()
+{
+	Route::resource('boletas', 'boletaController');
 
+	Route::get('/', 'HomeController@index');
 
+	Route::resource('docentes', 'docenteController');
 
-Route::resource('docentes', 'docenteController');
+	Route::resource('trimestres', 'trimestreController');
 
-Route::resource('trimestres', 'trimestreController');
+	Route::resource('estudiantes', 'estudianteController');
 
-Route::resource('estudiantes', 'estudianteController');
+	Route::resource('grados', 'gradoController');
 
-Route::resource('grados', 'gradoController');
-
-
-
-Route::resource('seccions', 'seccionController');
-
-Route::resource('boletas', 'boletaController');
+	Route::resource('seccions', 'seccionController');
+});

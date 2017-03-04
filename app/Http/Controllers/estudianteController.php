@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Flash;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Response;
+use App\Models\seccion;
 
 class estudianteController extends AppBaseController
 {
@@ -43,7 +44,9 @@ class estudianteController extends AppBaseController
      */
     public function create()
     {
-        return view('estudiantes.create');
+        $secciones = seccion::all();
+
+        return view('estudiantes.create')->with('secciones',$secciones);
     }
 
     /**
@@ -57,8 +60,11 @@ class estudianteController extends AppBaseController
     {
         $input = $request->all();
 
+
         $estudiante = $this->estudianteRepository->create($input);
 
+        $estudiante->seccion()->associate($request->input('seccion'));
+        $estudiante->save();
         Flash::success('Estudiante creado exitosamente.');
 
         return redirect(route('estudiantes.index'));
@@ -94,6 +100,7 @@ class estudianteController extends AppBaseController
     public function edit($id)
     {
         $estudiante = $this->estudianteRepository->findWithoutFail($id);
+        $secciones = seccion::all();
 
         if (empty($estudiante)) {
             Flash::error('Estudiante no encontrado');
@@ -101,7 +108,7 @@ class estudianteController extends AppBaseController
             return redirect(route('estudiantes.index'));
         }
 
-        return view('estudiantes.edit')->with('estudiante', $estudiante);
+        return view('estudiantes.edit')->with('estudiante', $estudiante)->with('secciones',$secciones);
     }
 
     /**

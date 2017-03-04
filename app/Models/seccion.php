@@ -18,6 +18,7 @@ class seccion extends Model
     use SoftDeletes;
 
     public $table = 'seccions';
+    protected $hidden = ['pivot'];
     
 
     protected $dates = ['deleted_at'];
@@ -48,8 +49,7 @@ class seccion extends Model
      */
     public static $rules = [
         'nombre' => 'required',
-        'grado_id' => 'required',
-        'activo' => 'required'
+        'grado_id' => 'required'
     ];
 
     public function estudiante()
@@ -59,7 +59,7 @@ class seccion extends Model
 
     public function docentes()
     {
-        return $this->belongsToMany(docente::class);
+        return $this->belongsToMany(docente::class,'seccion_docente','docente_id','seccion_id');
     }
 
     public function grado()

@@ -47,8 +47,7 @@ class grado extends Model
      */
     public static $rules = [
         'nombre' => 'required',
-        'secciones' => 'required',
-        'activo' => 'required'
+        'secciones' => 'required'
     ];
 
     public function seccion()

@@ -30,7 +30,7 @@ class docenteController extends AppBaseController
     public function index(Request $request)
     {
         $this->docenteRepository->pushCriteria(new RequestCriteria($request));
-        $docentes = $this->docenteRepository->all();
+        $docentes = $this->docenteRepository->with('secciones')->all();
 
         return view('docentes.index')
             ->with('docentes', $docentes);

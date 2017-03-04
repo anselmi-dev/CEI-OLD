@@ -1,11 +1,12 @@
-<table class="table table-responsive" id="docentes-table">
+<table class="dtable display table" cellspacing="0" width="100%" id="docentes-table">
     <thead>
         <th>Id</th>
         <th>Nombre</th>
         <th>Apellido</th>
         <th>Cedula</th>
+        <th>Seccion</th>
         <th>Activo</th>
-        <th colspan="3">@lang('main.action')</th>
+        <th>@lang('main.action')</th>
     </thead>
     <tbody>
     @foreach($docentes as $docente)
@@ -14,6 +15,11 @@
             <td>{!! $docente->nombre !!}</td>
             <td>{!! $docente->apellido !!}</td>
             <td>{!! $docente->cedula !!}</td>
+            <td>
+            @foreach ($docente->secciones  as $seccion)
+            {!!  $seccion->nombre !!}
+            @endforeach
+            </td>
             <td>{!! $docente->activo !!}</td>
             <td>
                 {!! Form::open(['route' => ['docentes.destroy', $docente->id], 'method' => 'delete']) !!}

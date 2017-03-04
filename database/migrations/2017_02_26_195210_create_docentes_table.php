@@ -18,7 +18,7 @@ class CreatedocentesTable extends Migration
             $table->string('nombre', 50);
             $table->string('apellido', 50);
             $table->string('cedula', 20);
-            $table->boolean('activo');
+            $table->boolean('activo')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
@@ -31,6 +31,6 @@ class CreatedocentesTable extends Migration
      */
     public function down()
     {
-        Schema::drop('docentes');
+        Schema::dropIfExists('docentes');
     }
 }

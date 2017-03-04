@@ -6,6 +6,7 @@ use Eloquent as Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Models\boleta;
 use App\Models\seccion;
+use Carbon\Carbon;
 
 /**
  * Class estudiante
@@ -28,6 +29,7 @@ class estudiante extends Model
         'apellido',
         'fechaNacimiento',
         'sexo',
+        'email',
         'activo'
     ];
 
@@ -41,6 +43,7 @@ class estudiante extends Model
         'nombre' => 'string',
         'apellido' => 'string',
         'fechaNacimiento' => 'date',
+        'email' => 'string',
         'sexo' => 'string',
         'activo' => 'boolean'
     ];
@@ -54,8 +57,9 @@ class estudiante extends Model
         'nombre' => 'required',
         'apellido' => 'required',
         'fechaNacimiento' => 'required',
+        'email' => 'required',
         'sexo' => 'required',
-        'activo' => 'required'
+        'seccion' => 'required'
     ];
 
     public function boletas()
@@ -66,5 +70,11 @@ class estudiante extends Model
     public function seccion()
     {
         return $this->belongsTo(seccion::class);
+    }
+
+    public function getedadAttribute()
+    {
+
+        return $this->fechaNacimiento->diff( Carbon::now() )->format('%s %d %y');
     }
 }

@@ -18,6 +18,12 @@
 
 <!-- Fechanacimiento Field -->
 <div class="form-group">
+    {!! Form::label('email', 'email:') !!}
+    <p>{!! $estudiante->email !!}</p>
+</div>
+
+<!-- Fechanacimiento Field -->
+<div class="form-group">
     {!! Form::label('fechaNacimiento', 'Fechanacimiento:') !!}
     <p>{!! $estudiante->fechaNacimiento !!}</p>
 </div>

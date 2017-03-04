@@ -47,6 +47,7 @@ $factory->define(App\Models\estudiante::class, function (Faker\Generator $faker)
         'nombre' => $faker->name,
         'apellido' => $faker->lastname,
         'fechaNacimiento' => $faker->date($format = 'Y-m-d', $max = 'now'),
+        'email' => $faker->email,
         'sexo' => $faker->randomElement(['F', 'M']),
         'activo' => $faker->boolean()
     ];

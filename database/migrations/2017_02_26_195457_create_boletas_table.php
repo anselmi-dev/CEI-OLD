@@ -30,6 +30,6 @@ class CreateboletasTable extends Migration
      */
     public function down()
     {
-        Schema::drop('boletas');
+        Schema::dropIfExists('boletas');
     }
 }

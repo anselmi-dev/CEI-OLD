@@ -5,14 +5,13 @@
     <title>InfyOm Generator</title>
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
 
-    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.2/css/select2.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/2.3.3/css/AdminLTE.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/2.3.3/css/skins/_all-skins.min.css">
-
-    <!-- Ionicons -->
-    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/font-awesome.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/select2.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/AdminLTE.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/skins/_all-skins.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('js/plugins/datepicker/datepicker3.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ asset('js/plugins/dataTables/dataTables.bootstrap.css') }}"/>
 
     @yield('css')
 </head>
@@ -24,7 +23,7 @@
         <header class="main-header">
 
             <!-- Logo -->
-            <a href="{{ url('/home') }}" class="logo">
+            <a href="{{ url('/') }}" class="logo">
                 <b>InfyOm</b>
             </a>
 
@@ -42,7 +41,7 @@
                             <!-- Menu Toggle Button -->
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                 <!-- The user image in the navbar-->
-                                <img src="http://infyom.com/images/logo/blue_logo_150x150.jpg"
+                                <img src="{{ asset('img/default_avatar.jpg') }}"
                                      class="user-image" alt="User Image"/>
                                 <!-- hidden-xs hides the username on small devices so only the image appears. -->
                                 <span class="hidden-xs">{!! Auth::user()->name !!}</span>
@@ -50,7 +49,7 @@
                             <ul class="dropdown-menu">
                                 <!-- The user image in the menu -->
                                 <li class="user-header">
-                                    <img src="http://infyom.com/images/logo/blue_logo_150x150.jpg"
+                                    <img src="{{ asset('img/default_avatar.jpg') }}"
                                          class="img-circle" alt="User Image"/>
                                     <p>
                                         {!! Auth::user()->name !!}
@@ -85,7 +84,6 @@
         <div class="content-wrapper">
             @yield('content')
         </div>
-
         <!-- Main Footer -->
         <footer class="main-footer" style="max-height: 100px;text-align: center">
             <strong>Copyright © 2016 <a href="#">Company</a>.</strong> All rights reserved.
@@ -93,41 +91,6 @@
 
     </div>
 @else
-    <nav class="navbar navbar-default navbar-static-top">
-        <div class="container">
-            <div class="navbar-header">
-
-                <!-- Collapsed Hamburger -->
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
-                        data-target="#app-navbar-collapse">
-                    <span class="sr-only">Toggle Navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-
-                <!-- Branding Image -->
-                <a class="navbar-brand" href="{!! url('/') !!}">
-                    InfyOm Generator
-                </a>
-            </div>
-
-            <div class="collapse navbar-collapse" id="app-navbar-collapse">
-                <!-- Left Side Of Navbar -->
-                <ul class="nav navbar-nav">
-                    <li><a href="{!! url('/home') !!}">Home</a></li>
-                </ul>
-
-                <!-- Right Side Of Navbar -->
-                <ul class="nav navbar-nav navbar-right">
-                    <!-- Authentication Links -->
-                    <li><a href="{!! url('/login') !!}">Login</a></li>
-                    <li><a href="{!! url('/register') !!}">Register</a></li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-
     <div id="page-content-wrapper">
         <div class="container-fluid">
             <div class="row">
@@ -137,18 +100,32 @@
             </div>
         </div>
     </div>
-    @endif
+@endif
 
     <!-- jQuery 2.1.4 -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script src="{{ asset('js/bootstrap.min.js') }}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.2/js/select2.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/iCheck/1.0.2/icheck.min.js"></script>
-
+ 
+    <script type="text/javascript" src="{{ asset('js/plugins/datepicker/bootstrap-datepicker.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/plugins/dataTables/dataTables.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/plugins/dataTables/dataTables.bootstrap.min.js') }}"></script>
     <!-- AdminLTE App -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/2.3.3/js/app.min.js"></script>
+    <script src="{{ asset('js/app.min.js') }}"></script>
     <script>
-        $("#box-widget").activateBox();
+        $(document).ready(function() {
+            $('.dtable').DataTable({
+              "paging": false,
+              "lengthChange": false,
+              "searching": true,
+              "ordering": true,
+              "info": true,
+              "autoWidth": false
+            });
+            $('.datepicker').datepicker();
+            $("#box-widget").activateBox();
+        });
     </script>
     @yield('scripts')
 </body>

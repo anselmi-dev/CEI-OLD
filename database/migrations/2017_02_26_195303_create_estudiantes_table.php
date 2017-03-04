@@ -17,9 +17,10 @@ class CreateestudiantesTable extends Migration
             $table->increments('id');
             $table->string('nombre', 50);
             $table->string('apellido', 50);
-            $table->date('fechaNacimiento');
+            $table->datetime('fechaNacimiento');
+            $table->string('email');
             $table->string('sexo', 2);
-            $table->boolean('activo');
+            $table->boolean('activo')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
@@ -32,6 +33,6 @@ class CreateestudiantesTable extends Migration
      */
     public function down()
     {     
-        Schema::drop('estudiantes');
+        Schema::dropIfExists('estudiantes');
     }
 }

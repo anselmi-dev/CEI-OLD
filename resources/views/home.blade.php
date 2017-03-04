@@ -201,14 +201,8 @@
 	            <!-- /.box-header -->
 	            <div class="box-body">
 	              <div class="row">
-	                <div class="col-md-8">
-	                  <div class="chart-responsive">
-	                    <canvas id="pieChart" height="165" width="257" style="width: 257px; height: 165px;"></canvas>
-	                  </div>
-	                  <!-- ./chart-responsive -->
-	                </div>
 	                <!-- /.col -->
-	                <div class="col-md-4">
+	                <div class="col-md-12">
 	                  <ul class="chart-legend clearfix">
 	                    <li><i class="fa fa-circle-o text-red"></i> Chrome</li>
 	                    <li><i class="fa fa-circle-o text-green"></i> IE</li>
@@ -345,5 +339,4 @@
 	        </div>
 	    </div>
 	</div>
-	
 @endsection

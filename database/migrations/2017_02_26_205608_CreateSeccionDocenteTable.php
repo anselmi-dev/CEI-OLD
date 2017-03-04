@@ -31,7 +31,7 @@ class CreateSeccionDocenteTable extends Migration
      */
     public function down()
     {
-        Schema::drop('seccion_docente');
+        Schema::dropIfExists('seccion_docente');
     }
 
 }

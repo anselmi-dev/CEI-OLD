@@ -46,8 +46,7 @@ class boleta extends Model
     public static $rules = [
         'trimestre_id' => 'required',
         'estudiante_id' => 'required',
-        'seccion_id' => 'required',
-        'boleta' => 'required'
+        'seccion_id' => 'required'
     ];
 
     public function estudiante()

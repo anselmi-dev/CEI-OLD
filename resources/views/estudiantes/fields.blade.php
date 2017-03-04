@@ -13,8 +13,14 @@
 
 <!-- Fechanacimiento Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('fechaNacimiento', 'Fechanacimiento:') !!}
+    {!! Form::label('fechaNacimiento', 'FechaNacimiento:') !!}
     {!! Form::date('fechaNacimiento', null, ['class' => 'form-control']) !!}
+</div>
+
+<!-- Sexo Email -->
+<div class="form-group col-sm-6">
+    {!! Form::label('email', 'email:') !!}
+    {!! Form::text('email', null, ['class' => 'form-control']) !!}
 </div>
 
 <!-- Sexo Field -->

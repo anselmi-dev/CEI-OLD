@@ -21,6 +21,7 @@ class TestModelsSeeder extends Seeder
         foreach ($seccions as $seccion) {
         	$seccion->grado()->associate($grado);
         	$seccion->save();	
+            $seccion->docentes()->attach(factory(App\Models\docente::class)->create()->id);
         	$seccion->estudiante()->saveMany(factory(App\Models\estudiante::class,5)->create()->each(function ($u) {
 
         	$u->boletas()->saveMany(factory(App\Models\boleta::class,2)->make());

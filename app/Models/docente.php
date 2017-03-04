@@ -51,13 +51,12 @@ class docente extends Model
     public static $rules = [
         'nombre' => 'required',
         'apellido' => 'required',
-        'cedula' => 'required',
-        'activo' => 'required'
+        'cedula' => 'required'
     ];
 
     public function secciones()
     {
-        return $this->belongsToMany(seccion::class);
+        return $this->belongsToMany(seccion::class,'seccion_docente','seccion_id','docente_id');
     }
     
 }
