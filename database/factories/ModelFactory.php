@@ -70,7 +70,7 @@ $factory->define(App\Models\trimestre::class, function (Faker\Generator $faker) 
 
     return [
         'trimestre' => $faker->randomElement(['ENE', 'MAY', 'JUL']),
-        'ano' =>  $faker->year,
+        'ano' =>  '2017',
         'activo' => $faker->boolean()
     ];
 });

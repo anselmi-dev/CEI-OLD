@@ -16,8 +16,12 @@ class CreateboletasTable extends Migration
         Schema::create('boletas', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('estudiante_id')->unsigned()->nullable();
-            $table->foreign('estudiante_id')->references('id')->on('estudiantes')->onDelete('cascade');;
-            $table->boolean('boleta');
+            $table->foreign('estudiante_id')->references('id')->on('estudiantes')->onDelete('cascade');
+            $table->integer('trimestre_id')->unsigned()->nullable();
+            $table->foreign('trimestre_id')->references('id')->on('trimestres')->onDelete('cascade');
+            $table->integer('seccion_id')->unsigned()->nullable();
+            $table->foreign('seccion_id')->references('id')->on('seccions')->onDelete('cascade');
+            $table->boolean('boleta')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

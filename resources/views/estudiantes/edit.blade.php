@@ -14,10 +14,9 @@
                    {!! Form::model($estudiante, ['route' => ['estudiantes.update', $estudiante->id], 'method' => 'patch']) !!}
                     
                  
-                       @foreach ($secciones as $seccion)
+                       
                         <!-- Activo Field -->
-                        
-                        @endforeach
+                        {!! Form::select('seccion', $secciones, ['multiple']) !!}
 
                         @include('estudiantes.fields')
 

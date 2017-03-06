@@ -14,7 +14,7 @@
 <!-- Fechanacimiento Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('fechaNacimiento', 'FechaNacimiento:') !!}
-    {!! Form::date('fechaNacimiento', null, ['class' => 'form-control']) !!}
+    {!! Form::date('fechaNacimiento', $estudiante->fechaNacimiento, ['class' => 'form-control']) !!}
 </div>
 
 <!-- Sexo Email -->

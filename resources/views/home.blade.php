@@ -1,6 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
+
+
 	<div class="content">
 	    <div class="row">
 			<div class="col-sm-3">
@@ -307,6 +309,25 @@
 	          <!-- /.box -->
 	        </div>
 	        <div class="col-md-8">
+		        <div class="box box-primary">
+		            <div class="box-header with-border">
+		              <h3 class="box-title">Boleta</h3>
+		              <div class="box-tools pull-right">
+		                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+		                </button>
+		                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+		              </div>
+		            </div>
+		            <div class="box-body">
+			        	{!! Form::open(['route'=> 'file.store', 'method' => 'POST', 'files'=>'true', 'id' => 'e' ]) !!}
+							<div class="box">
+								<input type="hidden" name="_token" value="{{ csrf_token() }}">
+								<input id="file-es" name="file" type="file">
+							</div>
+				       		<button type="submit" class="btn btn-primary">Enviar</button>
+			        	{!! Form::close() !!}
+		            </div>
+		        </div>
 				<div class="box">
 				  <div class="box-header with-border">
 				    <h3 class="box-title">Default Box Example</h3>

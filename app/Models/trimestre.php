@@ -52,7 +52,7 @@ class trimestre extends Model
 
     public function grados()
     {
-        return $this->hasMany(grado::class);
+        return $this->belongsToMany(grado::class,'trimestre_grado','trimestre_id','grado_id');
     }
 
     public function boleteas()

@@ -14,6 +14,7 @@ class CreateSeccionDocenteTable extends Migration
     public function up()
     {
         Schema::create('seccion_docente', function (Blueprint $table) {
+            $table->increments('id');
             $table->integer('seccion_id')->unsigned()->index()->nullable();
             $table->foreign('seccion_id')->references('id')->on('seccions')->onDelete('cascade');
 
@@ -21,6 +22,7 @@ class CreateSeccionDocenteTable extends Migration
             $table->foreign('docente_id')->references('id')->on('docentes')->onDelete('cascade');
 
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

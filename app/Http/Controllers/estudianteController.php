@@ -11,6 +11,8 @@ use Flash;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Response;
 use App\Models\seccion;
+use App\Models\trimestre;
+use Carbon\Carbon;
 
 class estudianteController extends AppBaseController
 {
@@ -23,7 +25,7 @@ class estudianteController extends AppBaseController
     }
 
     /**
-     * Display a listing of the estudiante.
+     * Display a listing of the docente.
      *
      * @param Request $request
      * @return Response
@@ -32,9 +34,22 @@ class estudianteController extends AppBaseController
     {
         $this->estudianteRepository->pushCriteria(new RequestCriteria($request));
         $estudiantes = $this->estudianteRepository->all();
-
         return view('estudiantes.index')
             ->with('estudiantes', $estudiantes);
+    }
+
+    /**
+     * Display a listing of the estudiante.
+     *
+     * @param Request $request
+     * @return Response
+     */
+    public function listar(Request $request,$id)
+    {
+        $seccion = seccion::find($id);
+        $tri = trimestre::where('ano',Carbon::now()->year)->get();
+        return view('estudiantes.index')
+            ->with('estudiantes', $seccion->estudiante)->with('trimestres',$tri);
     }
 
     /**
@@ -100,7 +115,8 @@ class estudianteController extends AppBaseController
     public function edit($id)
     {
         $estudiante = $this->estudianteRepository->findWithoutFail($id);
-        $secciones = seccion::all();
+
+        $secciones = seccion::all()->pluck('nombre','id');
 
         if (empty($estudiante)) {
             Flash::error('Estudiante no encontrado');
@@ -121,6 +137,7 @@ class estudianteController extends AppBaseController
      */
     public function update($id, UpdateestudianteRequest $request)
     {
+        
         $estudiante = $this->estudianteRepository->findWithoutFail($id);
 
         if (empty($estudiante)) {
@@ -128,9 +145,14 @@ class estudianteController extends AppBaseController
 
             return redirect(route('estudiantes.index'));
         }
-
-        $estudiante = $this->estudianteRepository->update($request->all(), $id);
-
+        $seccion = $request->input('seccion');
+        $estudiante = $this->estudianteRepository->update($request->only('nombre',
+        'apellido',
+        'fechaNacimiento',
+        'email',
+        'sexo'), $id);
+        $estudiante->seccion()->associate($seccion[0]);
+        $estudiante->save();
         Flash::success('Estudiante actualizado exitosamente.');
 
         return redirect(route('estudiantes.index'));

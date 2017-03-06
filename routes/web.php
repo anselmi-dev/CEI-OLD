@@ -23,8 +23,13 @@ Route::group(['middleware' => 'auth'], function()
 	Route::resource('trimestres', 'trimestreController');
 
 	Route::resource('estudiantes', 'estudianteController');
+	
+	Route::get('seccion/{id}', 'estudianteController@listar')->name('nuevoid');
 
 	Route::resource('grados', 'gradoController');
 
 	Route::resource('seccions', 'seccionController');
+
+	Route::resource('file', 'FileController');
+
 });

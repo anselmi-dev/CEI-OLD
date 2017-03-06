@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Models\estudiante;
 use App\Models\docente;
 use App\Models\grado;
+use App\Models\boleta;
 
 /**
  * Class seccion
@@ -57,6 +58,11 @@ class seccion extends Model
         return $this->hasMany(estudiante::class);
     } 
 
+    public function estudiantes()
+    {
+        return $this->belongsToMany(estudiante::class,'boletas','seccion_id','estudiante_id');
+    }
+    
     public function docentes()
     {
         return $this->belongsToMany(docente::class,'seccion_docente','docente_id','seccion_id');
@@ -67,4 +73,8 @@ class seccion extends Model
         return $this->belongsTo(grado::class);
     }
 
+    public function boleteas()
+    {
+        return $this->hasMany(boleta::class);
+    }
 }

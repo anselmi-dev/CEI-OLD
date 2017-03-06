@@ -2,7 +2,6 @@
     <thead>
         <th>Id</th>
         <th>Nombre</th>
-        <th>Apellido</th>
         <th>Cedula</th>
         <th>Seccion</th>
         <th>Activo</th>
@@ -11,9 +10,8 @@
     <tbody>
     @foreach($docentes as $docente)
         <tr>
-            <td>{!! $docente->id !!}</td>
-            <td>{!! $docente->nombre !!}</td>
-            <td>{!! $docente->apellido !!}</td>
+            <td><a href="{!! route('docentes.show', [$docente->id]) !!}"/>{!! $docente->id !!}</a></td>
+            <td><a href="{!! route('docentes.show', [$docente->id]) !!}"/>{!! $docente->nombre !!} {!! $docente->apellido !!}</a></td>
             <td>{!! $docente->cedula !!}</td>
             <td>
             @foreach ($docente->secciones  as $seccion)

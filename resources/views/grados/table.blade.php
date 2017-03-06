@@ -9,9 +9,9 @@
     <tbody>
     @foreach($grados as $grado)
         <tr>
-            <td>{!! $grado->id !!}</td>
-            <td>{!! $grado->nombre !!}</td>
-            <td>{!! $grado->secciones !!}</td>
+            <td><a href="{!! route('grados.show', [$grado->id]) !!}">{!! $grado->id !!}</a></td>
+            <td><a href="{!! route('grados.show', [$grado->id]) !!}">{!! $grado->nombre !!}</a></td>
+            <td><a href="{!! route('nuevoid', [$grado->secciones]) !!}">{!! $grado->secciones !!}</a></td>
             <td>{!! $grado->activo !!}</td>
             <td>
                 {!! Form::open(['route' => ['grados.destroy', $grado->id], 'method' => 'delete']) !!}

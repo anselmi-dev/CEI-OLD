@@ -21,7 +21,7 @@ class docente extends Model
 
     protected $dates = ['deleted_at'];
 
-
+    protected $hidden = ['pivot'];
     public $fillable = [
         'id',
         'nombre',

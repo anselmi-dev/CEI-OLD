@@ -6,6 +6,7 @@ use Eloquent as Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Models\boleta;
 use App\Models\seccion;
+use App\Models\grado;
 use Carbon\Carbon;
 
 /**
@@ -71,10 +72,23 @@ class estudiante extends Model
     {
         return $this->belongsTo(seccion::class);
     }
+    public function secciones()
+    {
+        return $this->belongsToMany(seccion::class,'boletas','estudiante_id','seccion_id');
+    }
 
     public function getedadAttribute()
     {
+        return $this->fechaNacimiento->diff( Carbon::now())->format('%y Años, %m Meses ');
+    }
 
-        return $this->fechaNacimiento->diff( Carbon::now() )->format('%s %d %y');
+    public function getboletaStatusAttribute()
+    {
+        return 'Trimestre'.$this->seccion;
+    }
+
+    public function getGradoAttribute($seccion)
+    {
+        return Seccion::find($seccion)->grado_id;
     }
 }

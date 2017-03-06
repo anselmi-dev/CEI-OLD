@@ -2,8 +2,9 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>InfyOm Generator</title>
+    <title>CEI</title>
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
+    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('favicon.png') }}">
 
     <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/font-awesome.min.css') }}">
@@ -11,8 +12,10 @@
     <link rel="stylesheet" href="{{ asset('css/AdminLTE.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/skins/_all-skins.min.css') }}">
     <link rel="stylesheet" href="{{ asset('js/plugins/datepicker/datepicker3.css') }}">
-<link rel="stylesheet" type="text/css" href="{{ asset('js/plugins/dataTables/dataTables.bootstrap.css') }}"/>
-
+    <link rel="stylesheet" type="text/css" href="{{ asset('js/plugins/dataTables/dataTables.bootstrap.css') }}"/>
+    <link rel="stylesheet" type="text/css" href="{{ asset('js/plugins/dropzone/dropzone.css') }}"/>
+    <link rel="stylesheet" type="text/css" href="{{ asset('js/plugins/fileinput/fileinput.min.css') }}"/>
+    <link rel="stylesheet" type="text/css" href="{{ asset('js/plugins/bootstrap-select/bootstrap-select.min.css') }}"/>
     @yield('css')
 </head>
 
@@ -23,8 +26,8 @@
         <header class="main-header">
 
             <!-- Logo -->
-            <a href="{{ url('/') }}" class="logo">
-                <b>InfyOm</b>
+            <a href="{{ url('/') }}" class="logo" style="padding: 0px">
+                <b>CEI</b>
             </a>
 
             <!-- Header Navbar -->
@@ -53,18 +56,18 @@
                                          class="img-circle" alt="User Image"/>
                                     <p>
                                         {!! Auth::user()->name !!}
-                                        <small>Member since {!! Auth::user()->created_at->format('M. Y') !!}</small>
+                                        <small>@lang('main.memberSince') {!! Auth::user()->created_at->format('M. Y') !!}</small>
                                     </p>
                                 </li>
                                 <!-- Menu Footer-->
                                 <li class="user-footer">
                                     <div class="pull-left">
-                                        <a href="#" class="btn btn-default btn-flat">Profile</a>
+                                        <a href="#" class="btn btn-default btn-flat">@lang('main.profile')</a>
                                     </div>
                                     <div class="pull-right">
                                         <a href="{!! url('/logout') !!}" class="btn btn-default btn-flat"
                                             onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                                            Sign out
+                                            @lang('main.signOut')
                                         </a>
                                         <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
                                             {{ csrf_field() }}
@@ -86,7 +89,7 @@
         </div>
         <!-- Main Footer -->
         <footer class="main-footer" style="max-height: 100px;text-align: center">
-            <strong>Copyright © 2016 <a href="#">Company</a>.</strong> All rights reserved.
+            <strong>Copyright © 2016-2017 <a href="#">Carlos Anselmi, Oscar Peres & Antoni Ruth</a>.</strong> All rights reserved.
         </footer>
 
     </div>
@@ -110,7 +113,13 @@
  
     <script type="text/javascript" src="{{ asset('js/plugins/datepicker/bootstrap-datepicker.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/plugins/dataTables/dataTables.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('js/plugins/dataTables/dataTables.bootstrap.min.js') }}"></script>
+
+
+    <script type="text/javascript" src="{{ asset('js/plugins/bootstrap-select/bootstrap-select.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/plugins/fileinput/fileinput.min.js') }}"></script>
+
+    {!! Html::script('js/plugins/dataTables/dataTables.bootstrap.min.js'); !!}
+
     <!-- AdminLTE App -->
     <script src="{{ asset('js/app.min.js') }}"></script>
     <script>
@@ -125,6 +134,16 @@
             });
             $('.datepicker').datepicker();
             $("#box-widget").activateBox();
+
+            $('#file-es').fileinput({
+                language: 'es',
+                uploadUrl: "{{ route('file.store') }}",
+                showUpload: false,
+                maxFileSize: 10000,
+                maxFilesNum: 1,
+                fileType: "any",
+                actionUpload: '<button type="button" class="kv-file-upload {uploadClass}" title="adadad">adad</button>\n'
+            });
         });
     </script>
     @yield('scripts')

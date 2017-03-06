@@ -6,6 +6,7 @@ use Eloquent as Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Models\estudiante;
 use App\Models\trimestre;
+use App\Models\seccion;
 
 /**
  * Class boleta
@@ -55,6 +56,10 @@ class boleta extends Model
     }
 
     public function trimestre()
+    {
+        return $this->belongsTo(trimestre::class);
+    }
+    public function seccion()
     {
         return $this->belongsTo(trimestre::class);
     }
