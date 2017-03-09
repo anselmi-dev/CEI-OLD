@@ -75,11 +75,11 @@ class estudianteController extends AppBaseController
     {
         $input = $request->all();
 
-
         $estudiante = $this->estudianteRepository->create($input);
-
+        
         $estudiante->seccion()->associate($request->input('seccion'));
         $estudiante->save();
+
         Flash::success('Estudiante creado exitosamente.');
 
         return redirect(route('estudiantes.index'));
@@ -116,11 +116,10 @@ class estudianteController extends AppBaseController
     {
         $estudiante = $this->estudianteRepository->findWithoutFail($id);
 
-        $secciones = seccion::all()->pluck('nombre','id');
+        $secciones = seccion::all();
 
         if (empty($estudiante)) {
             Flash::error('Estudiante no encontrado');
-
             return redirect(route('estudiantes.index'));
         }
 

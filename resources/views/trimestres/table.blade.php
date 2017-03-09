@@ -1,4 +1,6 @@
 <div class="table-responsive">
+@inject('menu','App\Services\menuController')
+
     <table class="table" id="trimestres-table">
         <thead>
             <th>Id</th>
@@ -15,41 +17,23 @@
                 <td>{!! $trimestre->ano !!}</td>
                 <td>{!! $trimestre->trimestre !!}</td>
                 <td>
-                    <?php $i = 0?>
-                    <div class="panel-group" id="accordion{{$trimestre->id}}">
-                    @foreach ($trimestre->grados as $grado)
-                        <?php $i++?>
-                        <div class="panel panel-default">
-                          <div class="panel-heading">
-                            <h5 class="panel-title">
-                                <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion{{$trimestre->id}}" href="#accordion_in_{{$trimestre->id}}_{{$grado->id}}" style="display: block"><i class="fa fa-circle-o text-green"></i> {{ $grado->nombre }}</a>
-                            </h5>
-                          </div>
-                          <div id="accordion_in_{{$trimestre->id}}_{{$grado->id}}" class="panel-collapse collapse">
-                            <div class="panel-body">
-                                <?php $j = 0?>
-                                @foreach($grado->seccion as $seccion)
-                                    <?php $j++?>
-                                    <li class="panel chart-legend clearfix"> 
-                                        <i class="fa fa-circle-o text-blue"></i><a data-toggle="collapse" data-parent="#accordion_in_{{$trimestre->id}}_{{$grado->id}}" href="#Link_{{$trimestre->id}}_{{$grado->id}}_{{$j}}">
-                                           {{$seccion->nombre}}                                                
-                                            <ul id="Link_{{$trimestre->id}}_{{$grado->id}}_{{$j}}" class="collapse chart-legend clearfix" style="padding-left: 10px">
-                                                @foreach($seccion->estudiante as $estudiante)
-                                                    <li><i class="fa fa-circle-o text-red"></i>
-                                                        <a href="{!! route('estudiantes.show', [$estudiante->id]) !!}">
-                                                            {{$estudiante->nombre}}
-                                                        </a>
-                                                    </li>
-                                                @endforeach
-                                            </ul>
-                                        </a>
-                                    </li>
-                                @endforeach
-                            </div>
-                          </div>
-                        </div>
-                    @endforeach
-                    </div>
+                    <ul>
+                        @foreach ($grados as $grado)
+                            <li> {{$grado->nombre}} 
+                                <ul>
+                                    @foreach ($grado->seccion as $seccion)
+                                        <li> {{$grado->nombre}}  {{ $seccion->nombre }} 
+                                            @foreach ( $menu->eje($seccion->id,$trimestre->id) as $estudiantes)
+                                                <ul>
+                                                    <li> {{ $estudiantes->estudiante->nombre }}</li>
+                                                </ul>
+                                            @endforeach
+                                        </li>
+                                    @endforeach
+                                </ul>
+                            </li>
+                        @endforeach
+                    </ul>
                 </td>
                 <td>
                     @if ($trimestre->activo)

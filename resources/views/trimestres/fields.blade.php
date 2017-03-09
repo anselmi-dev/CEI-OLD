@@ -2,7 +2,7 @@
 <!-- Trimestre Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('trimestre', 'Trimestre:') !!}
-    {!! Form::select('trimestre',['DIC' => 'Diciembre','MAY' => 'Mayo','JUL' => 'Julio'], null, ['class' => 'form-control']) !!}
+    {!! Form::select('trimestre',['ENERO' => 'ENERO', 'FEBRERO' => 'FEBRERO', 'MARZO' => 'MARZO', 'ABRIL' => 'ABRIL', 'MAYO' => 'MAYO', 'JUNIO' => 'JUNIO', 'JULIO' => 'JULIO', 'AGOSTO' => 'AGOSTO', 'SEPTIEMBRE' => 'SEPTIEMBRE', 'OCTUBRE' => 'OCTUBRE'], null, ['class' => 'form-control']) !!}
 </div>
 
 <!-- Ano Field -->

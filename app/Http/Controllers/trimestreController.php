@@ -10,6 +10,8 @@ use Illuminate\Http\Request;
 use Flash;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Response;
+use App\Models\boleta;
+use App\Models\grado;
 
 class trimestreController extends AppBaseController
 {
@@ -30,10 +32,11 @@ class trimestreController extends AppBaseController
     public function index(Request $request)
     {
         $this->trimestreRepository->pushCriteria(new RequestCriteria($request));
+
         $trimestres = $this->trimestreRepository->with('grados')->all();
 
         return view('trimestres.index')
-            ->with('trimestres', $trimestres);
+            ->with('trimestres', $trimestres)->with('boletas',boleta::all())->with('grados',grado::all());
     }
 
     /**

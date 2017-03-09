@@ -145,6 +145,18 @@
                 actionUpload: '<button type="button" class="kv-file-upload {uploadClass}" title="adadad">adad</button>\n'
             });
         });
+        $("#ajax").click(function(){
+            var data =$('form').serializeArray();
+            console.log(data);
+            $.ajax({
+                url: "",
+                type: "POST",
+                data: {data},
+                success: function(data){
+                    console.log(data);
+                }
+            });
+        });
     </script>
     @yield('scripts')
 </body>

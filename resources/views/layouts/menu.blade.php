@@ -37,42 +37,47 @@
     </a>
 </li>
 
-<li class="header text-aqua">AÑO ESCOLAR <b >{{ $menu->TrimestresActual()->ano }}</b></li>
-@foreach ($menu->Trimestres() as $trimestre)
-  <li class="treeview">
-    <a href="#">
-      <i class="fa fa-calendar-plus-o text-aqua" aria-hidden="true"></i>
-      <span>{{$trimestre->trimestre}}</span>
-      <span class="pull-right-container">
-        <i class="fa fa-angle-left pull-right text-aqua"></i>
-      </span>
-    </a>
-    <ul class="treeview-menu" style="display: none;">
-      @foreach ($trimestre->grados as $grado)
-          <li class="treeview">
-            <a href="#">
-              <i class="fa fa-map-o text-yellow" aria-hidden="true"></i>
-              <span>{{$grado->nombre}}</span>
-              <span class="pull-right-container">
-                <i class="fa fa-angle-left pull-right text-yellow"></i>
-              </span>
-            </a>
-            <ul class="treeview-menu" style="display: none;">
-              @foreach ($grado->seccion as $seccion)
-                <li><a href="{!! route('nuevoid', [$seccion->id]) !!}"><i class="fa fa-circle-o text-red"></i><span>{{$seccion->nombre}}</span></a></li>
-              @endforeach
-            </ul>
-          </li>
-      @endforeach
-    </ul>
-  </li>
-@endforeach
+@if (!$menu)
+  <li class="header text-aqua">AÑO ESCOLAR <b >{{ $menu->TrimestresActual()->ano }}</b></li>
+  @foreach ($menu->Trimestres() as $trimestre)
+    <li class="treeview">
+      <a href="#">
+        <i class="fa fa-calendar-plus-o text-aqua" aria-hidden="true"></i>
+        <span>{{$trimestre->trimestre}}</span>
+        <span class="pull-right-container">
+          <i class="fa fa-angle-left pull-right text-aqua"></i>
+        </span>
+      </a>
+      <ul class="treeview-menu" style="display: none;">
+        @foreach ($trimestre->grados as $grado)
+            <li class="treeview">
+              <a href="#">
+                <i class="fa fa-map-o text-yellow" aria-hidden="true"></i>
+                <span>{{$grado->nombre}}</span>
+                <span class="pull-right-container">
+                  <i class="fa fa-angle-left pull-right text-yellow"></i>
+                </span>
+              </a>
+              <ul class="treeview-menu" style="display: none;">
+                @foreach ($grado->seccion as $seccion)
+                  <li><a href="{!! route('nuevoid', [$seccion->id]) !!}"><i class="fa fa-circle-o text-red"></i><span>{{$seccion->nombre}}</span></a></li>
+                @endforeach
+              </ul>
+            </li>
+        @endforeach
+      </ul>
+    </li>
+  @endforeach
+@endif
 <li class="{{ Request::is('boletas*') ? 'active' : '' }}">
     <a href="{!! route('boletas.create') !!}"><i class="fa fa-map-o" aria-hidden="true"></i><span>@lang('main.boletas')</span>
     </a>
 </li>
 
 <li class="header">LABELS</li>
+@if (Auth::user()->role == 'superAdmin')
+  <li><a href="{!! route('users.index') !!}"><i class="fa fa-circle-o text-green"></i> <span>@lang('main.users')</span></a></li>
+@endif
 <li><a href="#"><i class="fa fa-circle-o text-yellow"></i> <span>APP</span></a></li>
 <li><a href="#"><i class="fa fa-circle-o text-aqua"></i> <span>Informacion</span></a></li>
 <li><a href="#"><i class="fa fa-circle-o text-red"></i> <span>Ayuda</span></a></li>

@@ -16,9 +16,14 @@
     <p>{!! $estudiante->apellido !!}</p>
 </div>
 
-<!-- Fechanacimiento Field -->
 <div class="form-group">
-    {!! Form::label('email', 'email:') !!}
+    {!! Form::label('fechaNacimiento', 'Fechanacimiento:') !!}
+    <p>{!! $estudiante->boletaStatus !!}</p>
+</div>
+
+<!-- seccion Field -->
+<div class="form-group">
+    {!! Form::label('seccion', 'seccion:') !!}
     <p>{!! $estudiante->email !!}</p>
 </div>
 

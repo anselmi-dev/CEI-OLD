@@ -15,9 +15,9 @@ class StorageController extends AppBaseController
 
 	public function store(Request $request)
 	{
-	       $file = $request->file('file');
-	       $nombre = $file->getClientOriginalName();
-	       \Storage::disk('boleta')->put($nombre,  \File::get($file));
-	       return public_path();
+		$file = $request->file('file');
+		$nombre = $file->getClientOriginalName();
+		\Storage::disk('boleta')->put($nombre,  \File::get($file));
+		return public_path();
 	}
 }

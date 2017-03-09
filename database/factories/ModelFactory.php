@@ -19,6 +19,7 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
         'name' => 'admin',
         'email' => 'admin@gmail.com',
         'password' => bcrypt('123456'),
+        'role' => $faker->randomElement(['user','superUser','admin','superAdmin']),
         'remember_token' => str_random(10),
     ];
 });

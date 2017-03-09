@@ -61,7 +61,7 @@ class boleta extends Model
     }
     public function seccion()
     {
-        return $this->belongsTo(trimestre::class);
+        return $this->belongsTo(seccion::class);
     }
 
 }

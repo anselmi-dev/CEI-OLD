@@ -77,4 +77,5 @@ class seccion extends Model
     {
         return $this->hasMany(boleta::class);
     }
+    
 }

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\estudiante;
 use App\Models\grado;
 use App\Models\docente;
+use App\Models\boleta;
 use App\Models\trimestre;
 use App\Models\seccion;
 use Carbon\Carbon;
@@ -57,5 +58,13 @@ class menuController
 	public function Estudiantes(){
         $Estudiantes = Estudiante::all();
         return $Estudiantes;
+	}
+
+	public function eje($seccion_id,$trimestre_id){
+		return  Boleta::where([
+	    	['trimestre_id', '=', $trimestre_id],
+	    	['seccion_id', '=', $seccion_id],
+		])->get();
+        
 	}
 }

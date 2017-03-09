@@ -14,7 +14,11 @@
 <!-- Fechanacimiento Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('fechaNacimiento', 'FechaNacimiento:') !!}
-    {!! Form::date('fechaNacimiento', $estudiante->fechaNacimiento, ['class' => 'form-control']) !!}
+    @if( \Request::route()->getName()=='estudiantes.edit' )
+        {!! Form::date('fechaNacimiento', $estudiante->fechaNacimiento->format('Y-m-d'), ['class' => 'form-control']) !!}
+    @else
+        {!! Form::date('fechaNacimiento', null, ['class' => 'form-control']) !!}
+    @endif
 </div>
 
 <!-- Sexo Email -->
@@ -36,6 +40,17 @@
         {!! Form::hidden('activo', false) !!}
         {!! Form::checkbox('activo', '1', null) !!}
     </label>
+</div>
+
+<div class="form-group col-sm-6">
+    <label for="seccion">Seccion:</label>
+    <select name="seccion" class="form-control" >
+        <option selected disabled>Seleccione grado</option>
+    @foreach ($secciones as $seccion)
+        <!-- Activo Field -->
+            <option value="{{$seccion->id}}" @if( isset($estudiante) && $seccion->id == $estudiante->seccion_id )  selected @endif  >{{$seccion->grado->nombre}} {{$seccion->nombre}}</option>
+    @endforeach
+    </select>
 </div>
 
 <!-- Submit Field -->

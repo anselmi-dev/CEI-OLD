@@ -3,7 +3,7 @@
 @section('content')
     <section class="content-header">
         <h1>
-            @lang('main.estudiante')
+            Usuarios
         </h1>
    </section>
    <div class="content">
@@ -11,8 +11,10 @@
        <div class="box box-primary">
            <div class="box-body">
                <div class="row">
-                   {!! Form::model($estudiante, ['route' => ['estudiantes.update', $estudiante->id], 'method' => 'patch']) !!}
-                        @include('estudiantes.fields')
+                   {!! Form::model($usuarios, ['route' => ['usuarios.update', $usuarios->id], 'method' => 'patch']) !!}
+
+                        @include('usuarios.fields')
+
                    {!! Form::close() !!}
                </div>
            </div>

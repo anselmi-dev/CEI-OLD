@@ -84,7 +84,10 @@ class estudiante extends Model
 
     public function getboletaStatusAttribute()
     {
-        return 'Trimestre'.$this->seccion;
+        if ($this->seccion) {
+            return $this->seccion->grado->nombre.' '.$this->seccion->nombre;
+        }
+            return 'NULL';
     }
 
     public function getGradoAttribute($seccion)

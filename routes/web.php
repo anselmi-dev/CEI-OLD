@@ -1,5 +1,5 @@
 <?php
-
+use App\Models\boleta;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -29,7 +29,28 @@ Route::group(['middleware' => 'auth'], function()
 	Route::resource('grados', 'gradoController');
 
 	Route::resource('seccions', 'seccionController');
+	
+	Route::post('destroy', function(){
+		return 'Si';
+	});
+	Route::get('destroy', function(){
+		return 'Si';
+	});
+	Route::group(['middleware' => 'role:superAdmin'], function(){
+		Route::resource('users', 'userController');
+	});
+	Route::group(['middleware' => 'role:superUser'], function(){
+		Route::resource('file', 'FileController');
+	});
 
-	Route::resource('file', 'FileController');
+	Route::get('boletas', function(){
+	   $boleta = Boleta::all();
+	   return $boleta;
+	   //Registro 1
+	});
+	Route::get('new_boleta', function(){
+	   	$boletas = Boleta::all();
+        return view('boletas.index')->with('boletas', $boletas);
+	});
 
 });

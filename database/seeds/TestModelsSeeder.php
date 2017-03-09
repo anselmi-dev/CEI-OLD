@@ -11,6 +11,8 @@ class TestModelsSeeder extends Seeder
      */
     public function run()
     {
+        factory(App\Models\estudiante::class,50)->create();
+/*
     	$tri=factory(App\Models\trimestre::class,3)->create();
         $grados=factory(App\Models\grado::class,5)->create();
 
@@ -40,5 +42,6 @@ class TestModelsSeeder extends Seeder
             $boleta->seccion()->associate(array_rand($idsSeccion)+1);
             $boleta->save();
         }
+        */
     }
 }
