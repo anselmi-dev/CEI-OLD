@@ -47,7 +47,8 @@ Route::group(['middleware' => 'auth'], function()
 	   $boleta = Boleta::all();
 	   return $boleta;
 	   //Registro 1
-	});
+	})->name('boletas');
+
 	Route::get('new_boleta', function(){
 	   	$boletas = Boleta::all();
         return view('boletas.index')->with('boletas', $boletas);

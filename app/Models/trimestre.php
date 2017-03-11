@@ -13,7 +13,7 @@ use App\Models\boleta;
  */
 class trimestre extends Model
 {
-    use SoftDeletes;
+    
 
     public $table = 'trimestres';
     
@@ -24,8 +24,7 @@ class trimestre extends Model
     public $fillable = [
         'id',
         'trimestre',
-        'ano',
-        'activo'
+        'ano'
     ];
 
     /**
@@ -50,9 +49,18 @@ class trimestre extends Model
         'ano' => 'required'
     ];
 
+    protected static function boot() 
+    {
+    parent::boot();
+
+    static::deleting(function($trimestre) {
+        $trimestre->grados()->delete();
+    });
+    }
+
     public function grados()
     {
-        return $this->belongsToMany(grado::class,'trimestre_grado','trimestre_id','grado_id');
+        return $this->hasMany(grado::class);
     }
 
     public function boleteas()

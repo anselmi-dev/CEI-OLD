@@ -16,7 +16,7 @@ use App\Models\boleta;
  */
 class seccion extends Model
 {
-    use SoftDeletes;
+    
 
     public $table = 'seccions';
     protected $hidden = ['pivot'];
@@ -52,6 +52,15 @@ class seccion extends Model
         'nombre' => 'required',
         'grado_id' => 'required'
     ];
+
+    protected static function boot() 
+    {
+    parent::boot();
+
+    static::deleting(function($seccion) {
+        $grado->estudiante()->delete();
+    });
+    }
 
     public function estudiante()
     {

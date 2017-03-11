@@ -16,7 +16,7 @@ use Carbon\Carbon;
  */
 class estudiante extends Model
 {
-    use SoftDeletes;
+    
 
     public $table = 'estudiantes';
     

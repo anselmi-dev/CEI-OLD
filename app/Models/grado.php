@@ -13,7 +13,6 @@ use App\Models\trimestre;
  */
 class grado extends Model
 {
-    use SoftDeletes;
 
     public $table = 'grados';
     
@@ -23,9 +22,7 @@ class grado extends Model
 
     public $fillable = [
         'id',
-        'nombre',
-        'secciones',
-        'activo'
+        'nombre'
     ];
 
     /**
@@ -36,7 +33,6 @@ class grado extends Model
     protected $casts = [
         'id' => 'integer',
         'nombre' => 'string',
-        'secciones' => 'integer',
         'activo' => 'boolean'
     ];
 
@@ -47,8 +43,16 @@ class grado extends Model
      */
     public static $rules = [
         'nombre' => 'required',
-        'secciones' => 'required'
     ];
+
+    protected static function boot() 
+    {
+    parent::boot();
+
+    static::deleting(function($grado) {
+        $grado->seccion()->delete();
+    });
+    }
 
     public function seccion()
     {
@@ -57,7 +61,7 @@ class grado extends Model
 
     public function trimestre()
     {
-        return $this->belongsToMany(trimestre::class,'trimestre_grado','grado_id','trimestre_id');
+        return $this->belongsTo(trimestre::class);
     }
 
 

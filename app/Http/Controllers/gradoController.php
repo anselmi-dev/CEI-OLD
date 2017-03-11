@@ -10,6 +10,8 @@ use Illuminate\Http\Request;
 use Flash;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Response;
+use App\Models\trimestre;
+use Carbon\Carbon;
 
 class gradoController extends AppBaseController
 {
@@ -58,6 +60,9 @@ class gradoController extends AppBaseController
         $input = $request->all();
 
         $grado = $this->gradoRepository->create($input);
+        $trimestresid = trimestre::where('ano',Carbon::now()->year)->pluck('id');
+
+        $grado->trimestre()->attach($trimestresid);
 
         Flash::success('Grado creado exitosamente.');
 

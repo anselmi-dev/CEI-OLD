@@ -8,10 +8,12 @@ use App\Repositories\trimestreRepository;
 use App\Http\Controllers\AppBaseController;
 use Illuminate\Http\Request;
 use Flash;
+use Config;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Response;
 use App\Models\boleta;
 use App\Models\grado;
+use App\Models\seccion;
 
 class trimestreController extends AppBaseController
 {
@@ -36,7 +38,7 @@ class trimestreController extends AppBaseController
         $trimestres = $this->trimestreRepository->with('grados')->all();
 
         return view('trimestres.index')
-            ->with('trimestres', $trimestres)->with('boletas',boleta::all())->with('grados',grado::all());
+            ->with('trimestres', $trimestres);
     }
 
     /**
@@ -60,7 +62,19 @@ class trimestreController extends AppBaseController
     {
         $input = $request->all();
 
+        
         $trimestre = $this->trimestreRepository->create($input);
+
+        $grados = Config::get('newyear.grados');
+        $secciones = Config::get('newyear.secciones');
+
+        foreach ($grados as $grado) {
+
+            $newGrado = $trimestre->grados()->save(new grado(['nombre'=>$grado]));
+            foreach ($secciones[$grado] as $seccion) {
+                $newGrado->seccion()->save(new seccion (['nombre' => $seccion]));  
+             } 
+        }
 
         Flash::success('Trimestre creado exitosamente.');
 
@@ -149,7 +163,6 @@ class trimestreController extends AppBaseController
             return redirect(route('trimestres.index'));
         }
 
-        $trimestre->grados()->delete();
         $trimestre->delete();
 
         Flash::success('Trimestre eliminado exitosamente.');

@@ -18,8 +18,7 @@ class CreategradosTable extends Migration
             $table->integer('trimestre_id')->unsigned()->nullable();
             $table->foreign('trimestre_id')->references('id')->on('trimestres')->onDelete('cascade');
             $table->string('nombre', 50);
-            $table->integer('secciones');
-            $table->boolean('activo')->nullable();
+            $table->boolean('activo')->default(true);
             $table->timestamps();
             $table->softDeletes();
         });

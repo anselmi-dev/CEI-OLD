@@ -21,7 +21,7 @@ return [
     'secciones'   => 'Secciones',
     'estudiantes'   => 'Estudiantes',
     'estudiante'   => 'Estudiante',
-    'addNew'   => 'Agregar',
+    'addNew'   => 'Crear',
     'action'   => 'Accion',
     'back'   => 'Atras',
     'cancel'   => 'Cancelar',
@@ -33,5 +33,7 @@ return [
     'signOut' => 'Desconectar',
     'profile' => 'Perfil',
     'memberSince' => 'Miembro desde',
+    'seccions' => 'Secciones',
+    'seccion' => 'Seccion'
     
 ];

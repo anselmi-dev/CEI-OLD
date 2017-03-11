@@ -3,15 +3,20 @@
 @section('content')
     <section class="content-header">
         <h1>
-            @lang('main.grado')
+            @lang('main.seccion')
         </h1>
     </section>
     <div class="content">
+        @include('adminlte-templates::common.errors')
         <div class="box box-primary">
+
             <div class="box-body">
-                <div class="row" style="padding-left: 20px">
-                    @include('grados.show_fields')
-                    <a href="{!! route('grados.index') !!}" class="btn btn-default">Back</a>
+                <div class="row">
+                    {!! Form::open(['route' => 'seccions.store']) !!}
+
+                        @include('seccions.fields')
+
+                    {!! Form::close() !!}
                 </div>
             </div>
         </div>

@@ -18,11 +18,11 @@
                 <td>{!! $trimestre->trimestre !!}</td>
                 <td>
                     <ul>
-                        @foreach ($grados as $grado)
+                        @foreach ($trimestre->grados as $grado)
                             <li> {{$grado->nombre}} 
                                 <ul>
                                     @foreach ($grado->seccion as $seccion)
-                                        <li> {{$grado->nombre}}  {{ $seccion->nombre }} 
+                                        <li>  {{ $seccion->nombre }} 
                                             @foreach ( $menu->eje($seccion->id,$trimestre->id) as $estudiantes)
                                                 <ul>
                                                     <li> {{ $estudiantes->estudiante->nombre }}</li>

@@ -15,7 +15,7 @@ use App\Models\seccion;
  */
 class boleta extends Model
 {
-    use SoftDeletes;
+    
 
     public $table = 'boletas';
     

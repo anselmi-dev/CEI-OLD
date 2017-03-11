@@ -14,7 +14,7 @@ use App\Models\seccion;
  */
 class docente extends Model
 {
-    use SoftDeletes;
+    
 
     public $table = 'docentes';
     

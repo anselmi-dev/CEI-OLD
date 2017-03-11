@@ -36,6 +36,14 @@
     </span>
     </a>
 </li>
+<li class="{{ Request::is('seccions*') ? 'active' : '' }}">
+    <a href="{!! route('seccions.index') !!}"><i class="fa fa-graduation-cap" aria-hidden="true"></i><span>@lang('main.seccions')</span>
+     <span class="pull-right-container">
+      <small class="label pull-right bg-green">{{$menu->countsecciones()['count']}}</small>
+      <small class="label pull-right bg-blue">{{$menu->countGrados()['count']}}</small>
+    </span>
+    </a>
+</li>
 
 @if (!$menu)
   <li class="header text-aqua">AÑO ESCOLAR <b >{{ $menu->TrimestresActual()->ano }}</b></li>
@@ -70,7 +78,7 @@
   @endforeach
 @endif
 <li class="{{ Request::is('boletas*') ? 'active' : '' }}">
-    <a href="{!! route('boletas.create') !!}"><i class="fa fa-map-o" aria-hidden="true"></i><span>@lang('main.boletas')</span>
+    <a href="{!! route('boletas') !!}"><i class="fa fa-map-o" aria-hidden="true"></i><span>@lang('main.boletas')</span>
     </a>
 </li>
 

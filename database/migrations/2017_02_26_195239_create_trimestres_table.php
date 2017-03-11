@@ -15,9 +15,9 @@ class CreatetrimestresTable extends Migration
     {
         Schema::create('trimestres', function (Blueprint $table) {
             $table->increments('id');
-            $table->enum('trimestre', ['ENERO', 'FEBRERO', 'MARZO', 'ABRIL', 'MAYO', 'JUNIO', 'JULIO', 'AGOSTO', 'SEPTIEMBRE', 'OCTUBRE']);
+            $table->enum('trimestre', ['Diciembre', 'Abril', 'Julio']);
             $table->integer('ano');
-            $table->boolean('activo')->nullable();
+            $table->boolean('activo')->default(true);
             $table->timestamps();
             $table->softDeletes();
         });

@@ -14,6 +14,7 @@ class CreateseccionsTable extends Migration
     public function up()
     {
         Schema::create('seccions', function (Blueprint $table) {
+            $table->engine = 'InnoDB';
             $table->increments('id');
             $table->string('nombre', 50);
             $table->integer('grado_id')->unsigned()->nullable();
