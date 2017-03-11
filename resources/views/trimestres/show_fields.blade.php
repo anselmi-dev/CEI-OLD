@@ -10,15 +10,21 @@
     <p>{!! $trimestre->trimestre !!}</p>
 </div>
 
-<!-- Ano Field -->
+<!-- Ano Id Field -->
 <div class="form-group">
-    {!! Form::label('Ano', 'Ano:') !!}
-    <p>{!! $trimestre->Ano !!}</p>
+    {!! Form::label('ano_id', 'Ano Id:') !!}
+    <p>{!! $trimestre->ano->ano !!}</p>
 </div>
 
-<!-- Activo Field -->
+<!-- Created At Field -->
 <div class="form-group">
-    {!! Form::label('activo', 'Activo:') !!}
-    <p>{!! $trimestre->activo !!}</p>
+    {!! Form::label('created_at', 'Created At:') !!}
+    <p>{!! $trimestre->created_at !!}</p>
+</div>
+
+<!-- Updated At Field -->
+<div class="form-group">
+    {!! Form::label('updated_at', 'Updated At:') !!}
+    <p>{!! $trimestre->updated_at !!}</p>
 </div>
 

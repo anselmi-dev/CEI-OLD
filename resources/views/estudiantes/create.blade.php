@@ -3,7 +3,7 @@
 @section('content')
     <section class="content-header">
         <h1>
-            @lang('main.estudiante')
+            Estudiante
         </h1>
     </section>
     <div class="content">
@@ -12,12 +12,12 @@
 
             <div class="box-body">
                 <div class="row">
-
                     {!! Form::open(['route' => 'estudiantes.store']) !!}
-                        @include('estudiantes.fields')
-                    {!! Form::close() !!}
 
-                </div>  
+                        @include('estudiantes.fields')
+
+                    {!! Form::close() !!}
+                </div>
             </div>
         </div>
     </div>

@@ -25,53 +25,46 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
 });
 
 $factory->define(App\Models\boleta::class, function (Faker\Generator $faker) {
-
-
     return [
         'boleta' => $faker->boolean()
     ];
 });
 $factory->define(App\Models\docente::class, function (Faker\Generator $faker) {
-
-
     return [
         'nombre' => $faker->name,
         'apellido'=> $faker->lastname,
-        'cedula' => $faker->randomNumber(),
-        'activo' => $faker->boolean()
+        'email' => $faker->email,
+        'cedula' => $faker->randomNumber()
     ];
 });
 $factory->define(App\Models\estudiante::class, function (Faker\Generator $faker) {
-
-
     return [
         'nombre' => $faker->name,
         'apellido' => $faker->lastname,
         'fechaNacimiento' => $faker->date($format = 'Y-m-d', $max = 'now'),
         'email' => $faker->email,
-        'sexo' => $faker->randomElement(['F', 'M']),
-        'activo' => $faker->boolean()
+        'sexo' => $faker->randomElement(['F', 'M'])
     ];
 });
 $factory->define(App\Models\grado::class, function (Faker\Generator $faker) {
     return [
-        'nombre' => $faker->name,
-        'secciones' => $faker->numberBetween($min = 1, $max = 5),
-        'activo' => $faker->boolean()
+        'nombre' => $faker->name
     ];
 });
 $factory->define(App\Models\seccion::class, function (Faker\Generator $faker) {
     return [
-        'nombre' => $faker->name,
-        'activo' => $faker->boolean()
+        'nombre' => $faker->name
     ];
 });
 $factory->define(App\Models\trimestre::class, function (Faker\Generator $faker) {
-
-
     return [
         'trimestre' => $faker->randomElement(['ENE', 'MAY', 'JUL']),
-        'ano' =>  '2017',
-        'activo' => $faker->boolean()
+        'ano' =>  $faker->randomElement(['2017', '2016', '2015','2014', '2013','2012', '2011'])
+    ];
+});
+
+$factory->define(App\Models\ano::class, function (Faker\Generator $faker) {
+    return [
+        'ano' =>  $faker->randomElement(['2017', '2016', '2015','2014', '2013','2012', '2011'])
     ];
 });

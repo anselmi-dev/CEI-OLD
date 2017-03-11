@@ -318,15 +318,7 @@
 		                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
 		              </div>
 		            </div>
-		            <div class="box-body">
-			        	{!! Form::open(['route'=> 'file.store', 'method' => 'POST', 'files'=>'true', 'id' => 'e' ]) !!}
-							<div class="box">
-								<input type="hidden" name="_token" value="{{ csrf_token() }}">
-								<input id="file-es" name="file" type="file">
-							</div>
-				       		<button type="submit" class="btn btn-primary">Enviar</button>
-			        	{!! Form::close() !!}
-		            </div>
+
 		        </div>
 				<div class="box">
 				  <div class="box-header with-border">

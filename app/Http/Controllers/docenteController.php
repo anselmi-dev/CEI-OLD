@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Flash;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Response;
+use Illuminate\Support\Facades\DB;
 
 class docenteController extends AppBaseController
 {
@@ -30,7 +31,7 @@ class docenteController extends AppBaseController
     public function index(Request $request)
     {
         $this->docenteRepository->pushCriteria(new RequestCriteria($request));
-        $docentes = $this->docenteRepository->with('secciones')->all();
+        $docentes = $this->docenteRepository->all();
 
         return view('docentes.index')
             ->with('docentes', $docentes);
@@ -59,7 +60,7 @@ class docenteController extends AppBaseController
 
         $docente = $this->docenteRepository->create($input);
 
-        Flash::success('Docente creado exitosamente.');
+        Flash::success('Docente saved successfully.');
 
         return redirect(route('docentes.index'));
     }
@@ -74,9 +75,8 @@ class docenteController extends AppBaseController
     public function show($id)
     {
         $docente = $this->docenteRepository->findWithoutFail($id);
-
         if (empty($docente)) {
-            Flash::error('Docente no encontrado');
+            Flash::error('Docente not found');
 
             return redirect(route('docentes.index'));
         }
@@ -96,7 +96,7 @@ class docenteController extends AppBaseController
         $docente = $this->docenteRepository->findWithoutFail($id);
 
         if (empty($docente)) {
-            Flash::error('Docente no encontrado');
+            Flash::error('Docente not found');
 
             return redirect(route('docentes.index'));
         }
@@ -117,14 +117,18 @@ class docenteController extends AppBaseController
         $docente = $this->docenteRepository->findWithoutFail($id);
 
         if (empty($docente)) {
-            Flash::error('Docente no encontrado');
+            Flash::error('Docente not found');
 
             return redirect(route('docentes.index'));
         }
 
+        if ($request['seccions']==null) {
+            $docente->seccions()->detach();
+        }
+
         $docente = $this->docenteRepository->update($request->all(), $id);
 
-        Flash::success('Docente actualizado exitosamente.');
+        Flash::success('Docente updated successfully.');
 
         return redirect(route('docentes.index'));
     }
@@ -139,16 +143,19 @@ class docenteController extends AppBaseController
     public function destroy($id)
     {
         $docente = $this->docenteRepository->findWithoutFail($id);
+        
+        $docente->seccions()->detach();
 
         if (empty($docente)) {
-            Flash::error('Docente no encontrado');
+            Flash::error('Docente not found');
 
             return redirect(route('docentes.index'));
         }
-
+ 
         $this->docenteRepository->delete($id);
 
-        Flash::success('Docente eliminado exitosamente.');
+
+        Flash::success('Docente deleted successfully.');
 
         return redirect(route('docentes.index'));
     }

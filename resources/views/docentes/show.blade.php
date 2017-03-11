@@ -3,7 +3,7 @@
 @section('content')
     <section class="content-header">
         <h1>
-            @lang('main.docente')
+            Docente
         </h1>
     </section>
     <div class="content">
@@ -11,7 +11,7 @@
             <div class="box-body">
                 <div class="row" style="padding-left: 20px">
                     @include('docentes.show_fields')
-                    <a href="{!! route('docentes.index') !!}" class="btn btn-default">@lang('main.back')</a>
+                    <a href="{!! route('docentes.index') !!}" class="btn btn-default">Back</a>
                 </div>
             </div>
         </div>

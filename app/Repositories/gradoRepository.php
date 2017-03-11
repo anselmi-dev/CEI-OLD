@@ -11,10 +11,7 @@ class gradoRepository extends BaseRepository
      * @var array
      */
     protected $fieldSearchable = [
-        'id',
-        'nombre',
-        'secciones',
-        'activo'
+        'nombre'
     ];
 
     /**

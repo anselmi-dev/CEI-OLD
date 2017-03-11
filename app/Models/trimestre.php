@@ -4,12 +4,11 @@ namespace App\Models;
 
 use Eloquent as Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use App\Models\grado;
-use App\Models\boleta;
+
 /**
  * Class trimestre
  * @package App\Models
- * @version February 26, 2017, 7:52 pm UTC
+ * @version March 10, 2017, 5:20 pm UTC
  */
 class trimestre extends Model
 {
@@ -22,10 +21,8 @@ class trimestre extends Model
 
 
     public $fillable = [
-        'id',
         'trimestre',
-        'ano',
-        'activo'
+        'ano_id'
     ];
 
     /**
@@ -34,10 +31,8 @@ class trimestre extends Model
      * @var array
      */
     protected $casts = [
-        'id' => 'integer',
         'trimestre' => 'string',
-        'ano' => 'integer',
-        'activo' => 'boolean'
+        'ano_id' => 'integer'
     ];
 
     /**
@@ -46,17 +41,22 @@ class trimestre extends Model
      * @var array
      */
     public static $rules = [
-        'trimestre' => 'required',
-        'ano' => 'required'
+        'trimestre' => 'required'
     ];
 
-    public function grados()
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     **/
+    public function ano()
     {
-        return $this->belongsToMany(grado::class,'trimestre_grado','trimestre_id','grado_id');
+        return $this->belongsTo(\App\Models\ano::class, 'ano_id');
     }
 
-    public function boleteas()
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     **/
+    public function boletas()
     {
-        return $this->hasMany(boleta::class);
+        return $this->belongsToMany(\App\Models\boleta::class);
     }
 }

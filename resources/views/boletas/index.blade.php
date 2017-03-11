@@ -1,18 +1,23 @@
+@extends('layouts.app')
 
-@foreach ($boletas as $boleta)
-	{{$boleta->trimestre->ano}} {{$boleta->trimestre->id}}
-	<ul>
-		<?php if ($boleta->seccion_id): ?>
-		<li>
-			{{$boleta->trimestre->trimestre}} 
-			<li>
-				<p>Seccion: {{$boleta->seccion->nombre}}  {{$boleta->seccion->id}}</p>
-				<p>Grado: {{$boleta->seccion->grado->nombre}} {{$boleta->seccion->grado->id}}</p>
-		<?php if ($boleta->estudiante_id): ?>
-				{{$boleta->estudiante->nombre}} {{$boleta->estudiante->id}}
-		<?php endif ?>
-			</li>
-		</li>
-		<?php endif ?>
-	</ul>
-@endforeach
+@section('content')
+    <section class="content-header">
+        <h1 class="pull-left">Boletas</h1>
+        <h1 class="pull-right">
+           <a class="btn btn-primary pull-right" style="margin-top: -10px;margin-bottom: 5px" href="{!! route('boletas.create') !!}">Add New</a>
+        </h1>
+    </section>
+    <div class="content">
+        <div class="clearfix"></div>
+
+        @include('flash::message')
+
+        <div class="clearfix"></div>
+        <div class="box box-primary">
+            <div class="box-body">
+                    @include('boletas.table')
+            </div>
+        </div>
+    </div>
+@endsection
+

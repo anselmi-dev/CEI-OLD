@@ -134,16 +134,6 @@
             });
             $('.datepicker').datepicker();
             $("#box-widget").activateBox();
-
-            $('#file-es').fileinput({
-                language: 'es',
-                uploadUrl: "{{ route('file.store') }}",
-                showUpload: false,
-                maxFileSize: 10000,
-                maxFilesNum: 1,
-                fileType: "any",
-                actionUpload: '<button type="button" class="kv-file-upload {uploadClass}" title="adadad">adad</button>\n'
-            });
         });
         $("#ajax").click(function(){
             var data =$('form').serializeArray();
@@ -157,7 +147,11 @@
                 }
             });
         });
+        $('#seccions').select2({
+            tags: true
+        });
     </script>
+
     @yield('scripts')
 </body>
 </html>

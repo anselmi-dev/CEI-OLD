@@ -1,0 +1,43 @@
+[
+    {
+        "name": "id",
+        "dbType": "increments",
+        "htmlType": "",
+        "validations": "",
+        "searchable": false,
+        "fillable": false,
+        "primary": true,
+        "inForm": false,
+        "inIndex": false
+    },{
+        "name": "seccion_id",
+        "dbType": "integer:unsigned:foreign,seccions,seccion_id",
+        "htmlType": "",
+        "relation": "1tm,seccion,seccion_id"
+    },{
+        "name": "docente_id",
+        "dbType": "integer:unsigned:foreign,docentes,docente_id",
+        "htmlType": "",
+        "relation": "1tm,docente,docenten_id"
+    },{
+        "name": "created_at",
+        "dbType": "timestamp",
+        "htmlType": "",
+        "validations": "",
+        "searchable": false,
+        "fillable": false,
+        "primary": false,
+        "inForm": false,
+        "inIndex": false
+    },{
+        "name": "updated_at",
+        "dbType": "timestamp",
+        "htmlType": "",
+        "validations": "",
+        "searchable": false,
+        "fillable": false,
+        "primary": false,
+        "inForm": false,
+        "inIndex": false
+    }
+]

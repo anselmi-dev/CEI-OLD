@@ -4,12 +4,11 @@ namespace App\Models;
 
 use Eloquent as Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use App\Models\seccion;
-use App\Models\trimestre;
+
 /**
  * Class grado
  * @package App\Models
- * @version February 26, 2017, 7:53 pm UTC
+ * @version March 10, 2017, 4:20 pm UTC
  */
 class grado extends Model
 {
@@ -22,10 +21,7 @@ class grado extends Model
 
 
     public $fillable = [
-        'id',
-        'nombre',
-        'secciones',
-        'activo'
+        'nombre'
     ];
 
     /**
@@ -34,10 +30,7 @@ class grado extends Model
      * @var array
      */
     protected $casts = [
-        'id' => 'integer',
-        'nombre' => 'string',
-        'secciones' => 'integer',
-        'activo' => 'boolean'
+        'nombre' => 'string'
     ];
 
     /**
@@ -46,19 +39,14 @@ class grado extends Model
      * @var array
      */
     public static $rules = [
-        'nombre' => 'required',
-        'secciones' => 'required'
+        'nombre' => 'required'
     ];
 
-    public function seccion()
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     **/
+    public function seccions()
     {
-        return $this->hasMany(seccion::class);
+        return $this->hasMany(\App\Models\seccion::class);
     }
-
-    public function trimestre()
-    {
-        return $this->belongsToMany(trimestre::class,'trimestre_grado','grado_id','trimestre_id');
-    }
-
-
 }

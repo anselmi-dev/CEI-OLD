@@ -1,14 +1,14 @@
 [
     {
         "name": "id",
-        "dbType": "integer",
-        "htmlType": "text",
-        "validations": "required",
-        "searchable": true,
-        "fillable": true,
+        "dbType": "increments",
+        "htmlType": "",
+        "validations": "",
+        "searchable": false,
+        "fillable": false,
         "primary": true,
-        "inForm": true,
-        "inIndex": true
+        "inForm": false,
+        "inIndex": false
     },{
         "name": "nombre",
         "dbType": "string,50",
@@ -31,18 +31,41 @@
         "searchable": true,
         "fillable": true
     },{
-        "name": "sexo",
-        "dbType": "string,2",
-        "htmlType": "select,M,F",
+        "name": "email",
+        "dbType": "string",
+        "htmlType": "email",
         "validations": "required",
         "searchable": true,
         "fillable": true
     },{
-        "name": "activo",
-        "dbType": "boolean",
-        "htmlType": "checkbox",
+        "name": "sexo",
+        "dbType": "string,2",
+        "htmlType": "radio,M,F",
         "validations": "required",
         "searchable": true,
         "fillable": true
+    },{
+        "type": "relation",
+        "relation": "mtm,boletas"
+    },{
+        "name": "created_at",
+        "dbType": "timestamp",
+        "htmlType": "",
+        "validations": "",
+        "searchable": false,
+        "fillable": false,
+        "primary": false,
+        "inForm": false,
+        "inIndex": false
+    },{
+        "name": "updated_at",
+        "dbType": "timestamp",
+        "htmlType": "",
+        "validations": "",
+        "searchable": false,
+        "fillable": false,
+        "primary": false,
+        "inForm": false,
+        "inIndex": false
     }
 ]

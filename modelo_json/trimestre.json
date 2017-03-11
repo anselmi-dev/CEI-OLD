@@ -1,34 +1,48 @@
 [
     {
         "name": "id",
-        "dbType": "integer",
-        "htmlType": "text",
-        "validations": "required",
-        "searchable": true,
-        "fillable": true,
+        "dbType": "increments",
+        "htmlType": "",
+        "validations": "",
+        "searchable": false,
+        "fillable": false,
         "primary": true,
-        "inForm": true,
-        "inIndex": true
+        "inForm": false,
+        "inIndex": false
     },{
         "name": "trimestre",
         "dbType": "string,50",
-        "htmlType": "text",
+        "htmlType": "select,ENERO:ENERO, FEBRERO:FEBRERO, MARZO:MARZO, ABRIL:ABRIL, MAYO:MAYO, JUNIO:JUNIO, JULIO:JULIO, AGOSTO:AGOSTO, SEPTIEMBRE:SEPTIEMBRE, OCTUBRE:OCTUBRE",
         "validations": "required",
         "searchable": true,
         "fillable": true
     },{
-        "name": "Ano",
-        "dbType": "date",
-        "htmlType": "date",
-        "validations": "required",
-        "searchable": true,
-        "fillable": true
+        "name": "ano_id",
+        "dbType": "integer:unsigned:foreign,anos,id",
+        "htmlType": "",
+        "relation": "1t1,ano,ano_id"
     },{
-        "name": "activo",
-        "dbType": "boolean",
-        "htmlType": "checkbox",
-        "validations": "required",
-        "searchable": true,
-        "fillable": true
+        "type": "relation",
+        "relation": "mtm,boletas"
+    },{
+        "name": "created_at",
+        "dbType": "timestamp",
+        "htmlType": "",
+        "validations": "",
+        "searchable": false,
+        "fillable": false,
+        "primary": false,
+        "inForm": false,
+        "inIndex": false
+    },{
+        "name": "updated_at",
+        "dbType": "timestamp",
+        "htmlType": "",
+        "validations": "",
+        "searchable": false,
+        "fillable": false,
+        "primary": false,
+        "inForm": false,
+        "inIndex": false
     }
 ]

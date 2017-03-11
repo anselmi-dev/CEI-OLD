@@ -22,9 +22,21 @@
     <p>{!! $docente->cedula !!}</p>
 </div>
 
-<!-- Activo Field -->
+<!-- Email Field -->
 <div class="form-group">
-    {!! Form::label('activo', 'Activo:') !!}
-    <p>{!! $docente->activo !!}</p>
+    {!! Form::label('email', 'Email:') !!}
+    <p>{!! $docente->email !!}</p>
+</div>
+
+<!-- Created At Field -->
+<div class="form-group">
+    {!! Form::label('created_at', 'Created At:') !!}
+    <p>{!! $docente->created_at !!}</p>
+</div>
+
+<!-- Updated At Field -->
+<div class="form-group">
+    {!! Form::label('updated_at', 'Updated At:') !!}
+    <p>{!! $docente->updated_at !!}</p>
 </div>
 

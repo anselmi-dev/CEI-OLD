@@ -9,6 +9,7 @@ use App\Models\docente;
 use App\Models\boleta;
 use App\Models\trimestre;
 use App\Models\seccion;
+use App\Models\ano;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 
@@ -27,6 +28,12 @@ class menuController
 		return $data;
     }
 
+    public function countAños() {
+		$count = Ano::all()->count();
+	    $data = array('count' => $count);
+		return $data;
+    }
+
     public function countDocentes() {
 		$count = Docente::all()->count();
 	    $data = array('count' => $count);
@@ -41,6 +48,12 @@ class menuController
 
     public function countSecciones() {
 		$count = Seccion::all()->count();
+	    $data = array('count' => $count);
+		return $data;
+    }
+
+    public function countBoletas() {
+		$count = Boleta::all()->count();
 	    $data = array('count' => $count);
 		return $data;
     }
