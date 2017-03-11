@@ -18,14 +18,14 @@
 
 <!-- Fechanacimiento Field -->
 <div class="form-group">
-    {!! Form::label('email', 'email:') !!}
-    <p>{!! $estudiante->email !!}</p>
-</div>
-
-<!-- Fechanacimiento Field -->
-<div class="form-group">
     {!! Form::label('fechaNacimiento', 'Fechanacimiento:') !!}
     <p>{!! $estudiante->fechaNacimiento !!}</p>
+</div>
+
+<!-- Email Field -->
+<div class="form-group">
+    {!! Form::label('email', 'Email:') !!}
+    <p>{!! $estudiante->email !!}</p>
 </div>
 
 <!-- Sexo Field -->
@@ -34,9 +34,15 @@
     <p>{!! $estudiante->sexo !!}</p>
 </div>
 
-<!-- Activo Field -->
+<!-- Created At Field -->
 <div class="form-group">
-    {!! Form::label('activo', 'Activo:') !!}
-    <p>{!! $estudiante->activo !!}</p>
+    {!! Form::label('created_at', 'Created At:') !!}
+    <p>{!! $estudiante->created_at !!}</p>
+</div>
+
+<!-- Updated At Field -->
+<div class="form-group">
+    {!! Form::label('updated_at', 'Updated At:') !!}
+    <p>{!! $estudiante->updated_at !!}</p>
 </div>
 

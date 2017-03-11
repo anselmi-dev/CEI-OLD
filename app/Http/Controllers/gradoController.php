@@ -30,7 +30,7 @@ class gradoController extends AppBaseController
     public function index(Request $request)
     {
         $this->gradoRepository->pushCriteria(new RequestCriteria($request));
-        $grados = $this->gradoRepository->with(['trimestre'])->all();
+        $grados = $this->gradoRepository->all();
 
         return view('grados.index')
             ->with('grados', $grados);
@@ -59,7 +59,7 @@ class gradoController extends AppBaseController
 
         $grado = $this->gradoRepository->create($input);
 
-        Flash::success('Grado creado exitosamente.');
+        Flash::success('Grado saved successfully.');
 
         return redirect(route('grados.index'));
     }
@@ -76,7 +76,7 @@ class gradoController extends AppBaseController
         $grado = $this->gradoRepository->findWithoutFail($id);
 
         if (empty($grado)) {
-            Flash::error('Grado no encontrado');
+            Flash::error('Grado not found');
 
             return redirect(route('grados.index'));
         }
@@ -96,7 +96,7 @@ class gradoController extends AppBaseController
         $grado = $this->gradoRepository->findWithoutFail($id);
 
         if (empty($grado)) {
-            Flash::error('Grado no encontrado');
+            Flash::error('Grado not found');
 
             return redirect(route('grados.index'));
         }
@@ -117,14 +117,14 @@ class gradoController extends AppBaseController
         $grado = $this->gradoRepository->findWithoutFail($id);
 
         if (empty($grado)) {
-            Flash::error('Grado no encontrado');
+            Flash::error('Grado not found');
 
             return redirect(route('grados.index'));
         }
 
         $grado = $this->gradoRepository->update($request->all(), $id);
 
-        Flash::success('Grado actualizado exitosamente.');
+        Flash::success('Grado updated successfully.');
 
         return redirect(route('grados.index'));
     }
@@ -141,14 +141,14 @@ class gradoController extends AppBaseController
         $grado = $this->gradoRepository->findWithoutFail($id);
 
         if (empty($grado)) {
-            Flash::error('Grado no encontrado');
+            Flash::error('Grado not found');
 
             return redirect(route('grados.index'));
         }
 
         $this->gradoRepository->delete($id);
 
-        Flash::success('Grado eliminado exitosamente.');
+        Flash::success('Grado deleted successfully.');
 
         return redirect(route('grados.index'));
     }

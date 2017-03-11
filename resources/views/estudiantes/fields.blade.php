@@ -1,4 +1,3 @@
-
 <!-- Nombre Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('nombre', 'Nombre:') !!}
@@ -13,33 +12,31 @@
 
 <!-- Fechanacimiento Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('fechaNacimiento', 'FechaNacimiento:') !!}
+    {!! Form::label('fechaNacimiento', 'Fechanacimiento:') !!}
     {!! Form::date('fechaNacimiento', null, ['class' => 'form-control']) !!}
 </div>
 
-<!-- Sexo Email -->
+<!-- Email Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('email', 'email:') !!}
-    {!! Form::text('email', null, ['class' => 'form-control']) !!}
+    {!! Form::label('email', 'Email:') !!}
+    {!! Form::email('email', null, ['class' => 'form-control']) !!}
 </div>
 
 <!-- Sexo Field -->
-<div class="form-group col-sm-6">
+<div class="form-group col-sm-12">
     {!! Form::label('sexo', 'Sexo:') !!}
-    {!! Form::select('sexo', ['M' => 'M', 'F' => 'F'], null, ['class' => 'form-control']) !!}
-</div>
-
-<!-- Activo Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('activo', 'Activo:') !!}
-    <label class="checkbox-inline">
-        {!! Form::hidden('activo', false) !!}
-        {!! Form::checkbox('activo', '1', null) !!}
+    <label class="radio-inline">
+        {!! Form::radio('sexo', "M", null) !!} M
     </label>
+
+    <label class="radio-inline">
+        {!! Form::radio('sexo', "F", null) !!} F
+    </label>
+
 </div>
 
 <!-- Submit Field -->
 <div class="form-group col-sm-12">
-    {!! Form::submit('guardar', ['class' => 'btn btn-primary']) !!}
-    <a href="{!! route('estudiantes.index') !!}" class="btn btn-default">@lang('main.cancel')</a>
+    {!! Form::submit('Save', ['class' => 'btn btn-primary']) !!}
+    <a href="{!! route('estudiantes.index') !!}" class="btn btn-default">Cancel</a>
 </div>

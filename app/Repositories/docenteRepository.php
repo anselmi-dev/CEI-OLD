@@ -11,11 +11,10 @@ class docenteRepository extends BaseRepository
      * @var array
      */
     protected $fieldSearchable = [
-        'id',
         'nombre',
         'apellido',
         'cedula',
-        'activo'
+        'email'
     ];
 
     /**

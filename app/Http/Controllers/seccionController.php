@@ -59,7 +59,7 @@ class seccionController extends AppBaseController
 
         $seccion = $this->seccionRepository->create($input);
 
-        Flash::success('Seccion creado exitosamente.');
+        Flash::success('Seccion saved successfully.');
 
         return redirect(route('seccions.index'));
     }
@@ -76,7 +76,7 @@ class seccionController extends AppBaseController
         $seccion = $this->seccionRepository->findWithoutFail($id);
 
         if (empty($seccion)) {
-            Flash::error('Seccion no encontrado');
+            Flash::error('Seccion not found');
 
             return redirect(route('seccions.index'));
         }
@@ -93,10 +93,11 @@ class seccionController extends AppBaseController
      */
     public function edit($id)
     {
+
         $seccion = $this->seccionRepository->findWithoutFail($id);
 
         if (empty($seccion)) {
-            Flash::error('Seccion no encontrado');
+            Flash::error('Seccion not found');
 
             return redirect(route('seccions.index'));
         }
@@ -115,16 +116,15 @@ class seccionController extends AppBaseController
     public function update($id, UpdateseccionRequest $request)
     {
         $seccion = $this->seccionRepository->findWithoutFail($id);
-
         if (empty($seccion)) {
-            Flash::error('Seccion no encontrado');
+            Flash::error('Seccion not found');
 
             return redirect(route('seccions.index'));
         }
 
         $seccion = $this->seccionRepository->update($request->all(), $id);
 
-        Flash::success('Seccion actualizado exitosamente.');
+        Flash::success('Seccion updated successfully.');
 
         return redirect(route('seccions.index'));
     }
@@ -140,15 +140,17 @@ class seccionController extends AppBaseController
     {
         $seccion = $this->seccionRepository->findWithoutFail($id);
 
+        $seccion->docentes()->detach();
+
         if (empty($seccion)) {
-            Flash::error('Seccion no encontrado');
+            Flash::error('Seccion not found');
 
             return redirect(route('seccions.index'));
         }
 
         $this->seccionRepository->delete($id);
 
-        Flash::success('Seccion eliminado exitosamente.');
+        Flash::success('Seccion deleted successfully.');
 
         return redirect(route('seccions.index'));
     }

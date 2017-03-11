@@ -10,15 +10,15 @@
     <p>{!! $grado->nombre !!}</p>
 </div>
 
-<!-- Secciones Field -->
+<!-- Created At Field -->
 <div class="form-group">
-    {!! Form::label('secciones', 'Secciones:') !!}
-    <p>{!! $grado->secciones !!}</p>
+    {!! Form::label('created_at', 'Created At:') !!}
+    <p>{!! $grado->created_at !!}</p>
 </div>
 
-<!-- Activo Field -->
+<!-- Updated At Field -->
 <div class="form-group">
-    {!! Form::label('activo', 'Activo:') !!}
-    <p>{!! $grado->activo !!}</p>
+    {!! Form::label('updated_at', 'Updated At:') !!}
+    <p>{!! $grado->updated_at !!}</p>
 </div>
 

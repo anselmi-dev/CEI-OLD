@@ -1,5 +1,5 @@
 <?php
-
+use App\Models\boleta;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,17 +14,23 @@ Auth::routes();
 
 Route::group(['middleware' => 'auth'], function()
 {
-	Route::resource('boletas', 'boletaController');
-
 	Route::get('/', 'HomeController@index');
-
-	Route::resource('docentes', 'docenteController');
-
-	Route::resource('trimestres', 'trimestreController');
 
 	Route::resource('estudiantes', 'estudianteController');
 
 	Route::resource('grados', 'gradoController');
 
+	Route::resource('docentes', 'docenteController');
+
+	Route::resource('anos', 'anoController');
+
+	Route::resource('trimestres', 'trimestreController');
+
+	Route::resource('boletas', 'boletaController');
+
 	Route::resource('seccions', 'seccionController');
+
+	Route::resource('boletas', 'boletaController');
+	
 });
+

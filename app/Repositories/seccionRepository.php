@@ -11,10 +11,7 @@ class seccionRepository extends BaseRepository
      * @var array
      */
     protected $fieldSearchable = [
-        'id',
-        'nombre',
-        'grado_id',
-        'activo'
+        'nombre'
     ];
 
     /**

@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 use Flash;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Response;
-
+use Illuminate\Support\Facades\DB;
 class boletaController extends AppBaseController
 {
     /** @var  boletaRepository */
@@ -56,10 +56,14 @@ class boletaController extends AppBaseController
     public function store(CreateboletaRequest $request)
     {
         $input = $request->all();
-
         $boleta = $this->boletaRepository->create($input);
-
-        Flash::success('Boleta creado exitosamente.');
+        DB::table('boleta_seccion')->insert(
+            array('seccion_id' => $input['seccion_id'], 'boleta_id' => $boleta->id)
+        );
+        DB::table('boleta_estudiante')->insert(
+            array('estudiante_id' => $input['estudiante_id'], 'boleta_id' => $boleta->id)
+        );
+        Flash::success('Boleta saved successfully.');
 
         return redirect(route('boletas.index'));
     }
@@ -76,7 +80,7 @@ class boletaController extends AppBaseController
         $boleta = $this->boletaRepository->findWithoutFail($id);
 
         if (empty($boleta)) {
-            Flash::error('Boleta no encontrado');
+            Flash::error('Boleta not found');
 
             return redirect(route('boletas.index'));
         }
@@ -96,7 +100,7 @@ class boletaController extends AppBaseController
         $boleta = $this->boletaRepository->findWithoutFail($id);
 
         if (empty($boleta)) {
-            Flash::error('Boleta no encontrado');
+            Flash::error('Boleta not found');
 
             return redirect(route('boletas.index'));
         }
@@ -117,14 +121,14 @@ class boletaController extends AppBaseController
         $boleta = $this->boletaRepository->findWithoutFail($id);
 
         if (empty($boleta)) {
-            Flash::error('Boleta no encontrado');
+            Flash::error('Boleta not found');
 
             return redirect(route('boletas.index'));
         }
 
         $boleta = $this->boletaRepository->update($request->all(), $id);
 
-        Flash::success('Boleta actualizado exitosamente.');
+        Flash::success('Boleta updated successfully.');
 
         return redirect(route('boletas.index'));
     }
@@ -141,14 +145,14 @@ class boletaController extends AppBaseController
         $boleta = $this->boletaRepository->findWithoutFail($id);
 
         if (empty($boleta)) {
-            Flash::error('Boleta no encontrado');
+            Flash::error('Boleta not found');
 
             return redirect(route('boletas.index'));
         }
 
         $this->boletaRepository->delete($id);
 
-        Flash::success('Boleta eliminado exitosamente.');
+        Flash::success('Boleta deleted successfully.');
 
         return redirect(route('boletas.index'));
     }

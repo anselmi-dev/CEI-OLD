@@ -4,13 +4,11 @@ namespace App\Models;
 
 use Eloquent as Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use App\Models\estudiante;
-use App\Models\trimestre;
 
 /**
  * Class boleta
  * @package App\Models
- * @version February 26, 2017, 7:54 pm UTC
+ * @version March 10, 2017, 5:30 pm UTC
  */
 class boleta extends Model
 {
@@ -23,7 +21,10 @@ class boleta extends Model
 
 
     public $fillable = [
-        
+        'estudiante_id',
+        'seccion_id',
+        'grado_id',
+        'trimestre_id'
     ];
 
     /**
@@ -32,10 +33,10 @@ class boleta extends Model
      * @var array
      */
     protected $casts = [
-        'trimestre_id' => 'integer',
         'estudiante_id' => 'integer',
         'seccion_id' => 'integer',
-        'boleta' => 'boolean'
+        'grado_id' => 'integer',
+        'trimestre_id' => 'integer'
     ];
 
     /**
@@ -44,19 +45,38 @@ class boleta extends Model
      * @var array
      */
     public static $rules = [
-        'trimestre_id' => 'required',
-        'estudiante_id' => 'required',
-        'seccion_id' => 'required'
+        
     ];
 
-    public function estudiante()
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     **/
+    public function estudiantes()
     {
-        return $this->belongsTo(estudiante::class);
+        return $this->hasMany(\App\Models\estudiante::class, 'id');
     }
 
-    public function trimestre()
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     **/
+    public function seccions()
     {
-        return $this->belongsTo(trimestre::class);
+        return $this->hasMany(\App\Models\seccion::class, 'id');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     **/
+    public function grados()
+    {
+        return $this->hasMany(\App\Models\grado::class, 'id');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     **/
+    public function trimestres()
+    {
+        return $this->hasMany(\App\Models\trimestre::class, 'id');
+    }
 }

@@ -25,4 +25,13 @@ return [
     'action'   => 'Accion',
     'back'   => 'Atras',
     'cancel'   => 'Cancelar',
+    'derechosReservados' => 'Todos los derechos reservados',
+    'boleta' => 'Boleta',
+    'boletas' => 'Boletas',
+    'upload' => 'Subir',
+    'upload' => 'Subir',
+    'signOut' => 'Desconectar',
+    'profile' => 'Perfil',
+    'memberSince' => 'Miembro desde',
+    
 ];

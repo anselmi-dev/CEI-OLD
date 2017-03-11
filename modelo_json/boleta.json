@@ -1,31 +1,53 @@
 [
     {
-        "name": "trimestre_id",
-        "dbType": "integer",
-        "htmlType": "number",
-        "validations": "required",
-        "searchable": true,
-        "fillable": false
+        "name": "id",
+        "dbType": "increments",
+        "htmlType": "",
+        "validations": "",
+        "searchable": false,
+        "fillable": false,
+        "primary": true,
+        "inForm": false,
+        "inIndex": false
     },{
         "name": "estudiante_id",
-        "dbType": "integer",
-        "htmlType": "number",
-        "validations": "required",
-        "searchable": true,
-        "fillable": false
+        "dbType": "integer:unsigned:foreign,estudiantes,estudiante_id",
+        "htmlType": "",
+        "relation": "1tm,estudiante,id"
     },{
         "name": "seccion_id",
-        "dbType": "integer",
-        "htmlType": "number",
-        "validations": "required",
-        "searchable": true,
-        "fillable": false
+        "dbType": "integer:unsigned:foreign,seccions,seccion_id",
+        "htmlType": "",
+        "relation": "1tm,seccion,id"
     },{
-        "name": "boleta",
-        "dbType": "boolean",
-        "htmlType": "checkbox",
-        "validations": "required",
-        "searchable": true,
-        "fillable": false
+        "name": "grado_id",
+        "dbType": "integer:unsigned:foreign,grados,grado_id",
+        "htmlType": "",
+        "relation": "1tm,grado,id"
+    },{
+        "name": "trimestre_id",
+        "dbType": "integer:unsigned:foreign,trimestres,trimestre_id",
+        "htmlType": "",
+        "relation": "1tm,trimestre,id"
+    },{
+        "name": "created_at",
+        "dbType": "timestamp",
+        "htmlType": "",
+        "validations": "",
+        "searchable": false,
+        "fillable": false,
+        "primary": false,
+        "inForm": false,
+        "inIndex": false
+    },{
+        "name": "updated_at",
+        "dbType": "timestamp",
+        "htmlType": "",
+        "validations": "",
+        "searchable": false,
+        "fillable": false,
+        "primary": false,
+        "inForm": false,
+        "inIndex": false
     }
 ]

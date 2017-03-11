@@ -1,24 +1,26 @@
-<table class="dtable display table" cellspacing="0" width="100%" id="grados-table">
+<table class="table table-responsive" id="grados-table">
     <thead>
-        <th>Id</th>
         <th>Nombre</th>
-        <th>Secciones</th>
-        <th>Activo</th>
-        <th>@lang('main.action')</th>
+        <th>Nombre</th>
+        <th colspan="3">Action</th>
     </thead>
     <tbody>
     @foreach($grados as $grado)
         <tr>
-            <td>{!! $grado->id !!}</td>
             <td>{!! $grado->nombre !!}</td>
-            <td>{!! $grado->secciones !!}</td>
-            <td>{!! $grado->activo !!}</td>
+            <td>
+                @foreach ($grado->seccions as $seccion )
+                    <ul>
+                        <li>{!! $seccion->nombre !!}</li>
+                    </ul>   
+                @endforeach
+            </td>
             <td>
                 {!! Form::open(['route' => ['grados.destroy', $grado->id], 'method' => 'delete']) !!}
                 <div class='btn-group'>
                     <a href="{!! route('grados.show', [$grado->id]) !!}" class='btn btn-default btn-xs'><i class="glyphicon glyphicon-eye-open"></i></a>
                     <a href="{!! route('grados.edit', [$grado->id]) !!}" class='btn btn-default btn-xs'><i class="glyphicon glyphicon-edit"></i></a>
-                    {!! Form::button('<i class="glyphicon glyphicon-trash"></i>', ['type' => 'Enviar', 'class' => 'btn btn-danger btn-xs', 'onclick' => "return confirm('Estas seguro?')"]) !!}
+                    {!! Form::button('<i class="glyphicon glyphicon-trash"></i>', ['type' => 'submit', 'class' => 'btn btn-danger btn-xs', 'onclick' => "return confirm('Are you sure?')"]) !!}
                 </div>
                 {!! Form::close() !!}
             </td>

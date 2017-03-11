@@ -10,7 +10,6 @@ use Illuminate\Http\Request;
 use Flash;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Response;
-use App\Models\seccion;
 
 class estudianteController extends AppBaseController
 {
@@ -44,9 +43,7 @@ class estudianteController extends AppBaseController
      */
     public function create()
     {
-        $secciones = seccion::all();
-
-        return view('estudiantes.create')->with('secciones',$secciones);
+        return view('estudiantes.create');
     }
 
     /**
@@ -60,12 +57,9 @@ class estudianteController extends AppBaseController
     {
         $input = $request->all();
 
-
         $estudiante = $this->estudianteRepository->create($input);
 
-        $estudiante->seccion()->associate($request->input('seccion'));
-        $estudiante->save();
-        Flash::success('Estudiante creado exitosamente.');
+        Flash::success('Estudiante saved successfully.');
 
         return redirect(route('estudiantes.index'));
     }
@@ -82,7 +76,7 @@ class estudianteController extends AppBaseController
         $estudiante = $this->estudianteRepository->findWithoutFail($id);
 
         if (empty($estudiante)) {
-            Flash::error('Estudiante no encontrado');
+            Flash::error('Estudiante not found');
 
             return redirect(route('estudiantes.index'));
         }
@@ -100,15 +94,14 @@ class estudianteController extends AppBaseController
     public function edit($id)
     {
         $estudiante = $this->estudianteRepository->findWithoutFail($id);
-        $secciones = seccion::all();
 
         if (empty($estudiante)) {
-            Flash::error('Estudiante no encontrado');
+            Flash::error('Estudiante not found');
 
             return redirect(route('estudiantes.index'));
         }
 
-        return view('estudiantes.edit')->with('estudiante', $estudiante)->with('secciones',$secciones);
+        return view('estudiantes.edit')->with('estudiante', $estudiante);
     }
 
     /**
@@ -124,14 +117,14 @@ class estudianteController extends AppBaseController
         $estudiante = $this->estudianteRepository->findWithoutFail($id);
 
         if (empty($estudiante)) {
-            Flash::error('Estudiante no encontrado');
+            Flash::error('Estudiante not found');
 
             return redirect(route('estudiantes.index'));
         }
 
         $estudiante = $this->estudianteRepository->update($request->all(), $id);
 
-        Flash::success('Estudiante actualizado exitosamente.');
+        Flash::success('Estudiante updated successfully.');
 
         return redirect(route('estudiantes.index'));
     }
@@ -148,14 +141,14 @@ class estudianteController extends AppBaseController
         $estudiante = $this->estudianteRepository->findWithoutFail($id);
 
         if (empty($estudiante)) {
-            Flash::error('Estudiante no encontrado');
+            Flash::error('Estudiante not found');
 
             return redirect(route('estudiantes.index'));
         }
 
         $this->estudianteRepository->delete($id);
 
-        Flash::success('Estudiante eliminado exitosamente.');
+        Flash::success('Estudiante deleted successfully.');
 
         return redirect(route('estudiantes.index'));
     }

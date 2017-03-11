@@ -4,14 +4,11 @@ namespace App\Models;
 
 use Eloquent as Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use App\Models\boleta;
-use App\Models\seccion;
-use Carbon\Carbon;
 
 /**
  * Class estudiante
  * @package App\Models
- * @version February 26, 2017, 7:53 pm UTC
+ * @version March 10, 2017, 7:59 am UTC
  */
 class estudiante extends Model
 {
@@ -24,13 +21,11 @@ class estudiante extends Model
 
 
     public $fillable = [
-        'id',
         'nombre',
         'apellido',
         'fechaNacimiento',
-        'sexo',
         'email',
-        'activo'
+        'sexo'
     ];
 
     /**
@@ -39,13 +34,11 @@ class estudiante extends Model
      * @var array
      */
     protected $casts = [
-        'id' => 'integer',
         'nombre' => 'string',
         'apellido' => 'string',
         'fechaNacimiento' => 'date',
         'email' => 'string',
-        'sexo' => 'string',
-        'activo' => 'boolean'
+        'sexo' => 'string'
     ];
 
     /**
@@ -58,23 +51,8 @@ class estudiante extends Model
         'apellido' => 'required',
         'fechaNacimiento' => 'required',
         'email' => 'required',
-        'sexo' => 'required',
-        'seccion' => 'required'
+        'sexo' => 'required'
     ];
 
-    public function boletas()
-    {
-        return $this->hasMany(boleta::class);
-    }
-
-    public function seccion()
-    {
-        return $this->belongsTo(seccion::class);
-    }
-
-    public function getedadAttribute()
-    {
-
-        return $this->fechaNacimiento->diff( Carbon::now() )->format('%s %d %y');
-    }
+    
 }

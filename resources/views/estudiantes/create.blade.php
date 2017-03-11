@@ -3,7 +3,7 @@
 @section('content')
     <section class="content-header">
         <h1>
-            @lang('main.estudiante')
+            Estudiante
         </h1>
     </section>
     <div class="content">
@@ -12,20 +12,9 @@
 
             <div class="box-body">
                 <div class="row">
-
                     {!! Form::open(['route' => 'estudiantes.store']) !!}
-                    
-                        
-                        @foreach ($secciones as $seccion)
-                        <!-- Activo Field -->
-                        <div class="form-group col-sm-3">
-                            <label class="checkbox-inline">
-                            {!! Form::radio('seccion', $seccion->id) !!}
-                            </label>
-                            {!! Form::label('activo', $seccion->nombre) !!}
-                        </div>
-                        @endforeach
-                    @include('estudiantes.fields')
+
+                        @include('estudiantes.fields')
 
                     {!! Form::close() !!}
                 </div>

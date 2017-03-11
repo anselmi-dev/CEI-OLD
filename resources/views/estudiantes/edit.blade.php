@@ -3,7 +3,7 @@
 @section('content')
     <section class="content-header">
         <h1>
-            @lang('main.estudiante')
+            Estudiante
         </h1>
    </section>
    <div class="content">
@@ -12,12 +12,6 @@
            <div class="box-body">
                <div class="row">
                    {!! Form::model($estudiante, ['route' => ['estudiantes.update', $estudiante->id], 'method' => 'patch']) !!}
-                    
-                 
-                       @foreach ($secciones as $seccion)
-                        <!-- Activo Field -->
-                        
-                        @endforeach
 
                         @include('estudiantes.fields')
 

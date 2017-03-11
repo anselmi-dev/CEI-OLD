@@ -30,7 +30,7 @@ class trimestreController extends AppBaseController
     public function index(Request $request)
     {
         $this->trimestreRepository->pushCriteria(new RequestCriteria($request));
-        $trimestres = $this->trimestreRepository->with('grados')->all();
+        $trimestres = $this->trimestreRepository->all();
 
         return view('trimestres.index')
             ->with('trimestres', $trimestres);
@@ -59,7 +59,7 @@ class trimestreController extends AppBaseController
 
         $trimestre = $this->trimestreRepository->create($input);
 
-        Flash::success('Trimestre creado exitosamente.');
+        Flash::success('Trimestre saved successfully.');
 
         return redirect(route('trimestres.index'));
     }
@@ -76,7 +76,7 @@ class trimestreController extends AppBaseController
         $trimestre = $this->trimestreRepository->findWithoutFail($id);
 
         if (empty($trimestre)) {
-            Flash::error('Trimestre no encontrado');
+            Flash::error('Trimestre not found');
 
             return redirect(route('trimestres.index'));
         }
@@ -96,7 +96,7 @@ class trimestreController extends AppBaseController
         $trimestre = $this->trimestreRepository->findWithoutFail($id);
 
         if (empty($trimestre)) {
-            Flash::error('Trimestre no encontrado');
+            Flash::error('Trimestre not found');
 
             return redirect(route('trimestres.index'));
         }
@@ -117,14 +117,14 @@ class trimestreController extends AppBaseController
         $trimestre = $this->trimestreRepository->findWithoutFail($id);
 
         if (empty($trimestre)) {
-            Flash::error('Trimestre no encontrado');
+            Flash::error('Trimestre not found');
 
             return redirect(route('trimestres.index'));
         }
 
         $trimestre = $this->trimestreRepository->update($request->all(), $id);
 
-        Flash::success('Trimestre actualizado exitosamente.');
+        Flash::success('Trimestre updated successfully.');
 
         return redirect(route('trimestres.index'));
     }
@@ -141,15 +141,14 @@ class trimestreController extends AppBaseController
         $trimestre = $this->trimestreRepository->findWithoutFail($id);
 
         if (empty($trimestre)) {
-            Flash::error('Trimestre no encontrado');
+            Flash::error('Trimestre not found');
 
             return redirect(route('trimestres.index'));
         }
 
-        $trimestre->grados()->delete();
-        $trimestre->delete();
+        $this->trimestreRepository->delete($id);
 
-        Flash::success('Trimestre eliminado exitosamente.');
+        Flash::success('Trimestre deleted successfully.');
 
         return redirect(route('trimestres.index'));
     }

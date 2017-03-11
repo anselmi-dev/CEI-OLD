@@ -1,14 +1,14 @@
 [
     {
         "name": "id",
-        "dbType": "integer",
-        "htmlType": "text",
-        "validations": "required",
-        "searchable": true,
-        "fillable": true,
+        "dbType": "increments",
+        "htmlType": "",
+        "validations": "",
+        "searchable": false,
+        "fillable": false,
         "primary": true,
-        "inForm": true,
-        "inIndex": true
+        "inForm": false,
+        "inIndex": false
     },{
         "name": "nombre",
         "dbType": "string,50",
@@ -18,17 +18,34 @@
         "fillable": true
     },{
         "name": "grado_id",
-        "dbType": "integer",
-        "htmlType": "number",
-        "validations": "required",
-        "searchable": true,
-        "fillable": true
+        "dbType": "integer:unsigned:foreign,grados,id",
+        "htmlType": "",
+        "relation": "mt1,grado,grado_id"
     },{
-        "name": "activo",
-        "dbType": "boolean",
-        "htmlType": "checkbox",
-        "validations": "required",
-        "searchable": true,
-        "fillable": true
+        "type": "relation",
+        "relation": "mtm,docente,docente_seccions,docente_id,seccion_id"
+    },{
+        "type": "relation",
+        "relation": "mtm,boletas"
+    },{
+        "name": "created_at",
+        "dbType": "timestamp",
+        "htmlType": "",
+        "validations": "",
+        "searchable": false,
+        "fillable": false,
+        "primary": false,
+        "inForm": false,
+        "inIndex": false
+    },{
+        "name": "updated_at",
+        "dbType": "timestamp",
+        "htmlType": "",
+        "validations": "",
+        "searchable": false,
+        "fillable": false,
+        "primary": false,
+        "inForm": false,
+        "inIndex": false
     }
 ]

@@ -11,10 +11,7 @@ class trimestreRepository extends BaseRepository
      * @var array
      */
     protected $fieldSearchable = [
-        'id',
-        'trimestre',
-        'Ano',
-        'activo'
+        'trimestre'
     ];
 
     /**

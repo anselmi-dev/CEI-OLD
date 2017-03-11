@@ -4,13 +4,11 @@ namespace App\Models;
 
 use Eloquent as Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use App\Models\seccion;
 
 /**
- * 
  * Class docente
  * @package App\Models
- * @version February 26, 2017, 7:52 pm UTC
+ * @version March 10, 2017, 4:28 pm UTC
  */
 class docente extends Model
 {
@@ -23,11 +21,10 @@ class docente extends Model
 
 
     public $fillable = [
-        'id',
         'nombre',
         'apellido',
         'cedula',
-        'activo'
+        'email'
     ];
 
     /**
@@ -36,11 +33,10 @@ class docente extends Model
      * @var array
      */
     protected $casts = [
-        'id' => 'integer',
         'nombre' => 'string',
         'apellido' => 'string',
         'cedula' => 'string',
-        'activo' => 'boolean'
+        'email' => 'string'
     ];
 
     /**
@@ -54,9 +50,12 @@ class docente extends Model
         'cedula' => 'required'
     ];
 
-    public function secciones()
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     **/
+    public function seccions()
     {
-        return $this->belongsToMany(seccion::class,'seccion_docente','seccion_id','docente_id');
+        return $this->belongsToMany(\App\Models\seccion::class, 'docente_seccions')->withTimestamps();
     }
-    
+
 }

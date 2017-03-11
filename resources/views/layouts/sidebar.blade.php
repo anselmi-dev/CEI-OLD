@@ -14,6 +14,7 @@
                 <p>CEI</p>
                 @else
                     <p>{{ Auth::user()->name}}</p>
+                    <p>{{ Auth::user()->email}}</p>
                 @endif
                 <!-- Status -->
                 <!-- <a href="#"><i class="fa fa-circle text-success"></i> Online</a> -->
