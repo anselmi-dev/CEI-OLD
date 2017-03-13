@@ -5,14 +5,9 @@
 </div>
 
 <!-- Grado Id Field -->
-@inject('grados','App\Services\gradosController')
 <div class="form-group col-sm-6">
-    <label for="grado_id">Secciones</label>
-    <select name="grado_id" id="grado_id" class="form-control select2">
-		@foreach ($grados->Grados() as $grado)
-		     <option value="{{ $grado->id }}">{{ $grado->nombre }}</option>
-		@endforeach
-    </select>
+    {!! Form::label('grado_id', 'Grado Id:') !!}
+    {!! Form::text('grado_id', null, ['class' => 'form-control']) !!}
 </div>
 
 <!-- Submit Field -->

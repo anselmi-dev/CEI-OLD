@@ -3,7 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateanosTable extends Migration
+class CreategradosTable extends Migration
 {
 
     /**
@@ -13,9 +13,9 @@ class CreateanosTable extends Migration
      */
     public function up()
     {
-        Schema::create('anos', function (Blueprint $table) {
+        Schema::create('grados', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('ano', 50);
+            $table->string('nombre', 50);
             $table->timestamps();
             $table->softDeletes();
         });
@@ -28,6 +28,6 @@ class CreateanosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('anos');
+        Schema::drop('grados');
     }
 }

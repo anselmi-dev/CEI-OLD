@@ -59,18 +59,32 @@ class menuController
     }
 
 	public function Trimestres(){
-        $trimestres = trimestre::where('ano',Carbon::now()->year)->get();
+        $trimestres = trimestre::all();
         return $trimestres;
 	}
 
-	public function TrimestresActual(){
-		$trimestre = trimestre::all()->last();
-        return $trimestre;
+	public function AnoActual(){
+		
+        return ano::where('ano',Carbon::now()->year)->first();
+	}
+	public function Anos()
+	{
+        return ano::all();
+		
+	}
+	public function Secciones()
+	{
+		
+        return seccion::all();
 	}
 
 	public function Estudiantes(){
         $Estudiantes = Estudiante::all();
         return $Estudiantes;
+	}
+	public function Docentes(){
+		
+        return docente::all();
 	}
 
 	public function eje($seccion_id,$trimestre_id){

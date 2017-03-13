@@ -21,22 +21,18 @@
     {!! Form::label('email', 'Email:') !!}
     {!! Form::email('email', null, ['class' => 'form-control']) !!}
 </div>
+@inject('menu','App\Services\menuController')
 
-@inject('grados','App\Services\gradosController')
 <!-- Submit Field -->
 <div class="form-group col-sm-12">
     <label for="seccions[]">Secciones</label>
     <select multiple="true" name="seccions[]" id="seccions" class="form-control select2">
-            @foreach ($grados->Grados() as $grado)
-              <optgroup label="{{ $grado->nombre }}">
-                    <@foreach ($grado->seccions as $seccion)
-                        <option value="{{ $seccion->id }}" @if(isset($docente)) @if( $docente->seccions->find( $seccion->id) ) selected @endif @endif >{{$grado->nombre}} {{$seccion->nombre}}</option>
+                    @foreach ($menu->Secciones() as $seccion)
+                        <option value="{{ $seccion->id }}" @if(isset($docente)) @if( $docente->seccions()->find( $seccion->id) ) selected @endif @endif > {{$seccion->nombre}}</option>
                     @endforeach
-              </optgroup>
-            @endforeach
+            
     </select>
 </div>
-
 
 <!-- Submit Field -->
 <div class="form-group col-sm-12">

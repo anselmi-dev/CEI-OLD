@@ -17,8 +17,9 @@
         "searchable": true,
         "fillable": true
     },{
+
         "type": "relation",
-        "relation": "mtm,trimestre"
+        "relation": "mtm,trimestre,ano_trimestre,ano_id,trimestre_id "
     },{
         "name": "created_at",
         "dbType": "timestamp",

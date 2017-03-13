@@ -7,9 +7,14 @@ use App\Http\Requests\UpdateestudianteRequest;
 use App\Repositories\estudianteRepository;
 use App\Http\Controllers\AppBaseController;
 use Illuminate\Http\Request;
+use App\Models\estudiante;
+use App\Models\grado;
 use Flash;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Response;
+use App\Models\seccion;
+use App\Models\trimestre;
+use Carbon\Carbon;
 
 class estudianteController extends AppBaseController
 {
@@ -22,18 +27,49 @@ class estudianteController extends AppBaseController
     }
 
     /**
-     * Display a listing of the estudiante.
+     * Display a listing of the docente.
      *
      * @param Request $request
      * @return Response
      */
     public function index(Request $request)
     {
+        
         $this->estudianteRepository->pushCriteria(new RequestCriteria($request));
-        $estudiantes = $this->estudianteRepository->all();
+        $estudiantes = $this->estudianteRepository->paginate(10);
+        $secciones = seccion::all();
 
         return view('estudiantes.index')
-            ->with('estudiantes', $estudiantes);
+            ->with('estudiantes', $estudiantes)
+            ->with('request',$request)
+        ;
+    }
+
+    /**
+     * Display a filter list of the estudiante.
+     *
+     * @param Request $request
+     * @return Response
+     */
+    public function filter(Request $request)
+    {
+        $estudiantes = estudiante::
+                                Nombre($request->input('nombre'))
+                                ->Seccion($request->input('seccion_id'))->paginate(10);
+
+        return view('estudiantes.index')
+            ->with('estudiantes', $estudiantes)->with('request',$request);
+    }
+
+    /**
+     * Display a filter list of the estudiante.
+     *
+     * @param Request $request
+     * @return Response
+     */
+    public function boleta(Request $request)
+    {
+        return view('boletas.create')->with('request',$request);
     }
 
     /**
@@ -41,9 +77,10 @@ class estudianteController extends AppBaseController
      *
      * @return Response
      */
-    public function create()
-    {
-        return view('estudiantes.create');
+    public function create(Request $request)
+    {   
+        return view('estudiantes.create')
+                ->with('request',$request);
     }
 
     /**
@@ -59,9 +96,9 @@ class estudianteController extends AppBaseController
 
         $estudiante = $this->estudianteRepository->create($input);
 
-        Flash::success('Estudiante saved successfully.');
+        Flash::success('Estudiante creado exitosamente.');
 
-        return redirect(route('estudiantes.index'));
+        return redirect(route('estudiantes.index'))->with('request',$request);
     }
 
     /**
@@ -76,7 +113,7 @@ class estudianteController extends AppBaseController
         $estudiante = $this->estudianteRepository->findWithoutFail($id);
 
         if (empty($estudiante)) {
-            Flash::error('Estudiante not found');
+            Flash::error('Estudiante no encontrado');
 
             return redirect(route('estudiantes.index'));
         }
@@ -95,13 +132,14 @@ class estudianteController extends AppBaseController
     {
         $estudiante = $this->estudianteRepository->findWithoutFail($id);
 
-        if (empty($estudiante)) {
-            Flash::error('Estudiante not found');
+        $secciones = seccion::all();
 
+        if (empty($estudiante)) {
+            Flash::error('Estudiante no encontrado');
             return redirect(route('estudiantes.index'));
         }
 
-        return view('estudiantes.edit')->with('estudiante', $estudiante);
+        return view('estudiantes.edit')->with('estudiante', $estudiante)->with('secciones',$secciones);
     }
 
     /**
@@ -114,17 +152,16 @@ class estudianteController extends AppBaseController
      */
     public function update($id, UpdateestudianteRequest $request)
     {
+        
         $estudiante = $this->estudianteRepository->findWithoutFail($id);
 
         if (empty($estudiante)) {
-            Flash::error('Estudiante not found');
+            Flash::error('Estudiante no encontrado');
 
             return redirect(route('estudiantes.index'));
         }
-
         $estudiante = $this->estudianteRepository->update($request->all(), $id);
-
-        Flash::success('Estudiante updated successfully.');
+        Flash::success('Estudiante actualizado exitosamente.');
 
         return redirect(route('estudiantes.index'));
     }
@@ -141,14 +178,14 @@ class estudianteController extends AppBaseController
         $estudiante = $this->estudianteRepository->findWithoutFail($id);
 
         if (empty($estudiante)) {
-            Flash::error('Estudiante not found');
+            Flash::error('Estudiante no encontrado');
 
             return redirect(route('estudiantes.index'));
         }
 
         $this->estudianteRepository->delete($id);
 
-        Flash::success('Estudiante deleted successfully.');
+        Flash::success('Estudiante eliminado exitosamente.');
 
         return redirect(route('estudiantes.index'));
     }

@@ -1,19 +1,18 @@
-<div class=" table-responsive">
-<table class="table" id="boletas-table">
+<table class="table table-responsive" id="boletas-table">
     <thead>
+        <th>Url</th>
         <th>Estudiante Id</th>
-        <th>Seccion Id</th>
-        <th>Grado Id</th>
+        <th>Ano Id</th>
         <th>Trimestre Id</th>
-        <th >Action</th>
+        <th colspan="3">Action</th>
     </thead>
     <tbody>
     @foreach($boletas as $boleta)
         <tr>
-            <td>{!! $boleta->estudiantes !!}</td>
-            <td>{!! $boleta->seccions !!}</td>
-            <td>{!! $boleta->grados !!}</td>
-            <td>{!! $boleta->trimestres !!}</td>
+            <td>{!! $boleta->url !!}</td>
+            <td>{!! $boleta->estudiante_id !!}</td>
+            <td>{!! $boleta->ano_id !!}</td>
+            <td>{!! $boleta->trimestre_id !!}</td>
             <td>
                 {!! Form::open(['route' => ['boletas.destroy', $boleta->id], 'method' => 'delete']) !!}
                 <div class='btn-group'>
@@ -27,4 +26,3 @@
     @endforeach
     </tbody>
 </table>
-</div>

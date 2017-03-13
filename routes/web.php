@@ -14,23 +14,21 @@ Auth::routes();
 
 Route::group(['middleware' => 'auth'], function()
 {
-	Route::get('/', 'HomeController@index');
-
-	Route::resource('estudiantes', 'estudianteController');
-
-	Route::resource('grados', 'gradoController');
-
-	Route::resource('docentes', 'docenteController');
-
-	Route::resource('anos', 'anoController');
-
-	Route::resource('trimestres', 'trimestreController');
-
-	Route::resource('boletas', 'boletaController');
-
-	Route::resource('seccions', 'seccionController');
-
-	Route::resource('boletas', 'boletaController');
-	
+	Route::get('/', 'HomeController@index');	
 });
 
+Route::resource('anos', 'anoController');
+
+Route::resource('trimestres', 'trimestreController');
+
+Route::resource('grados', 'gradoController');
+
+Route::resource('seccions', 'seccionController');
+
+Route::resource('docentes', 'docenteController');
+
+Route::resource('estudiantes', 'estudianteController');
+Route::get('/filter/estudiantes','estudianteController@filter')->name('estudiantes.filter');
+Route::get('/boletas/estudiante','estudianteController@boleta')->name('estudiantes.boleta');
+
+Route::resource('boletas', 'boletaController');

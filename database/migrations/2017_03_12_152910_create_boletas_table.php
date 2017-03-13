@@ -15,18 +15,15 @@ class CreateboletasTable extends Migration
     {
         Schema::create('boletas', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('estudiante_id')->unsigned()->nullable();
-            $table->integer('seccion_id')->unsigned()->nullable();
-            $table->integer('grado_id')->unsigned()->nullable();
-            $table->integer('trimestre_id')->unsigned()->nullable();
+            $table->string('url', 225);
+            $table->integer('estudiante_id')->unsigned();
+            $table->integer('ano_id')->unsigned();
+            $table->integer('trimestre_id')->unsigned();
             $table->timestamps();
             $table->softDeletes();
             $table->foreign('estudiante_id')->references('id')->on('estudiantes');
-            $table->foreign('seccion_id')->references('id')->on('seccions');
-            $table->foreign('grado_id')->references('id')->on('grados');
+            $table->foreign('ano_id')->references('id')->on('anos');
             $table->foreign('trimestre_id')->references('id')->on('trimestres');
-            $table->string('cancelo', 2)->nullable();
-            $table->string('boleta', 200)->nullable();
         });
     }
 
@@ -37,6 +34,6 @@ class CreateboletasTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('boletas');
+        Schema::drop('boletas');
     }
 }

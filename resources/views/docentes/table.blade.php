@@ -12,7 +12,7 @@
             <td>{!! $docente->nombre !!}</td>
             <td>{!! $docente->apellido !!}</td>
             <td>{!! $docente->cedula !!}</td>
-            <td>{!! $docente->seccions !!}</td>
+            <td>{!! $docente->email !!}</td>
             <td>
                 {!! Form::open(['route' => ['docentes.destroy', $docente->id], 'method' => 'delete']) !!}
                 <div class='btn-group'>

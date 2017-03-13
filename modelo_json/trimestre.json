@@ -11,20 +11,21 @@
         "inIndex": false
     },{
         "name": "trimestre",
-        "dbType": "string,50",
-        "htmlType": "select,ENERO:ENERO, FEBRERO:FEBRERO, MARZO:MARZO, ABRIL:ABRIL, MAYO:MAYO, JUNIO:JUNIO, JULIO:JULIO, AGOSTO:AGOSTO, SEPTIEMBRE:SEPTIEMBRE, OCTUBRE:OCTUBRE",
+        "dbType": "enum,['DICIEMRE','ABRIL','JULIO']",
+        "htmlType": "select,DICIEMRE:DICIEMBRE, ABRIL:ABRIL, JULIO:JULIO",
         "validations": "required",
         "searchable": true,
         "fillable": true
-    },{
-        "name": "ano_id",
-        "dbType": "integer:unsigned:foreign,anos,id",
-        "htmlType": "",
-        "relation": "1t1,ano,ano_id"
-    },{
+    },
+    {
         "type": "relation",
-        "relation": "mtm,boletas"
-    },{
+        "relation": "mtm,ano,ano_trimestre,trimestre_id,ano_id "
+    },
+    {
+        "type": "relation",
+        "relation": "mtm,grado,trimestre_grado,trimestre_id,grado_id "
+    },
+    {
         "name": "created_at",
         "dbType": "timestamp",
         "htmlType": "",

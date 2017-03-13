@@ -38,7 +38,7 @@
         "fillable": true
     },{
         "type": "relation",
-        "relation": "mtm,seccion,docente_seccion,seccion_id,docente_id"
+        "relation": "mtm,seccion,docente_seccion,docente_id,seccion_id"
     },{
         "name": "created_at",
         "dbType": "timestamp",

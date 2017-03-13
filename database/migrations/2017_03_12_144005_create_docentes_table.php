@@ -3,7 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreategradosTable extends Migration
+class CreatedocentesTable extends Migration
 {
 
     /**
@@ -13,9 +13,12 @@ class CreategradosTable extends Migration
      */
     public function up()
     {
-        Schema::create('grados', function (Blueprint $table) {
+        Schema::create('docentes', function (Blueprint $table) {
             $table->increments('id');
             $table->string('nombre', 50);
+            $table->string('apellido', 50);
+            $table->string('cedula', 20);
+            $table->string('email');
             $table->timestamps();
             $table->softDeletes();
         });
@@ -28,6 +31,6 @@ class CreategradosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('grados');
+        Schema::drop('docentes');
     }
 }

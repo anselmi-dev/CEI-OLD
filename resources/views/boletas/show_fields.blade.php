@@ -4,22 +4,22 @@
     <p>{!! $boleta->id !!}</p>
 </div>
 
+<!-- Url Field -->
+<div class="form-group">
+    {!! Form::label('url', 'Url:') !!}
+    <p>{!! $boleta->url !!}</p>
+</div>
+
 <!-- Estudiante Id Field -->
 <div class="form-group">
     {!! Form::label('estudiante_id', 'Estudiante Id:') !!}
     <p>{!! $boleta->estudiante_id !!}</p>
 </div>
 
-<!-- Seccion Id Field -->
+<!-- Ano Id Field -->
 <div class="form-group">
-    {!! Form::label('seccion_id', 'Seccion Id:') !!}
-    <p>{!! $boleta->seccion_id !!}</p>
-</div>
-
-<!-- Grado Id Field -->
-<div class="form-group">
-    {!! Form::label('grado_id', 'Grado Id:') !!}
-    <p>{!! $boleta->grado_id !!}</p>
+    {!! Form::label('ano_id', 'Ano Id:') !!}
+    <p>{!! $boleta->ano_id !!}</p>
 </div>
 
 <!-- Trimestre Id Field -->

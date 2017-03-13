@@ -11,7 +11,7 @@ class boletaRepository extends BaseRepository
      * @var array
      */
     protected $fieldSearchable = [
-        
+        'url'
     ];
 
     /**

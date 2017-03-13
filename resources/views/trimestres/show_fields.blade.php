@@ -10,12 +10,6 @@
     <p>{!! $trimestre->trimestre !!}</p>
 </div>
 
-<!-- Ano Id Field -->
-<div class="form-group">
-    {!! Form::label('ano_id', 'Ano Id:') !!}
-    <p>{!! $trimestre->ano->ano !!}</p>
-</div>
-
 <!-- Created At Field -->
 <div class="form-group">
     {!! Form::label('created_at', 'Created At:') !!}

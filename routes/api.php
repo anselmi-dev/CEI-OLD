@@ -30,25 +30,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 
 
-Route::resource('grados', 'gradoAPIController');
-
-
-
-
-
-Route::resource('docentes', 'docenteAPIController');
-
-Route::resource('seccions', 'seccionAPIController');
-
-
-
-Route::resource('seccions', 'seccionAPIController');
-
-Route::resource('seccions', 'seccionAPIController');
-
-Route::resource('seccions', 'seccionAPIController');
-
-Route::resource('seccions', 'seccionAPIController');
 
 
 
@@ -62,14 +43,32 @@ Route::resource('seccions', 'seccionAPIController');
 
 
 
-Route::resource('anos', 'anoAPIController');
 
-Route::resource('trimestres', 'trimestreAPIController');
 
-Route::resource('boletas', 'boletaAPIController');
 
-Route::resource('seccions', 'seccionAPIController');
 
-Route::resource('boletas', 'boletaAPIController');
 
-Route::resource('boletas', 'boletaAPIController');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

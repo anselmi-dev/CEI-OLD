@@ -2,13 +2,11 @@
     <thead>
         <th>Ano</th>
         <th colspan="3">Action</th>
-        <th colspan="3">Action</th>
     </thead>
     <tbody>
     @foreach($anos as $ano)
         <tr>
             <td>{!! $ano->ano !!}</td>
-            <td>{!! $ano->trimestres !!}</td>
             <td>
                 {!! Form::open(['route' => ['anos.destroy', $ano->id], 'method' => 'delete']) !!}
                 <div class='btn-group'>

@@ -7,10 +7,14 @@ use App\Http\Requests\UpdateboletaRequest;
 use App\Repositories\boletaRepository;
 use App\Http\Controllers\AppBaseController;
 use Illuminate\Http\Request;
+use App\Models\boleta;
+use File;
 use Flash;
+
+use App\Models\estudiante;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Response;
-use Illuminate\Support\Facades\DB;
+
 class boletaController extends AppBaseController
 {
     /** @var  boletaRepository */
@@ -22,31 +26,6 @@ class boletaController extends AppBaseController
     }
 
     /**
-     * Display a listing of the boleta.
-     *
-     * @param Request $request
-     * @return Response
-     */
-    public function index(Request $request)
-    {
-        $this->boletaRepository->pushCriteria(new RequestCriteria($request));
-        $boletas = $this->boletaRepository->all();
-
-        return view('boletas.index')
-            ->with('boletas', $boletas);
-    }
-
-    /**
-     * Show the form for creating a new boleta.
-     *
-     * @return Response
-     */
-    public function create()
-    {
-        return view('boletas.create');
-    }
-
-    /**
      * Store a newly created boleta in storage.
      *
      * @param CreateboletaRequest $request
@@ -55,105 +34,27 @@ class boletaController extends AppBaseController
      */
     public function store(CreateboletaRequest $request)
     {
+        $estudiante = estudiante::find($request->estudiante_id);
+    
+        $path = "/ano/$request->ano_id/trimestre/$request->trimestre_id/estudiante/$request->estudiante_id/{$this->clean($estudiante->nombre)}.".File::extension($request->file('url')->getClientOriginalName());
+
+        \Storage::disk('boleta')->put($path, \File::get($request->file('url')));
+        $boleta = new boleta(['url' => $path,'estudiante_id' => $request->estudiante_id,'trimestre_id'=> $request->trimestre_id,'ano_id' => $request->ano_id]);
+
         $input = $request->all();
-        $boleta = $this->boletaRepository->create($input);
-        DB::table('boleta_seccion')->insert(
-            array('seccion_id' => $input['seccion_id'], 'boleta_id' => $boleta->id)
-        );
-        DB::table('boleta_estudiante')->insert(
-            array('estudiante_id' => $input['estudiante_id'], 'boleta_id' => $boleta->id)
-        );
+        $boleta = $this->boletaRepository->create($boleta->toArray());
+
         Flash::success('Boleta saved successfully.');
 
-        return redirect(route('boletas.index'));
+        return redirect(route('estudiantes.index'));
     }
 
-    /**
-     * Display the specified boleta.
-     *
-     * @param  int $id
-     *
-     * @return Response
-     */
-    public function show($id)
-    {
-        $boleta = $this->boletaRepository->findWithoutFail($id);
+    function clean($name) {
+        $name = str_replace(' ', '-', $name); // Replaces all spaces with hyphens.
 
-        if (empty($boleta)) {
-            Flash::error('Boleta not found');
-
-            return redirect(route('boletas.index'));
-        }
-
-        return view('boletas.show')->with('boleta', $boleta);
+        return preg_replace('/[^A-Za-z0-9\-]/', '', $name); // Removes special chars.
     }
 
-    /**
-     * Show the form for editing the specified boleta.
-     *
-     * @param  int $id
-     *
-     * @return Response
-     */
-    public function edit($id)
-    {
-        $boleta = $this->boletaRepository->findWithoutFail($id);
 
-        if (empty($boleta)) {
-            Flash::error('Boleta not found');
 
-            return redirect(route('boletas.index'));
-        }
-
-        return view('boletas.edit')->with('boleta', $boleta);
-    }
-
-    /**
-     * Update the specified boleta in storage.
-     *
-     * @param  int              $id
-     * @param UpdateboletaRequest $request
-     *
-     * @return Response
-     */
-    public function update($id, UpdateboletaRequest $request)
-    {
-        $boleta = $this->boletaRepository->findWithoutFail($id);
-
-        if (empty($boleta)) {
-            Flash::error('Boleta not found');
-
-            return redirect(route('boletas.index'));
-        }
-
-        $boleta = $this->boletaRepository->update($request->all(), $id);
-
-        Flash::success('Boleta updated successfully.');
-
-        return redirect(route('boletas.index'));
-    }
-
-    /**
-     * Remove the specified boleta from storage.
-     *
-     * @param  int $id
-     *
-     * @return Response
-     */
-    public function destroy($id)
-    {
-        $boleta = $this->boletaRepository->findWithoutFail($id);
-
-        if (empty($boleta)) {
-            Flash::error('Boleta not found');
-
-            return redirect(route('boletas.index'));
-        }
-
-        $this->boletaRepository->delete($id);
-
-        Flash::success('Boleta deleted successfully.');
-
-        return redirect(route('boletas.index'));
-    }
 }

@@ -2,17 +2,13 @@
     <thead>
         <th>Nombre</th>
         <th>Grado Id</th>
-        <th>Docente</th>
-        <th>Boleta</th>
         <th colspan="3">Action</th>
     </thead>
     <tbody>
     @foreach($seccions as $seccion)
         <tr>
             <td>{!! $seccion->nombre !!}</td>
-            <td>{!! $seccion->grado !!}</td>
-            <td>{!! $seccion->docentes !!}</td>
-            <td>{!! $seccion->boletas !!}</td>
+            <td>{!! $seccion->grado_id !!}</td>
             <td>
                 {!! Form::open(['route' => ['seccions.destroy', $seccion->id], 'method' => 'delete']) !!}
                 <div class='btn-group'>

@@ -4,11 +4,13 @@ namespace App\Models;
 
 use Eloquent as Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use File;
+use Response;
 
 /**
  * Class boleta
  * @package App\Models
- * @version March 10, 2017, 5:30 pm UTC
+ * @version March 12, 2017, 3:29 pm UTC
  */
 class boleta extends Model
 {
@@ -21,9 +23,9 @@ class boleta extends Model
 
 
     public $fillable = [
+        'url',
         'estudiante_id',
-        'seccion_id',
-        'grado_id',
+        'ano_id',
         'trimestre_id'
     ];
 
@@ -33,9 +35,9 @@ class boleta extends Model
      * @var array
      */
     protected $casts = [
+        'url' => 'file',
         'estudiante_id' => 'integer',
-        'seccion_id' => 'integer',
-        'grado_id' => 'integer',
+        'ano_id' => 'integer',
         'trimestre_id' => 'integer'
     ];
 
@@ -45,38 +47,35 @@ class boleta extends Model
      * @var array
      */
     public static $rules = [
-        
+        'url' => 'required|file|mimes:jpeg,pdf,png|max:5000'
     ];
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      **/
-    public function estudiantes()
+    public function estudiante()
     {
-        return $this->hasMany(\App\Models\estudiante::class, 'id');
+        return $this->belongsTo(\App\Models\estudiante::class, 'id');
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      **/
-    public function seccions()
+    public function ano()
     {
-        return $this->hasMany(\App\Models\seccion::class, 'id');
+        return $this->belongsTo(\App\Models\ano::class, 'id');
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      **/
-    public function grados()
+    public function trimestre()
     {
-        return $this->hasMany(\App\Models\grado::class, 'id');
+        return $this->belongsTo(\App\Models\trimestre::class, 'id');
     }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     **/
-    public function trimestres()
+    public function getfileAttribute()
     {
-        return $this->hasMany(\App\Models\trimestre::class, 'id');
+        $filename = 'test.pdf';
+        return  \Storage::disk('boleta')->get($this->url);
     }
 }

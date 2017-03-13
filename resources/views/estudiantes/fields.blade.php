@@ -1,4 +1,27 @@
+@inject('menu','App\Services\menuController')
 <!-- Nombre Field -->
+<div class="form-group col-sm-4">
+    <label for="seccion">Ano:</label>
+
+{!! Form::select('ano_id',$menu->Anos()->pluck('ano','id'), null, ['class' => 'form-control']) !!}
+
+</div>
+<!-- Submit Field -->
+<div class="form-group col-sm-4">
+    <label for="trimestres[]">Trimestres</label>
+    <select multiple="true" name="trimestres[]" id="seccions" class="form-control select2">
+                    @foreach ($menu->Trimestres() as $trimestre)
+                        <option value="{{ $trimestre->id }}" @if(isset($estudiante)) @if( $estudiante->trimestres()->find( $trimestre->id) ) selected @endif @endif > {{$trimestre->trimestre}}</option>
+                    @endforeach
+            
+    </select>
+</div>
+
+<div class="form-group col-sm-4">
+    <label for="seccion">Seccion:</label>
+{!! Form::select('seccion_id',$menu->Secciones()->pluck('nombre','id'), null, ['class' => 'form-control']) !!}
+</div>
+
 <div class="form-group col-sm-6">
     {!! Form::label('nombre', 'Nombre:') !!}
     {!! Form::text('nombre', null, ['class' => 'form-control']) !!}
@@ -12,31 +35,46 @@
 
 <!-- Fechanacimiento Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('fechaNacimiento', 'Fechanacimiento:') !!}
-    {!! Form::date('fechaNacimiento', null, ['class' => 'form-control']) !!}
+    {!! Form::label('fechaNacimiento', 'FechaNacimiento:') !!}
+    @if( \Request::route()->getName()=='estudiantes.edit' )
+        {!! Form::date('fechaNacimiento', $estudiante->fechaNacimiento->format('Y-m-d'), ['class' => 'form-control']) !!}
+    @else
+        {!! Form::date('fechaNacimiento', null, ['class' => 'form-control']) !!}
+    @endif
 </div>
 
-<!-- Email Field -->
+<!-- Sexo Email -->
 <div class="form-group col-sm-6">
-    {!! Form::label('email', 'Email:') !!}
-    {!! Form::email('email', null, ['class' => 'form-control']) !!}
+    {!! Form::label('email', 'email:') !!}
+    {!! Form::text('email', null, ['class' => 'form-control']) !!}
 </div>
 
 <!-- Sexo Field -->
-<div class="form-group col-sm-12">
+<div class="form-group col-sm-6">
     {!! Form::label('sexo', 'Sexo:') !!}
-    <label class="radio-inline">
-        {!! Form::radio('sexo', "M", null) !!} M
-    </label>
-
-    <label class="radio-inline">
-        {!! Form::radio('sexo', "F", null) !!} F
-    </label>
-
+    {!! Form::select('sexo', ['M' => 'M', 'F' => 'F'], null, ['class' => 'form-control']) !!}
 </div>
+
+<!-- Activo Field -->
+<div class="form-group col-sm-6">
+    {!! Form::label('activo', 'Activo:') !!}
+    <label class="checkbox-inline">
+        {!! Form::hidden('activo', false) !!}
+        {!! Form::checkbox('activo', '1', null) !!}
+    </label>
+</div>
+
 
 <!-- Submit Field -->
 <div class="form-group col-sm-12">
-    {!! Form::submit('Save', ['class' => 'btn btn-primary']) !!}
-    <a href="{!! route('estudiantes.index') !!}" class="btn btn-default">Cancel</a>
+    {!! Form::submit('guardar', ['class' => 'btn btn-primary']) !!}
+    @if(isset($request))
+    <a href="{!! route('estudiantes.index',['seccion_id' => $request->seccion_id,
+                  'trimestre_id' => $request->trimestre_id,'grado_id' => $request->grado_id]) !!}"
+     class="btn btn-default">@lang('main.cancel')</a>
+     @else
+     <a href="{!! route('estudiantes.index') !!}"
+     class="btn btn-default">@lang('main.cancel')</a>
+     @endif
+
 </div>

@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 /**
  * Class trimestre
  * @package App\Models
- * @version March 10, 2017, 5:20 pm UTC
+ * @version March 12, 2017, 2:29 pm UTC
  */
 class trimestre extends Model
 {
@@ -21,8 +21,7 @@ class trimestre extends Model
 
 
     public $fillable = [
-        'trimestre',
-        'ano_id'
+        'trimestre'
     ];
 
     /**
@@ -31,8 +30,7 @@ class trimestre extends Model
      * @var array
      */
     protected $casts = [
-        'trimestre' => 'string',
-        'ano_id' => 'integer'
+        'trimestre' => 'string'
     ];
 
     /**
@@ -45,18 +43,18 @@ class trimestre extends Model
     ];
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      **/
-    public function ano()
+    public function anos()
     {
-        return $this->belongsTo(\App\Models\ano::class, 'ano_id');
+        return $this->belongsToMany(\App\Models\ano::class, 'ano_trimestre', 'trimestre_id', 'ano_id ');
     }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      **/
-    public function boletas()
+    public function grados()
     {
-        return $this->belongsToMany(\App\Models\boleta::class);
+        return $this->belongsToMany(\App\Models\grado::class, 'trimestre_grado');
     }
 }

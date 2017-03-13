@@ -3,7 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateseccionsTable extends Migration
+class CreatetrimestresTable extends Migration
 {
 
     /**
@@ -13,13 +13,11 @@ class CreateseccionsTable extends Migration
      */
     public function up()
     {
-        Schema::create('seccions', function (Blueprint $table) {
+        Schema::create('trimestres', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('nombre', 50);
-            $table->integer('grado_id')->unsigned();
+            $table->enum('trimestre', ['DICIEMBRE', 'ABRIL', 'JULIO']);
             $table->timestamps();
             $table->softDeletes();
-            $table->foreign('grado_id')->references('id')->on('grados');
         });
     }
 
@@ -30,6 +28,6 @@ class CreateseccionsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('seccions');
+        Schema::drop('trimestres');
     }
 }

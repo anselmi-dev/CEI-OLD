@@ -93,7 +93,6 @@ class seccionController extends AppBaseController
      */
     public function edit($id)
     {
-
         $seccion = $this->seccionRepository->findWithoutFail($id);
 
         if (empty($seccion)) {
@@ -116,6 +115,7 @@ class seccionController extends AppBaseController
     public function update($id, UpdateseccionRequest $request)
     {
         $seccion = $this->seccionRepository->findWithoutFail($id);
+
         if (empty($seccion)) {
             Flash::error('Seccion not found');
 
@@ -139,8 +139,6 @@ class seccionController extends AppBaseController
     public function destroy($id)
     {
         $seccion = $this->seccionRepository->findWithoutFail($id);
-
-        $seccion->docentes()->detach();
 
         if (empty($seccion)) {
             Flash::error('Seccion not found');

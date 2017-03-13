@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 /**
  * Class ano
  * @package App\Models
- * @version March 10, 2017, 5:20 pm UTC
+ * @version March 12, 2017, 2:10 pm UTC
  */
 class ano extends Model
 {
@@ -47,6 +47,6 @@ class ano extends Model
      **/
     public function trimestres()
     {
-        return $this->hasMany(\App\Models\trimestre::class);
+        return $this->belongsToMany(\App\Models\trimestre::class);
     }
 }

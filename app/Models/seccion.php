@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 /**
  * Class seccion
  * @package App\Models
- * @version March 10, 2017, 5:24 pm UTC
+ * @version March 12, 2017, 2:37 pm UTC
  */
 class seccion extends Model
 {
@@ -57,7 +57,7 @@ class seccion extends Model
      **/
     public function docentes()
     {
-        return $this->belongsToMany(\App\Models\docente::class, 'docente_seccions');
+        return $this->belongsToMany(\App\Models\docente::class, 'docente_seccion', 'seccion_id', 'docente_id');
     }
 
     /**
@@ -65,7 +65,6 @@ class seccion extends Model
      **/
     public function boletas()
     {
-        return $this->belongsToMany(\App\Models\boleta::class);
+        return $this->belongsToMany(\App\Models\boletas::class);
     }
-
 }

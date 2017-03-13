@@ -12,23 +12,41 @@ class TestModelsSeeder extends Seeder
     public function run()
     {
 
-        factory(App\Models\estudiante::class,50)->create();
+        //factory(App\Models\estudiante::class,10)->create();
 
-        factory(App\Models\docente::class,20)->create();
+        //factory(App\Models\docente::class,10)->create();
 
-        App\Models\ano::create(['ano' => '2017']);
-        App\Models\ano::create(['ano' => '2018']);
+        App\Models\trimestre::create(['trimestre' => 'DICIEMBRE']);
+        App\Models\trimestre::create(['trimestre' => 'ABRIL']);
+        App\Models\trimestre::create(['trimestre' => 'JULIO']);
 
-        App\Models\grado::create(['nombre' => 'Maternal']);
-        App\Models\grado::create(['nombre' => 'Lactante']);
+        $ano = App\Models\ano::create(['ano' => '2017'])->trimestres()->attach([1,2,3]);
 
-        App\Models\seccion::create(['nombre' => 'I' , 'grado_id' => 1]);
-        App\Models\seccion::create(['nombre' => 'I' , 'grado_id' => 2]);
-        App\Models\seccion::create(['nombre' => 'II' , 'grado_id' => 1]);
+        App\Models\grado::create(['nombre' => 'Maternal'])->trimestres()->attach([1,2,3]);
+        App\Models\grado::create(['nombre' => 'Preescolar'])->trimestres()->attach([1,2,3]);
+        App\Models\grado::create(['nombre' => 'Primero'])->trimestres()->attach([1,2,3]);
+        App\Models\grado::create(['nombre' => 'Segundo'])->trimestres()->attach([1,2,3]);
+        App\Models\grado::create(['nombre' => 'Tercero'])->trimestres()->attach([1,2,3]);
+
+        App\Models\seccion::create(['nombre' => 'Maternal I' , 'grado_id' => 1]);
+        App\Models\seccion::create(['nombre' => 'Maternal II' , 'grado_id' => 1]);
+        App\Models\seccion::create(['nombre' => 'Maternal III' , 'grado_id' => 1]);
+        App\Models\seccion::create(['nombre' => 'Maternal IV' , 'grado_id' => 1]);
+
+        App\Models\seccion::create(['nombre' => 'Preescolar I' , 'grado_id' => 2]);
+        App\Models\seccion::create(['nombre' => 'Preescolar II' , 'grado_id' => 2]);
+        App\Models\seccion::create(['nombre' => 'Preescolar III' , 'grado_id' => 2]);
+        App\Models\seccion::create(['nombre' => 'Preescolar IV' , 'grado_id' => 2]);
+
+        App\Models\seccion::create(['nombre' => 'Primero A' , 'grado_id' => 3]);
+        App\Models\seccion::create(['nombre' => 'Primero B' , 'grado_id' => 3]);
+
+        App\Models\seccion::create(['nombre' => 'Segundo A' , 'grado_id' => 4]);
+        App\Models\seccion::create(['nombre' => 'Segundo B' , 'grado_id' => 4]);
+
+        App\Models\seccion::create(['nombre' => 'Tercero Unico' , 'grado_id' => 5]);
         
-        App\Models\seccion::create(['nombre' => 'II' , 'grado_id' => 2]);
-        App\Models\seccion::create(['nombre' => 'III' , 'grado_id' => 1]);
-        App\Models\seccion::create(['nombre' => 'III' , 'grado_id' => 2]);
+
 
 /*;
 

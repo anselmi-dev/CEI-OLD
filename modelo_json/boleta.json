@@ -9,26 +9,30 @@
         "primary": true,
         "inForm": false,
         "inIndex": false
-    },{
+    },
+    {
+        "name": "url",
+        "dbType": "string,50",
+        "htmlType": "text",
+        "validations": "required",
+        "searchable": true,
+        "fillable": true
+    },
+    {
         "name": "estudiante_id",
-        "dbType": "integer:unsigned:foreign,estudiantes,estudiante_id",
+        "dbType": "integer:unsigned:foreign,estudiantes,id",
         "htmlType": "",
-        "relation": "1tm,estudiante,id"
+        "relation": "mt1,estudiante,id"
     },{
-        "name": "seccion_id",
-        "dbType": "integer:unsigned:foreign,seccions,seccion_id",
+        "name": "ano_id",
+        "dbType": "integer:unsigned:foreign,anos,id",
         "htmlType": "",
-        "relation": "1tm,seccion,id"
-    },{
-        "name": "grado_id",
-        "dbType": "integer:unsigned:foreign,grados,grado_id",
-        "htmlType": "",
-        "relation": "1tm,grado,id"
+        "relation": "mt1,ano,id"
     },{
         "name": "trimestre_id",
-        "dbType": "integer:unsigned:foreign,trimestres,trimestre_id",
+        "dbType": "integer:unsigned:foreign,trimestres,id",
         "htmlType": "",
-        "relation": "1tm,trimestre,id"
+        "relation": "mt1,trimestre,id"
     },{
         "name": "created_at",
         "dbType": "timestamp",

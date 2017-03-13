@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 /**
  * Class docente
  * @package App\Models
- * @version March 10, 2017, 4:28 pm UTC
+ * @version March 12, 2017, 2:40 pm UTC
  */
 class docente extends Model
 {
@@ -55,7 +55,10 @@ class docente extends Model
      **/
     public function seccions()
     {
-        return $this->belongsToMany(\App\Models\seccion::class, 'docente_seccions')->withTimestamps();
+        return $this->belongsToMany(\App\Models\seccion::class);
     }
-
+    public function getselectSeccionsAttributes()
+    {
+        return $this->seccions()->pluck('docente_id')->toArray();
+    }
 }

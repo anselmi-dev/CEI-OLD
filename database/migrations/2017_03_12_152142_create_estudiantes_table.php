@@ -3,7 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreatetrimestresTable extends Migration
+class CreateestudiantesTable extends Migration
 {
 
     /**
@@ -13,13 +13,19 @@ class CreatetrimestresTable extends Migration
      */
     public function up()
     {
-        Schema::create('trimestres', function (Blueprint $table) {
+        Schema::create('estudiantes', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('trimestre', 50);
+            $table->string('nombre', 50);
+            $table->string('apellido', 50);
+            $table->date('fechaNacimiento');
+            $table->string('email');
+            $table->string('sexo', 2);
             $table->integer('ano_id')->unsigned();
+            $table->integer('seccion_id')->unsigned();
             $table->timestamps();
             $table->softDeletes();
             $table->foreign('ano_id')->references('id')->on('anos');
+            $table->foreign('seccion_id')->references('id')->on('seccions');
         });
     }
 
@@ -30,6 +36,6 @@ class CreatetrimestresTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('trimestres');
+        Schema::drop('estudiantes');
     }
 }

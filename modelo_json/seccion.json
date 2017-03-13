@@ -23,7 +23,7 @@
         "relation": "mt1,grado,grado_id"
     },{
         "type": "relation",
-        "relation": "mtm,docente,docente_seccions,docente_id,seccion_id"
+        "relation": "mtm,docente,docente_seccion,seccion_id,docente_id"
     },{
         "type": "relation",
         "relation": "mtm,boletas"
