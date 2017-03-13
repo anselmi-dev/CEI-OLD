@@ -67,4 +67,12 @@ class seccion extends Model
     {
         return $this->belongsToMany(\App\Models\boletas::class);
     }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     **/
+    public function estudiantes()
+    {
+        return $this->hasMany(\App\Models\estudiante::class);
+    }
 }

@@ -36,8 +36,7 @@ class estudianteController extends AppBaseController
     {
         
         $this->estudianteRepository->pushCriteria(new RequestCriteria($request));
-        $estudiantes = $this->estudianteRepository->paginate(10);
-        $secciones = seccion::all();
+        $estudiantes = $this->estudianteRepository->paginate(100);
 
         return view('estudiantes.index')
             ->with('estudiantes', $estudiantes)
@@ -55,7 +54,8 @@ class estudianteController extends AppBaseController
     {
         $estudiantes = estudiante::
                                 Nombre($request->input('nombre'))
-                                ->Seccion($request->input('seccion_id'))->paginate(10);
+                                ->Ano($request->ano_id)
+                                ->Seccion($request->input('seccion_id'))->paginate(100);
 
         return view('estudiantes.index')
             ->with('estudiantes', $estudiantes)->with('request',$request);
@@ -70,6 +70,36 @@ class estudianteController extends AppBaseController
     public function boleta(Request $request)
     {
         return view('boletas.create')->with('request',$request);
+    }
+
+    /**
+     * Display a filter list of the estudiante.
+     *
+     * @param Request $request
+     * @return Response
+     */
+    public function promover(Request $request)
+    {
+        $estudiantes = estudiante::findMany($request->ids);
+
+        if (!empty($estudiantes->toArray())) {
+
+            if ($estudiantes[0]->ano_id != $request->ano_id) 
+            {
+                foreach ($estudiantes as $estudiante)
+                {
+                    $newestudiante = new estudiante($estudiante->toArray());
+                    $newestudiante->ano_id = $request->ano_id;
+                    $newestudiante->seccion_id = $request->seccion_id;
+                    estudiante::create($newestudiante->toArray());
+                }
+                Flash::success('Estudiante creado exitosamente.');
+            }
+            else
+                Flash::error('Crear nuevo año escolar');
+        }else
+            Flash::error('No seleccione');
+        return redirect(route('estudiantes.index'));
     }
 
     /**

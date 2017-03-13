@@ -57,4 +57,11 @@ class trimestre extends Model
     {
         return $this->belongsToMany(\App\Models\grado::class, 'trimestre_grado');
     }
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     **/
+    public function boletas()
+    {
+        return $this->hasMany(\App\Models\boleta::class);
+    }
 }

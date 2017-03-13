@@ -47,7 +47,8 @@ class boleta extends Model
      * @var array
      */
     public static $rules = [
-        'url' => 'required|file|mimes:jpeg,pdf,png|max:5000'
+        'url' => 'required|file|mimes:jpeg,pdf,png|max:5000',
+        'estudiante_id' => 'unique_with:boletas,trimestre_id,ano_id'
     ];
 
     /**
@@ -55,7 +56,7 @@ class boleta extends Model
      **/
     public function estudiante()
     {
-        return $this->belongsTo(\App\Models\estudiante::class, 'id');
+        return $this->belongsTo(\App\Models\estudiante::class);
     }
 
     /**
@@ -63,7 +64,7 @@ class boleta extends Model
      **/
     public function ano()
     {
-        return $this->belongsTo(\App\Models\ano::class, 'id');
+        return $this->belongsTo(\App\Models\ano::class);
     }
 
     /**
@@ -71,11 +72,13 @@ class boleta extends Model
      **/
     public function trimestre()
     {
-        return $this->belongsTo(\App\Models\trimestre::class, 'id');
+        return $this->belongsTo(\App\Models\trimestre::class);
     }
+
     public function getfileAttribute()
     {
         $filename = 'test.pdf';
+            return $this->url;
         return  \Storage::disk('boleta')->get($this->url);
     }
 }

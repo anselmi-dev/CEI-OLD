@@ -49,4 +49,8 @@ class ano extends Model
     {
         return $this->belongsToMany(\App\Models\trimestre::class);
     }
+    public function boletas()
+    {
+        return $this->hasMany(\App\Models\boleta::class);
+    }
 }

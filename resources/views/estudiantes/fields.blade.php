@@ -10,10 +10,9 @@
 <div class="form-group col-sm-4">
     <label for="trimestres[]">Trimestres</label>
     <select multiple="true" name="trimestres[]" id="seccions" class="form-control select2">
-                    @foreach ($menu->Trimestres() as $trimestre)
-                        <option value="{{ $trimestre->id }}" @if(isset($estudiante)) @if( $estudiante->trimestres()->find( $trimestre->id) ) selected @endif @endif > {{$trimestre->trimestre}}</option>
-                    @endforeach
-            
+        @foreach ($menu->Trimestres() as $trimestre)
+            <option value="{{ $trimestre->id }}" @if(isset($estudiante)) @if( $estudiante->trimestres()->find( $trimestre->id) ) selected @endif @else selected @endif > {{$trimestre->trimestre}}</option>
+        @endforeach
     </select>
 </div>
 
@@ -54,16 +53,6 @@
     {!! Form::label('sexo', 'Sexo:') !!}
     {!! Form::select('sexo', ['M' => 'M', 'F' => 'F'], null, ['class' => 'form-control']) !!}
 </div>
-
-<!-- Activo Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('activo', 'Activo:') !!}
-    <label class="checkbox-inline">
-        {!! Form::hidden('activo', false) !!}
-        {!! Form::checkbox('activo', '1', null) !!}
-    </label>
-</div>
-
 
 <!-- Submit Field -->
 <div class="form-group col-sm-12">

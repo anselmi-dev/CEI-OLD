@@ -42,12 +42,29 @@ class boletaController extends AppBaseController
         $boleta = new boleta(['url' => $path,'estudiante_id' => $request->estudiante_id,'trimestre_id'=> $request->trimestre_id,'ano_id' => $request->ano_id]);
 
         $input = $request->all();
+        
         $boleta = $this->boletaRepository->create($boleta->toArray());
 
         Flash::success('Boleta saved successfully.');
 
         return redirect(route('estudiantes.index'));
     }
+
+    public function destroy($id){
+
+        $boleta = $this->boletaRepository->findWithoutFail($id);
+
+        if (empty($boleta)) {
+            Flash::error('Boleta not found');
+        }
+
+        $this->boletaRepository->delete($id);
+
+        Flash::success('boleta deleted successfully.');
+
+        return redirect(route('estudiantes.index'));
+    }
+
 
     function clean($name) {
         $name = str_replace(' ', '-', $name); // Replaces all spaces with hyphens.

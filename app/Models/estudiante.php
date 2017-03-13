@@ -85,19 +85,12 @@ class estudiante extends Model
     }
 
 
-    public function getboletasAttribute()
+
+
+
+    public function boletas()
     {   
-        $boletas = boleta::where('estudiante_id',$this->id)
-                            ->where('ano_id',$this->ano->id)
-                            ->whereIn('trimestre_id',[1,2,3])
-                            ->get();
-
-        if(!empty($boletas->toArray()))
-        {
-            return $boletas;
-        }
-
-        return "No tiene Bolestas asociadas";
+        return $this->hasMany(\App\Models\boleta::class)->where('ano_id',$this->ano_id);
     }
 
     public function getedadAttribute()
@@ -126,6 +119,13 @@ class estudiante extends Model
     }
 
     }*/
+    public function scopeAno($query,$ano)
+    {
+        if($ano != "")
+        {
+            $query->where('ano_id',$ano);
+        }
+    }
     public function scopeSeccion($query,$seccion)
     {
         if($seccion != "")

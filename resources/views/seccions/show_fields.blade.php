@@ -1,30 +1,21 @@
-<!-- Id Field -->
-<div class="form-group">
-    {!! Form::label('id', 'Id:') !!}
-    <p>{!! $seccion->id !!}</p>
+<div class="table-responsive">
+<table class="table">
+    <caption></caption>
+    <thead>
+        <tr>
+            <th> id </th>
+            <th> Nombre </th>
+            <th> Correo </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach ($seccion->estudiantes as $estudiante )
+            <tr>
+                <td >{{ $estudiante->id }} </td>
+                <td >{{ $estudiante->nombre }} {{ $estudiante->apellido }}</td>
+                <td >{{ $estudiante->email }}</td>
+            </tr>
+        @endforeach
+    </tbody>
+</table>
 </div>
-
-<!-- Nombre Field -->
-<div class="form-group">
-    {!! Form::label('nombre', 'Nombre:') !!}
-    <p>{!! $seccion->nombre !!}</p>
-</div>
-
-<!-- Grado Id Field -->
-<div class="form-group">
-    {!! Form::label('grado_id', 'Grado Id:') !!}
-    <p>{!! $seccion->grado_id !!}</p>
-</div>
-
-<!-- Created At Field -->
-<div class="form-group">
-    {!! Form::label('created_at', 'Created At:') !!}
-    <p>{!! $seccion->created_at !!}</p>
-</div>
-
-<!-- Updated At Field -->
-<div class="form-group">
-    {!! Form::label('updated_at', 'Updated At:') !!}
-    <p>{!! $seccion->updated_at !!}</p>
-</div>
-
