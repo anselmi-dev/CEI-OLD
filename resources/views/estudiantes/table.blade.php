@@ -37,14 +37,26 @@
     @endforeach
     </tbody>
 </table>   
-    <div class="form-group col-sm-3" >
-        {!! Form::text('ano_id',$menu->Anos()->last()->id, null, ['class' => 'form-control']) !!}
-    </div>
-    <div class="form-group col-sm-3">
-        {!! Form::select('seccion_id',$menu->Secciones()->pluck('nombre','id')->prepend('Select Seccion', '')->toArray(), null, ['class' => 'form-control selectpicker']) !!}
-    </div>
-    {!! Form::button('<i class="glyphicon glyphicon-trash"></i> promover', ['type' => 'submit', 'class' => 'btn btn-danger  ']) !!}
-    <input type="hidden" name="_token" value="{{ csrf_token() }}">
+<div class="box box-default">
+    <div class="box-header with-border">
+      <h3 class="box-title">Promover</h3>
+      <div class="box-tools pull-right">
+        <button class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse"><i class="fa fa-minus"></i></button>
+        <button class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip" title="Remove"><i class="fa fa-times"></i></button>
+      </div><!-- /.box-tools -->
+    </div><!-- /.box-header -->
+    <div class="box-body">
+        <div class="form-group col-sm-3" style="display: none" >
+            {!! Form::text('ano_id',$menu->Anos()->last()->id, null, ['class' => 'form-control']) !!}
+        </div>
+        <div class="form-group col-sm-3">
+            @include('recursos.input.secciones')
+        </div>
+        {!! Form::button('<i class="glyphicon glyphicon-trash"></i> promover', ['type' => 'submit', 'class' => 'btn btn-danger  ']) !!}
+        <input type="hidden" name="_token" value="{{ csrf_token() }}">
+    </div><!-- /.box-body -->
+</div>
+
 {!! Form::close() !!}
 
 

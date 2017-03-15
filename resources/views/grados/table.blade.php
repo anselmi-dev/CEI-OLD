@@ -10,9 +10,7 @@
             <td>{!! $grado->nombre !!}</td>
             <td>
                 @foreach ($grado->seccions as $seccion )
-                    <ul>
-                        <li><a href="{{ route('estudiantes.filter', ['seccion_id' => $seccion->id] ) }}" >{!! $seccion->nombre !!}</a></li>
-                    </ul>   
+                    @include('recursos.get.seccions')
                 @endforeach
             </td>
             <td>

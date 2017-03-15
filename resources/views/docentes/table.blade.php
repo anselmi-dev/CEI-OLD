@@ -4,6 +4,7 @@
         <th>Apellido</th>
         <th>Cedula</th>
         <th>Email</th>
+        <th>Secciones</th>
         <th colspan="3">Action</th>
     </thead>
     <tbody>
@@ -13,6 +14,11 @@
             <td>{!! $docente->apellido !!}</td>
             <td>{!! $docente->cedula !!}</td>
             <td>{!! $docente->email !!}</td>
+            <td>
+                @foreach( $docente->seccions as $seccion)
+                    @include('recursos.get.seccions')
+                @endforeach
+            </td>
             <td>
                 {!! Form::open(['route' => ['docentes.destroy', $docente->id], 'method' => 'delete']) !!}
                 <div class='btn-group'>

@@ -1,5 +1,4 @@
 @extends('layouts.app')
-
 @section('content')
 @inject('menu','App\Services\menuController')
     <section class="content-header">
@@ -23,8 +22,9 @@
                         <div class="form-group col-sm-4">
                             {!! Form::select('ano_id',$menu->Anos()->pluck('ano','id')->prepend('Año escolar', '')->toArray(), null,  ['class' => 'form-control selectpicker']) !!}
                         </div>
+                            
                         <div class="form-group col-sm-4">
-                            {!! Form::select('seccion_id',$menu->Secciones()->pluck('nombre','id')->prepend('Seccion', '')->toArray(), null,  ['class' => 'form-control selectpicker']) !!}
+                            @include('recursos.input.secciones')
                         </div>  
                           
                         <div class="form-group col-sm-4">
