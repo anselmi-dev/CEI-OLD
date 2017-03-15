@@ -1,13 +1,13 @@
 @inject('menu','App\Services\menuController')
 <!-- Url Field -->
 
+
     <div class="box-body">
 		<div class="box">
 			<input type="hidden" name="_token" value="{{ csrf_token() }}">
-			<input id="file-es" name="url" type="file">
+			<input id="url" name="url" type="file">
 		</div>
     </div>
-
 
 {{ Form::hidden('estudiante_id', $request->estudiante_id) }}
 

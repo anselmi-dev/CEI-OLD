@@ -137,7 +137,7 @@
             $('.datepicker').datepicker();
             $("#box-widget").activateBox();
 
-            $('#file-es').fileinput({
+            $('#url').fileinput({
                 language: 'es',
                 uploadUrl: "{{ route('boletas.store') }}",
                 showUpload: false,
