@@ -30,7 +30,7 @@
                 <div class='btn-group'>
                     <a href="{!! route('estudiantes.show', [$estudiante->id]) !!}" class='btn btn-warning btn-xs'><i class="glyphicon glyphicon-eye-open"></i></a>
                     <a href="{!! route('estudiantes.edit', [$estudiante->id]) !!}" class='btn btn-primary btn-xs'><i class="glyphicon glyphicon-edit"></i></a>
-                    <a href="{!! route('estudiantes.boleta', ['estudiante_id' => $estudiante->id, 'ano_id' => $estudiante->ano]) !!}" class='btn btn-default btn-xs'><i class="glyphicon glyphicon-edit"></i>Add Boleta</a>
+                    <a href="{!! route('estudiantes.boleta', ['estudiante_id' => $estudiante->id, 'ano_id' => $estudiante->ano]) !!}" class='btn btn-default btn-xs'><i class="fa fa-book" aria-hidden="true"></i>Añadir Boleta</a>
                 </div>
             </td>
         </tr>
@@ -52,7 +52,7 @@
         <div class="form-group col-sm-3">
             @include('recursos.input.secciones')
         </div>
-        {!! Form::button('<i class="glyphicon glyphicon-trash"></i> promover', ['type' => 'submit', 'class' => 'btn btn-danger  ']) !!}
+        {!! Form::button('<i class="fa fa-chevron-circle-up" aria-hidden="true"></i> promover', ['type' => 'submit', 'class' => 'btn btn-danger  ']) !!}
         <input type="hidden" name="_token" value="{{ csrf_token() }}">
     </div><!-- /.box-body -->
 </div>

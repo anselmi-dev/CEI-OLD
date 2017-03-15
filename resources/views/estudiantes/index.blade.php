@@ -2,7 +2,7 @@
 @section('content')
 @inject('menu','App\Services\menuController')
     <section class="content-header">
-        <h1 class="pull-left">@lang('main.estudiantes') </h1>
+        <h1 class="pull-left"><i class="fa fa-graduation-cap" aria-hidden="true"></i> @lang('main.estudiantes') </h1>
         <h1 class="pull-right">
            <a class="btn btn-primary pull-right" style="margin-top: -10px;margin-bottom: 5px" href="{!! route('estudiantes.create',['seccion_id' => $request->seccion_id,
                   'trimestre_id' => $request->trimestre_id,'ano_id' => $request->ano_id]) !!}">@lang('main.addNew')</a>
