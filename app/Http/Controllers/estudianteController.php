@@ -36,7 +36,8 @@ class estudianteController extends AppBaseController
     {
         
         $this->estudianteRepository->pushCriteria(new RequestCriteria($request));
-        $estudiantes = $this->estudianteRepository->paginate(100);
+
+        $estudiantes = $this->estudianteRepository->paginate(2000);
 
         return view('estudiantes.index')
             ->with('estudiantes', $estudiantes)
@@ -55,7 +56,7 @@ class estudianteController extends AppBaseController
         $estudiantes = estudiante::
                                 Nombre($request->input('nombre'))
                                 ->Ano($request->ano_id)
-                                ->Seccion($request->input('seccion_id'))->paginate(100);
+                                ->Seccion($request->input('seccion_id'))->paginate(2000);
 
         return view('estudiantes.index')
             ->with('estudiantes', $estudiantes)->with('request',$request);
@@ -81,22 +82,23 @@ class estudianteController extends AppBaseController
     public function promover(Request $request)
     {
         $estudiantes = estudiante::findMany($request->ids);
-
         if (!empty($estudiantes->toArray())) {
-
-            if ($estudiantes[0]->ano_id != $request->ano_id) 
-            {
-                foreach ($estudiantes as $estudiante)
+            if (!empty($request->seccion_id)) {
+                if ($estudiantes[0]->ano_id != $request->ano_id) 
                 {
-                    $newestudiante = new estudiante($estudiante->toArray());
-                    $newestudiante->ano_id = $request->ano_id;
-                    $newestudiante->seccion_id = $request->seccion_id;
-                    estudiante::create($newestudiante->toArray());
+                    foreach ($estudiantes as $estudiante)
+                    {
+                        $newestudiante = new estudiante($estudiante->toArray());
+                        $newestudiante->ano_id = $request->ano_id;
+                        $newestudiante->seccion_id = $request->seccion_id;
+                        estudiante::create($newestudiante->toArray());
+                    }
+                    Flash::success('Estudiante creado exitosamente.');
                 }
-                Flash::success('Estudiante creado exitosamente.');
-            }
-            else
-                Flash::error('Crear nuevo año escolar');
+                else
+                    Flash::error('Crear nuevo año escolar');
+            }else
+                Flash::error('Seleccione la seccion a promover');
         }else
             Flash::error('No seleccione');
         return redirect(route('estudiantes.index'));

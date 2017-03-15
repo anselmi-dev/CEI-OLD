@@ -64,6 +64,7 @@
                   <div class="mailbox-attachment-info">
                     <a href="{{ url('boletas'.$boleta->file) }}" target="_blank" class="mailbox-attachment-name"><i class="fa fa-paperclip"></i> {{ $boleta->ano->ano}} - {{ $boleta->trimestre->trimestre }} </a>
                         <span class="mailbox-attachment-size" style="display: initial;">
+                            <a href="#" class="btn btn-default btn-xs pull-right" download="true"><i class="fa fa-cloud-download"></i></a>
                             {!! Form::open(['route' => ['boletas.destroy', $boleta->id], 'method' => 'delete']) !!}
                                     {!! Form::button('<i class="glyphicon glyphicon-trash"></i>', ['type' => 'submit', 'class' => 'btn btn-danger btn-xs', 'onclick' => "return confirm('Estas seguro?')"]) !!}
                             {!! Form::close() !!}

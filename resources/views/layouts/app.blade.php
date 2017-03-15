@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="{{ asset('css/skins/_all-skins.min.css') }}">
     <link rel="stylesheet" href="{{ asset('js/plugins/datepicker/datepicker3.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('js/plugins/dataTables/dataTables.bootstrap.css') }}"/>
-    <link rel="stylesheet" type="text/css" href="{{ asset('js/plugins/dropzone/dropzone.css') }}"/>
+    
     <link rel="stylesheet" type="text/css" href="{{ asset('js/plugins/fileinput/fileinput.min.css') }}"/>
     <link rel="stylesheet" type="text/css" href="{{ asset('js/plugins/bootstrap-select/bootstrap-select.min.css') }}"/>
     @yield('css')
@@ -130,10 +130,23 @@
               "searching": true,
               "ordering": true,
               "info": true,
+                "scrollY": "500px",
+                "scrollCollapse": true,
               "autoWidth": false
             });
             $('.datepicker').datepicker();
             $("#box-widget").activateBox();
+
+            $('#file-es').fileinput({
+                language: 'es',
+                uploadUrl: "{{ route('boletas.store') }}",
+                showUpload: false,
+                maxFileSize: 10000,
+                maxFilesNum: 1,
+                fileType: "any",
+                actionUpload: '<button type="button" class="kv-file-upload {uploadClass}" title="adadad">adad</button>\n'
+            });
+
         });
         $("#ajax").click(function(){
             var data =$('form').serializeArray();

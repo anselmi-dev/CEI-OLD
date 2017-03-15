@@ -1,5 +1,6 @@
 <?php
 use App\Models\boleta;
+use App\Mail\correoNotificacion as Notificacion;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -36,5 +37,28 @@ Route::group(['middleware' => 'auth'], function()
 	Route::post('boletas.store', 'boletaController@store')->name('boletas.store');
 
 	Route::delete('boletas/{id}', 'boletaController@destroy')->name('boletas.destroy');
+
+	Route::resource('mails', 'mailsController');
+	
+	Route::post('/ajax2', function(){
+		if (Request::ajax()) {
+			return Response::json(Request::all());
+		}
+		return 'no ajax';
+	});
+
+	Route::get('emails', function(){
+		$toEmails = array('carlosanselmi2@gmail.com','carlosanselmi3@hotmail.com');
+		return Mail::to('carlosanselmi2@gmail.com')
+			->cc($toEmails)
+			->send(new Notificacion());
+	});
+
+	Route::get("test-email", function() {
+	    Mail::send("mails.notificacion", [], function($message) {
+	        $message->to("carlosanselmi2@gmail.com", "Luis Garcia")
+	        ->subject("Bienvenido a Aprendible!");
+	    });
+	});
 
 });

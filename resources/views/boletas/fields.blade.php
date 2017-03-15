@@ -1,7 +1,13 @@
 @inject('menu','App\Services\menuController')
 <!-- Url Field -->
 
-{{Form::file('url') }}
+    <div class="box-body">
+		<div class="box">
+			<input type="hidden" name="_token" value="{{ csrf_token() }}">
+			<input id="file-es" name="url" type="file">
+		</div>
+    </div>
+
 
 {{ Form::hidden('estudiante_id', $request->estudiante_id) }}
 
@@ -21,3 +27,4 @@
     {!! Form::submit('Save', ['class' => 'btn btn-primary']) !!}
     <a href="{!! route('estudiantes.index') !!}" class="btn btn-default">Cancel</a>
 </div>
+
