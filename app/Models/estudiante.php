@@ -84,10 +84,6 @@ class estudiante extends Model
         return $this->belongsTo(\App\Models\seccion::class, 'seccion_id');
     }
 
-
-
-
-
     public function boletas()
     {   
         return $this->hasMany(\App\Models\boleta::class)->where('ano_id',$this->ano_id);
@@ -111,14 +107,6 @@ class estudiante extends Model
         }
     }
 
-  /*  public function scopeTrimestre($query,$trimestre)
-    {
-        if($trimestre != "")
-        {
-            $query->trimestres()->whereIn('trimestre_id',$trimestre);
-    }
-
-    }*/
     public function scopeAno($query,$ano)
     {
         if($ano != "")
@@ -126,6 +114,7 @@ class estudiante extends Model
             $query->where('ano_id',$ano);
         }
     }
+    
     public function scopeSeccion($query,$seccion)
     {
         if($seccion != "")

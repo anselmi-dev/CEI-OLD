@@ -55,8 +55,9 @@ class docente extends Model
      **/
     public function seccions()
     {
-        return $this->belongsToMany(\App\Models\seccion::class);
+        return $this->belongsToMany(\App\Models\seccion::class, 'docente_seccions')->withTimestamps();
     }
+
     public function getselectSeccionsAttributes()
     {
         return $this->seccions()->pluck('docente_id')->toArray();

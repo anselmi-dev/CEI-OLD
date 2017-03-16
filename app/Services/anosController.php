@@ -14,4 +14,15 @@ class anosController
 	public function AnoActual(){
         return Ano::orderBy('id', 'desc')->first()->id;
 	}
+
+	public function AnoActualModel(){
+        return Ano::orderBy('id', 'desc')->first();
+	}
+
+	public function ExisteAno(){
+        if( Ano::first() ){
+			return true;
+		}
+		return false;
+	}
 }

@@ -57,7 +57,7 @@ class seccion extends Model
      **/
     public function docentes()
     {
-        return $this->belongsToMany(\App\Models\docente::class, 'docente_seccion', 'seccion_id', 'docente_id');
+        return $this->belongsToMany(\App\Models\docente::class, 'docente_seccions');
     }
 
     /**

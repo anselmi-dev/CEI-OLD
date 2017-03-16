@@ -23,7 +23,7 @@
             <td>{!! $estudiante->edad !!}</td>
             <td>{!! $estudiante->email !!}</td>
             <td>{!! $estudiante->sexo !!}</td>
-            <td>{!! $estudiante->ano->ano !!}</td>
+            <td>@if($estudiante->ano) {!! $estudiante->ano->ano !!} @else N/A @endif</td>
             <td>{!! $estudiante->seccion->grado->nombre !!}</td>
             <td>{!! $estudiante->seccion->nombre !!}</td>
             <td>
@@ -46,14 +46,16 @@
       </div><!-- /.box-tools -->
     </div><!-- /.box-header -->
     <div class="box-body">
-        <div class="form-group col-sm-3" style="display: none" >
-            {!! Form::text('ano_id',$menu->Anos()->last()->id, null, ['class' => 'form-control']) !!}
-        </div>
-        <div class="form-group col-sm-3">
-            @include('recursos.input.secciones')
-        </div>
-        {!! Form::button('<i class="fa fa-chevron-circle-up" aria-hidden="true"></i> promover', ['type' => 'submit', 'class' => 'btn btn-danger  ']) !!}
-        <input type="hidden" name="_token" value="{{ csrf_token() }}">
+        @if( $menu->ExisteAno() )
+            <div class="form-group col-sm-3" style="display: none" >
+                {!! Form::text('ano_id',$menu->Anos()->last()->id, null, ['class' => 'form-control']) !!}
+            </div>
+            <div class="form-group col-sm-3">
+                @include('recursos.input.secciones')
+            </div>
+            {!! Form::button('<i class="fa fa-chevron-circle-up" aria-hidden="true"></i> promover', ['type' => 'submit', 'class' => 'btn btn-danger  ']) !!}
+            <input type="hidden" name="_token" value="{{ csrf_token() }}">
+        @endif
     </div><!-- /.box-body -->
 </div>
 

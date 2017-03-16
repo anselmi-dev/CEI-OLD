@@ -94,4 +94,11 @@ class menuController
 		])->get();
         
 	}
+
+	public function ExisteAno(){
+        if( Ano::first() ){
+			return true;
+		}
+		return false;
+	}
 }
