@@ -4,8 +4,8 @@
     <p>{!! $ano->id !!}</p>
 </div>
 
-<!-- Ano Field -->
-<div class="form-group">
+<!-- Fechanacimiento Field -->
+<div class="form-group col-sm-6">
     {!! Form::label('ano', 'Ano:') !!}
     <p>{!! $ano->ano !!}</p>
 </div>

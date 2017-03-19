@@ -22,6 +22,25 @@
     {!! Form::email('email', null, ['class' => 'form-control']) !!}
 </div>
 
+
+<!-- Seccion Id Field -->
+<div class="form-group col-sm-6">
+    {!! Form::label('estudiante_id', 'estudiante Id:') !!}
+    {!! Form::text('estudiante_id', null, ['class' => 'form-control']) !!}
+</div>
+
+@inject('estudiantes','App\Services\estudiantesController')
+<!-- Submit Field -->
+<div class="form-group col-sm-12">
+    <label for="boleta[]">Secciones</label>
+    <select multiple="true" name="seccions[]" id="seccions" class="form-control select2">
+            @foreach ($estudiantes->Estudiantes() as $estudiante)
+                <option value="{{ $estudiante->id }}">{{ $estudiante->nombre}}</option> 
+            @endforeach
+    </select>
+</div>
+
+
 <!-- Sexo Field -->
 <div class="form-group col-sm-12">
     {!! Form::label('sexo', 'Sexo:') !!}

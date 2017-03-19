@@ -57,7 +57,7 @@ class estudianteController extends AppBaseController
     {
         $input = $request->all();
 
-        $estudiante = $this->estudianteRepository->create($input);
+        $estudiante = $this->estudianteRepository->create($input)->save();
 
         Flash::success('Estudiante saved successfully.');
 

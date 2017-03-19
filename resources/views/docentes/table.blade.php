@@ -4,6 +4,7 @@
         <th>Apellido</th>
         <th>Cedula</th>
         <th>Email</th>
+        <th>secciones</th>
         <th colspan="3">Action</th>
     </thead>
     <tbody>
@@ -12,6 +13,7 @@
             <td>{!! $docente->nombre !!}</td>
             <td>{!! $docente->apellido !!}</td>
             <td>{!! $docente->cedula !!}</td>
+            <td>{!! $docente->email !!}</td>
             <td>{!! $docente->seccions !!}</td>
             <td>
                 {!! Form::open(['route' => ['docentes.destroy', $docente->id], 'method' => 'delete']) !!}

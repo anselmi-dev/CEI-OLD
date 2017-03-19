@@ -13,12 +13,10 @@ class BoletaSeccionTable extends Migration
      */
     public function up()
     {
-        Schema::create('boleta_seccion', function (Blueprint $table) {
-            $table->increments('id');
+ /*       Schema::create('boleta_seccion', function (Blueprint $table) {
             $table->integer('seccion_id')->unsigned();
             $table->integer('boleta_id')->unsigned();
             $table->timestamps();
-            $table->softDeletes();
             $table->foreign('seccion_id')->references('id')->on('seccions');
             $table->foreign('boleta_id')->references('id')->on('boletas');
         });
@@ -27,7 +25,6 @@ class BoletaSeccionTable extends Migration
             $table->integer('trimestre_id')->unsigned();
             $table->integer('boleta_id')->unsigned();
             $table->timestamps();
-            $table->softDeletes();
             $table->foreign('trimestre_id')->references('id')->on('trimestres');
             $table->foreign('boleta_id')->references('id')->on('boletas');
         });
@@ -36,7 +33,6 @@ class BoletaSeccionTable extends Migration
             $table->integer('estudiante_id')->unsigned();
             $table->integer('boleta_id')->unsigned();
             $table->timestamps();
-            $table->softDeletes();
             $table->foreign('estudiante_id')->references('id')->on('estudiantes');
             $table->foreign('boleta_id')->references('id')->on('boletas');
         });
@@ -45,10 +41,9 @@ class BoletaSeccionTable extends Migration
             $table->integer('grado_id')->unsigned();
             $table->integer('boleta_id')->unsigned();
             $table->timestamps();
-            $table->softDeletes();
             $table->foreign('grado_id')->references('id')->on('grados');
             $table->foreign('boleta_id')->references('id')->on('boletas');
-        });
+        });*/
     }
 
     /**
@@ -58,9 +53,9 @@ class BoletaSeccionTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('boleta_seccion');
+ /*       Schema::dropIfExists('boleta_seccion');
         Schema::dropIfExists('boleta_trimestre');
         Schema::dropIfExists('boleta_estudiante');
-        Schema::dropIfExists('boleta_grado');
+        Schema::dropIfExists('boleta_grado');*/
     }
 }

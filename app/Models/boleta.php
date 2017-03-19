@@ -23,7 +23,6 @@ class boleta extends Model
     public $fillable = [
         'estudiante_id',
         'seccion_id',
-        'grado_id',
         'trimestre_id'
     ];
 
@@ -35,7 +34,6 @@ class boleta extends Model
     protected $casts = [
         'estudiante_id' => 'integer',
         'seccion_id' => 'integer',
-        'grado_id' => 'integer',
         'trimestre_id' => 'integer'
     ];
 
@@ -49,34 +47,24 @@ class boleta extends Model
     ];
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
      **/
-    public function estudiantes()
+    public function estudiante()
     {
-        return $this->hasMany(\App\Models\estudiante::class, 'id');
+        return $this->belongsTo(\App\Models\ano::class, 'estudiante_id');
     }
-
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
      **/
-    public function seccions()
+    public function seccion()
     {
-        return $this->hasMany(\App\Models\seccion::class, 'id');
+        return $this->belongsTo(\App\Models\ano::class, 'seccion_id');
     }
-
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
      **/
-    public function grados()
+    public function trimestre()
     {
-        return $this->hasMany(\App\Models\grado::class, 'id');
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     **/
-    public function trimestres()
-    {
-        return $this->hasMany(\App\Models\trimestre::class, 'id');
+        return $this->belongsTo(\App\Models\ano::class, 'trimestre_id');
     }
 }

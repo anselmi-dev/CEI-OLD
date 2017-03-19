@@ -57,6 +57,6 @@ class trimestre extends Model
      **/
     public function boletas()
     {
-        return $this->belongsToMany(\App\Models\boleta::class);
+        return $this->hasMany(\App\Models\boleta::class);
     }
 }

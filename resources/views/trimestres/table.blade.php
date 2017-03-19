@@ -13,6 +13,7 @@
                     <ul>
                         @foreach($año->trimestres as $trimestre)
                             <li>{!! $trimestre->trimestre !!}
+                            <li>{!! $trimestre->boletas !!}
                                 {!! Form::open(['route' => ['trimestres.destroy', $trimestre->id], 'method' => 'delete']) !!}
                                 <div class='btn-group'>
                                     <a href="{!! route('trimestres.show', [$trimestre->id]) !!}" class='btn btn-default btn-xs'><i class="glyphicon glyphicon-eye-open"></i></a>
@@ -23,8 +24,6 @@
                             </li>
                         @endforeach
                     </ul>
-                </td>
-                <td>
                 </td>
         </tr>
         @endforeach

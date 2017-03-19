@@ -15,7 +15,7 @@ class CreateanosTable extends Migration
     {
         Schema::create('anos', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('ano', 50);
+            $table->date('ano');
             $table->timestamps();
             $table->softDeletes();
         });

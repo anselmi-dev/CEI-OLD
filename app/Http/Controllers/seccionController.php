@@ -30,6 +30,7 @@ class seccionController extends AppBaseController
     public function index(Request $request)
     {
         $this->seccionRepository->pushCriteria(new RequestCriteria($request));
+        
         $seccions = $this->seccionRepository->all();
 
         return view('seccions.index')

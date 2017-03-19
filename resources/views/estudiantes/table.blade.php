@@ -15,6 +15,7 @@
             <td>{!! $estudiante->fechaNacimiento !!}</td>
             <td>{!! $estudiante->email !!}</td>
             <td>{!! $estudiante->sexo !!}</td>
+            <td>{!! $estudiante->boletas !!}</td>
             <td>
                 {!! Form::open(['route' => ['estudiantes.destroy', $estudiante->id], 'method' => 'delete']) !!}
                 <div class='btn-group'>

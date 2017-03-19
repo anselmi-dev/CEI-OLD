@@ -3,17 +3,15 @@
     <thead>
         <th>Estudiante Id</th>
         <th>Seccion Id</th>
-        <th>Grado Id</th>
         <th>Trimestre Id</th>
         <th >Action</th>
     </thead>
     <tbody>
     @foreach($boletas as $boleta)
         <tr>
-            <td>{!! $boleta->estudiantes !!}</td>
-            <td>{!! $boleta->seccions !!}</td>
-            <td>{!! $boleta->grados !!}</td>
-            <td>{!! $boleta->trimestres !!}</td>
+            <td>{!! $boleta->estudiante !!}</td>
+            <td>{!! $boleta->seccion !!}</td>
+            <td>{!! $boleta->trimestre !!}</td>
             <td>
                 {!! Form::open(['route' => ['boletas.destroy', $boleta->id], 'method' => 'delete']) !!}
                 <div class='btn-group'>

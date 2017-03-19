@@ -59,13 +59,12 @@ class seccion extends Model
     {
         return $this->belongsToMany(\App\Models\docente::class, 'docente_seccions');
     }
-
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      **/
     public function boletas()
     {
-        return $this->belongsToMany(\App\Models\boleta::class);
+        return $this->hasMany(\App\Models\boleta::class,'seccion_id');
     }
 
 }

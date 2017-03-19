@@ -54,5 +54,12 @@ class estudiante extends Model
         'sexo' => 'required'
     ];
 
-    
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     **/
+    public function boletas()
+    {
+        return $this->hasMany(\App\Models\boleta::class);
+    }
 }

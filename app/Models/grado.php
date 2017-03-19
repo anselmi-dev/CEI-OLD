@@ -49,4 +49,5 @@ class grado extends Model
     {
         return $this->hasMany(\App\Models\seccion::class);
     }
+
 }

@@ -30,6 +30,7 @@ class trimestreController extends AppBaseController
     public function index(Request $request)
     {
         $this->trimestreRepository->pushCriteria(new RequestCriteria($request));
+
         $trimestres = $this->trimestreRepository->all();
 
         return view('trimestres.index')
@@ -56,6 +57,12 @@ class trimestreController extends AppBaseController
     public function store(CreatetrimestreRequest $request)
     {
         $input = $request->all();
+
+        $Ano = \App\Models\ano::create(array('ano' => '2017-10-10' ));
+
+        $input['ano_id'] = $Ano->id;
+
+  
 
         $trimestre = $this->trimestreRepository->create($input);
 

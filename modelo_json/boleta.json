@@ -13,22 +13,22 @@
         "name": "estudiante_id",
         "dbType": "integer:unsigned:foreign,estudiantes,estudiante_id",
         "htmlType": "",
-        "relation": "1tm,estudiante,id"
+        "relation": "mtm,estudiante,id"
     },{
         "name": "seccion_id",
         "dbType": "integer:unsigned:foreign,seccions,seccion_id",
         "htmlType": "",
-        "relation": "1tm,seccion,id"
+        "relation": "mtm,seccion,id"
     },{
         "name": "grado_id",
         "dbType": "integer:unsigned:foreign,grados,grado_id",
         "htmlType": "",
-        "relation": "1tm,grado,id"
+        "relation": "mtm,grado,id"
     },{
         "name": "trimestre_id",
         "dbType": "integer:unsigned:foreign,trimestres,trimestre_id",
         "htmlType": "",
-        "relation": "1tm,trimestre,id"
+        "relation": "mtm,trimestre,id"
     },{
         "name": "created_at",
         "dbType": "timestamp",

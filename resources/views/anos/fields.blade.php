@@ -1,7 +1,8 @@
-<!-- Ano Field -->
+
+<!-- Fechanacimiento Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('ano', 'Ano:') !!}
-    {!! Form::text('ano', null, ['class' => 'form-control']) !!}
+    {!! Form::date('ano', null, ['class' => 'form-control']) !!}
 </div>
 
 <!-- Submit Field -->

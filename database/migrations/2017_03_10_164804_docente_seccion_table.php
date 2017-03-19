@@ -14,6 +14,7 @@ class DocenteSeccionTable extends Migration
     public function up()
     {
         Schema::create('docente_seccions', function (Blueprint $table) {
+            $table->increments('id');
             $table->integer('seccion_id')->unsigned();
             $table->integer('docente_id')->unsigned();
             $table->timestamps();

@@ -16,11 +16,6 @@
     <p>{!! $boleta->seccion_id !!}</p>
 </div>
 
-<!-- Grado Id Field -->
-<div class="form-group">
-    {!! Form::label('grado_id', 'Grado Id:') !!}
-    <p>{!! $boleta->grado_id !!}</p>
-</div>
 
 <!-- Trimestre Id Field -->
 <div class="form-group">

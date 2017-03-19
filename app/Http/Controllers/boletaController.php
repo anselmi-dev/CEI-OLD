@@ -56,13 +56,9 @@ class boletaController extends AppBaseController
     public function store(CreateboletaRequest $request)
     {
         $input = $request->all();
+
         $boleta = $this->boletaRepository->create($input);
-        DB::table('boleta_seccion')->insert(
-            array('seccion_id' => $input['seccion_id'], 'boleta_id' => $boleta->id)
-        );
-        DB::table('boleta_estudiante')->insert(
-            array('estudiante_id' => $input['estudiante_id'], 'boleta_id' => $boleta->id)
-        );
+        
         Flash::success('Boleta saved successfully.');
 
         return redirect(route('boletas.index'));
