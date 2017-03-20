@@ -56,8 +56,8 @@ Route::group(['middleware' => 'auth'], function()
 
 	Route::get("test-email", function() {
 	    Mail::send("mails.notificacion", [], function($message) {
-	        $message->to("carlosanselmi2@gmail.com", "Luis Garcia")
-	        ->subject("Bienvenido a Aprendible!");
+	        $message->to("oscarp171@gmail.com", "Luis Garcia")
+	        ->subject("Notificacion de boleta CEI!");
 	    });
 	});
 
